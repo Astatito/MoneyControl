@@ -22,6 +22,7 @@ Partial Class frmMonedas
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMonedas))
         Me.grpMoneda = New System.Windows.Forms.GroupBox()
         Me.btnGuardar = New System.Windows.Forms.Button()
@@ -31,6 +32,7 @@ Partial Class frmMonedas
         Me.lblNombre = New System.Windows.Forms.Label()
         Me.lblCodigo = New System.Windows.Forms.Label()
         Me.lblPais = New System.Windows.Forms.Label()
+        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.grpMoneda.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -57,6 +59,7 @@ Partial Class frmMonedas
         Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardar.TabIndex = 4
         Me.btnGuardar.Text = "&Guardar"
+        Me.toolTip.SetToolTip(Me.btnGuardar, "Graba los datos y vuelve a la ventana anterior.")
         Me.btnGuardar.UseVisualStyleBackColor = True
         '
         'txtNombre
@@ -91,6 +94,7 @@ Partial Class frmMonedas
         Me.lblNombre.Size = New System.Drawing.Size(44, 13)
         Me.lblNombre.TabIndex = 18
         Me.lblNombre.Text = "Nombre"
+        Me.toolTip.SetToolTip(Me.lblNombre, "Nombre o descripción (por ejemplo, Dólar).")
         '
         'lblCodigo
         '
@@ -100,6 +104,7 @@ Partial Class frmMonedas
         Me.lblCodigo.Size = New System.Drawing.Size(40, 13)
         Me.lblCodigo.TabIndex = 17
         Me.lblCodigo.Text = "Código"
+        Me.toolTip.SetToolTip(Me.lblCodigo, "Código de la moneda (por ejemplo, ARS o USS).")
         '
         'lblPais
         '
@@ -109,6 +114,12 @@ Partial Class frmMonedas
         Me.lblPais.Size = New System.Drawing.Size(29, 13)
         Me.lblPais.TabIndex = 16
         Me.lblPais.Text = "País"
+        Me.toolTip.SetToolTip(Me.lblPais, "País o Región de la moneda.")
+        '
+        'toolTip
+        '
+        Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.toolTip.ToolTipTitle = "Ayuda"
         '
         'frmMonedas
         '
@@ -135,4 +146,5 @@ Partial Class frmMonedas
     Friend WithEvents lblNombre As Label
     Friend WithEvents lblCodigo As Label
     Friend WithEvents lblPais As Label
+    Friend WithEvents toolTip As ToolTip
 End Class

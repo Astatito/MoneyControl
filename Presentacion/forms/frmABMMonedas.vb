@@ -25,11 +25,13 @@ Public Class frmABMMonedas
             Dim modiCol As New DataGridViewButtonColumn()
             modiCol.Name = "columnModificar"
             modiCol.HeaderText = ""
+            modiCol.ToolTipText = "Modificar."
             dgvMonedas.Columns.Add(modiCol)
 
             Dim elimCol As New DataGridViewButtonColumn()
             elimCol.Name = "columnEliminar"
             elimCol.HeaderText = ""
+            elimCol.ToolTipText = "Eliminar."
             dgvMonedas.Columns.Add(elimCol)
 
         Catch ex As Exception
