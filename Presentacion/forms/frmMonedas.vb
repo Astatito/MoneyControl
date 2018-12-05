@@ -37,25 +37,34 @@ Public Class frmMonedas
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         Actualizar()
         GrabarDatos()
-        Me.Close()
+
+        If _LNMoneda.sb.Length <> 0 Then
+            MessageBox.Show(_LNMoneda.sb.ToString(), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Me.Close()
+        End If
     End Sub
 
     '____FUNCIONES/RUTINAS____
 
     'Graba los datos ingresados en la base de datos
     Public Sub GrabarDatos()
+        'Try
         If _moneda.Id = 0 Then
             _LNMoneda.Insertar(_moneda)
         Else
             _LNMoneda.Actualizar(_moneda)
         End If
+        'Catch ex As Exception
+        'MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        'End Try
     End Sub
 
     'Guarda los datos ingresados en la entidad correspondiente
     Public Sub Actualizar()
-        _moneda.Pais = txtPais.Text.ToString
-        _moneda.Codigo = txtCodigo.Text.ToString
-        _moneda.Nombre = txtNombre.Text.ToString
+        _moneda.Pais = StrConv(txtPais.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _moneda.Codigo = txtCodigo.Text.ToString.ToUpper.Trim()
+        _moneda.Nombre = StrConv(txtNombre.Text.ToString.Trim(), VbStrConv.ProperCase)
     End Sub
 
 End Class

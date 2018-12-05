@@ -96,22 +96,28 @@ Public Class frmABMMonedas
 
     'Carga el DGV con los registros de la tabla Monedas.
     Private Sub cargarDGV()
+        Try
+            Dim monedas As List(Of EMoneda) = _LNMoneda.ObtenerTodos()
 
-        Dim monedas As List(Of EMoneda) = _LNMoneda.ObtenerTodos()
-
-        Me.dgvMonedas.AutoGenerateColumns = False
-        Me.dgvMonedas.DataSource = monedas
-        Me.dgvMonedas.Columns("idColumn").DataPropertyName = "id"
-        Me.dgvMonedas.Columns("paisColumn").DataPropertyName = "pais"
-        Me.dgvMonedas.Columns("codigoColumn").DataPropertyName = "codigo"
-        Me.dgvMonedas.Columns("nombreColumn").DataPropertyName = "nombre"
-        Me.dgvMonedas.Columns("favoritoColumn").DataPropertyName = "favorito"
-
+            Me.dgvMonedas.AutoGenerateColumns = False
+            Me.dgvMonedas.DataSource = monedas
+            Me.dgvMonedas.Columns("idColumn").DataPropertyName = "id"
+            Me.dgvMonedas.Columns("paisColumn").DataPropertyName = "pais"
+            Me.dgvMonedas.Columns("codigoColumn").DataPropertyName = "codigo"
+            Me.dgvMonedas.Columns("nombreColumn").DataPropertyName = "nombre"
+            Me.dgvMonedas.Columns("favoritoColumn").DataPropertyName = "favorito"
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
     End Sub
 
     'Elimina el registro seleccionado de la tabla Monedas.
     Private Sub Eliminar(idMoneda As Integer)
-        _LNMoneda.Eliminar(idMoneda)
+        Try
+            _LNMoneda.Eliminar(idMoneda)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
     End Sub
 
     'Carga los datos de la fila seleccionada en una Entidad

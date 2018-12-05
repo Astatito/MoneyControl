@@ -2,7 +2,6 @@
 Imports System.Data.SQLite
 Imports System.Configuration
 
-
 Public Class ADMoneda
     Dim connstring As String = ConfigurationManager.ConnectionStrings("cnnString").ToString()
 
@@ -64,7 +63,7 @@ Public Class ADMoneda
         Using cnx As New SQLiteConnection(connstring)
             cnx.Open()
 
-            Const sqlQuery As String = "SELECT * FROM Monedas ORDER BY codigo DESC"
+            Const sqlQuery As String = "SELECT * FROM Monedas ORDER BY codigo"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
@@ -93,6 +92,32 @@ Public Class ADMoneda
             Const sqlQuery As String = "SELECT * FROM Monedas WHERE id = @id"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
                 cmd.Parameters.AddWithValue("@id", idMoneda)
+
+                Dim dr As SQLiteDataReader = cmd.ExecuteReader()
+                If dr.Read() Then
+                    Dim moneda As New EMoneda()
+                    moneda.Id = Convert.ToString(dr("id"))
+                    moneda.Pais = Convert.ToString(dr("pais"))
+                    moneda.Codigo = Convert.ToString(dr("codigo"))
+                    moneda.Nombre = Convert.ToString(dr("nombre"))
+                    moneda.Favorito = Convert.ToString(dr("favorito"))
+
+                    Return moneda
+                End If
+            End Using
+        End Using
+
+        Return Nothing
+    End Function
+
+    'Obtener un registro de la tabla Monedas a partir de un código.
+    Public Function ObtenerPorCodigo(ByVal codigo As String) As EMoneda
+        Using cnx As New SQLiteConnection(connstring)
+            cnx.Open()
+
+            Const sqlQuery As String = "SELECT * FROM Monedas WHERE codigo = @cod"
+            Using cmd As New SQLiteCommand(sqlQuery, cnx)
+                cmd.Parameters.AddWithValue("@cod", codigo)
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
