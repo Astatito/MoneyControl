@@ -24,22 +24,44 @@ Partial Class frmInicio
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInicio))
         Me.btnABMMonedas = New System.Windows.Forms.Button()
+        Me.btnABMTiposCuenta = New System.Windows.Forms.Button()
+        Me.btnMonedaPorDefecto = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnABMMonedas
         '
-        Me.btnABMMonedas.Location = New System.Drawing.Point(58, 68)
+        Me.btnABMMonedas.Location = New System.Drawing.Point(12, 12)
         Me.btnABMMonedas.Name = "btnABMMonedas"
-        Me.btnABMMonedas.Size = New System.Drawing.Size(117, 23)
+        Me.btnABMMonedas.Size = New System.Drawing.Size(117, 40)
         Me.btnABMMonedas.TabIndex = 0
         Me.btnABMMonedas.Text = "ABM Monedas"
         Me.btnABMMonedas.UseVisualStyleBackColor = True
+        '
+        'btnABMTiposCuenta
+        '
+        Me.btnABMTiposCuenta.Location = New System.Drawing.Point(12, 58)
+        Me.btnABMTiposCuenta.Name = "btnABMTiposCuenta"
+        Me.btnABMTiposCuenta.Size = New System.Drawing.Size(117, 40)
+        Me.btnABMTiposCuenta.TabIndex = 1
+        Me.btnABMTiposCuenta.Text = "ABM Tipos de Cuenta"
+        Me.btnABMTiposCuenta.UseVisualStyleBackColor = True
+        '
+        'btnMonedaPorDefecto
+        '
+        Me.btnMonedaPorDefecto.Location = New System.Drawing.Point(12, 104)
+        Me.btnMonedaPorDefecto.Name = "btnMonedaPorDefecto"
+        Me.btnMonedaPorDefecto.Size = New System.Drawing.Size(117, 40)
+        Me.btnMonedaPorDefecto.TabIndex = 2
+        Me.btnMonedaPorDefecto.Text = "Moneda por Defecto"
+        Me.btnMonedaPorDefecto.UseVisualStyleBackColor = True
         '
         'frmInicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(609, 345)
+        Me.Controls.Add(Me.btnMonedaPorDefecto)
+        Me.Controls.Add(Me.btnABMTiposCuenta)
         Me.Controls.Add(Me.btnABMMonedas)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmInicio"
@@ -49,4 +71,6 @@ Partial Class frmInicio
     End Sub
 
     Friend WithEvents btnABMMonedas As Button
+    Friend WithEvents btnABMTiposCuenta As Button
+    Friend WithEvents btnMonedaPorDefecto As Button
 End Class

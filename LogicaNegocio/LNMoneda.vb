@@ -7,7 +7,7 @@ Public Class LNMoneda
     Private _ADMoneda As New ADMoneda() 'Objeto perteneciente a la capa de Acceso a Datos.
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
-    'Verifica que los datos ingresados sean correctos.
+    'Verifica que los datos ingresados sean válidos.
     Public Function validarMoneda(moneda As EMoneda)
         sb.Clear()
 
@@ -28,38 +28,48 @@ Public Class LNMoneda
         Return sb.Length = 0
     End Function
 
-    'Insertar un registro válido en la tabla Monedas.
+    'Insertar una moneda.
     Public Sub Insertar(moneda As EMoneda)
         If validarMoneda(moneda) Then
             _ADMoneda.Insertar(moneda)
         End If
     End Sub
 
-    'Actualizar un registro válido de la tabla Monedas.
+    'Actualizar una moneda.
     Public Sub Actualizar(moneda As EMoneda)
         If validarMoneda(moneda) Then
             _ADMoneda.Actualizar(moneda)
         End If
     End Sub
 
-    'Eliminar un registro de la tabla Monedas
+    'Eliminar una moneda.
     Public Sub Eliminar(ByVal idMoneda As Integer)
         _ADMoneda.Eliminar(idMoneda)
     End Sub
 
-    'Obtener todos los registros de la tabla Monedas.
+    'Obtener todas las monedas.
     Public Function ObtenerTodos()
         Return _ADMoneda.ObtenerTodos()
     End Function
 
-    'Obtener un registro de la tabla Monedas a partir de un ID.
+    'Obtener una moneda a partir de un ID.
     Public Function ObtenerPorID(ByVal idMoneda As Integer)
         Return _ADMoneda.ObtenerPorId(idMoneda)
     End Function
 
-    'Obtener un registro de la tabla Monedas a partir de un código.
+    'Obtener una moneda a partir de un código.
     Public Function ObtenerPorCodigo(ByVal codigo As String)
         Return _ADMoneda.ObtenerPorCodigo(codigo)
     End Function
+
+    'Obtener la moneda por defecto.
+    Public Function ObtenerMonedaPorDefecto()
+        Return _ADMoneda.ObtenerMonedaPorDefecto()
+    End Function
+
+    'Establecer la moneda por defecto.
+    Public Sub DefinirMonedaPorDefecto(ByVal idMoneda As Integer)
+        _ADMoneda.DefinirMonedaPorDefecto(idMoneda)
+    End Sub
 
 End Class

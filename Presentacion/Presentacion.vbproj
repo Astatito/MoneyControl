@@ -76,11 +76,16 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="forms\frmABMMonedas.Designer.vb">
       <DependentUpon>frmABMMonedas.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmABMMonedas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmABMTiposCuenta.Designer.vb">
+      <DependentUpon>frmABMTiposCuenta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmABMTiposCuenta.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmInicio.Designer.vb">
@@ -89,10 +94,22 @@
     <Compile Include="forms\frmInicio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmMonedaPorDefecto.Designer.vb">
+      <DependentUpon>frmMonedaPorDefecto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmMonedaPorDefecto.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmMonedas.Designer.vb">
       <DependentUpon>frmMonedas.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmMonedas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmTiposCuenta.Designer.vb">
+      <DependentUpon>frmTiposCuenta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmTiposCuenta.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -115,11 +132,20 @@
     <EmbeddedResource Include="forms\frmABMMonedas.resx">
       <DependentUpon>frmABMMonedas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmABMTiposCuenta.resx">
+      <DependentUpon>frmABMTiposCuenta.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmInicio.resx">
       <DependentUpon>frmInicio.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmMonedaPorDefecto.resx">
+      <DependentUpon>frmMonedaPorDefecto.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmMonedas.resx">
       <DependentUpon>frmMonedas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTiposCuenta.resx">
+      <DependentUpon>frmTiposCuenta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

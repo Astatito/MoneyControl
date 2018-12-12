@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmABMMonedas
+Partial Class frmABMTiposCuenta
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -26,36 +26,33 @@ Partial Class frmABMMonedas
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmABMMonedas))
-        Me.grpMonedas = New System.Windows.Forms.GroupBox()
-        Me.dgvMonedas = New System.Windows.Forms.DataGridView()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmABMTiposCuenta))
+        Me.grpTiposCuenta = New System.Windows.Forms.GroupBox()
+        Me.dgvTiposCuenta = New System.Windows.Forms.DataGridView()
         Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.paisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.codigoColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nombreColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.favoritoColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.grpMonedas.SuspendLayout()
-        CType(Me.dgvMonedas, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpTiposCuenta.SuspendLayout()
+        CType(Me.dgvTiposCuenta, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'grpMonedas
+        'grpTiposCuenta
         '
-        Me.grpMonedas.Controls.Add(Me.dgvMonedas)
-        Me.grpMonedas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpMonedas.Location = New System.Drawing.Point(12, 12)
-        Me.grpMonedas.Name = "grpMonedas"
-        Me.grpMonedas.Size = New System.Drawing.Size(412, 178)
-        Me.grpMonedas.TabIndex = 6
-        Me.grpMonedas.TabStop = False
-        Me.grpMonedas.Text = "Monedas"
+        Me.grpTiposCuenta.Controls.Add(Me.dgvTiposCuenta)
+        Me.grpTiposCuenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grpTiposCuenta.Location = New System.Drawing.Point(12, 12)
+        Me.grpTiposCuenta.Name = "grpTiposCuenta"
+        Me.grpTiposCuenta.Size = New System.Drawing.Size(215, 183)
+        Me.grpTiposCuenta.TabIndex = 7
+        Me.grpTiposCuenta.TabStop = False
+        Me.grpTiposCuenta.Text = "Tipos de Cuenta"
         '
-        'dgvMonedas
+        'dgvTiposCuenta
         '
-        Me.dgvMonedas.AllowUserToAddRows = False
-        Me.dgvMonedas.AllowUserToDeleteRows = False
-        Me.dgvMonedas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvTiposCuenta.AllowUserToAddRows = False
+        Me.dgvTiposCuenta.AllowUserToDeleteRows = False
+        Me.dgvTiposCuenta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -63,9 +60,9 @@ Partial Class frmABMMonedas
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvMonedas.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvMonedas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvMonedas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idColumn, Me.paisColumn, Me.codigoColumn, Me.nombreColumn, Me.favoritoColumn})
+        Me.dgvTiposCuenta.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvTiposCuenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTiposCuenta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idColumn, Me.nombreColumn})
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -73,10 +70,10 @@ Partial Class frmABMMonedas
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvMonedas.DefaultCellStyle = DataGridViewCellStyle2
-        Me.dgvMonedas.Location = New System.Drawing.Point(6, 19)
-        Me.dgvMonedas.Name = "dgvMonedas"
-        Me.dgvMonedas.ReadOnly = True
+        Me.dgvTiposCuenta.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvTiposCuenta.Location = New System.Drawing.Point(6, 19)
+        Me.dgvTiposCuenta.Name = "dgvTiposCuenta"
+        Me.dgvTiposCuenta.ReadOnly = True
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -84,11 +81,11 @@ Partial Class frmABMMonedas
         DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvMonedas.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.dgvMonedas.RowHeadersVisible = False
-        Me.dgvMonedas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgvMonedas.Size = New System.Drawing.Size(397, 150)
-        Me.dgvMonedas.TabIndex = 4
+        Me.dgvTiposCuenta.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvTiposCuenta.RowHeadersVisible = False
+        Me.dgvTiposCuenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgvTiposCuenta.Size = New System.Drawing.Size(203, 153)
+        Me.dgvTiposCuenta.TabIndex = 4
         '
         'idColumn
         '
@@ -98,45 +95,22 @@ Partial Class frmABMMonedas
         Me.idColumn.ReadOnly = True
         Me.idColumn.Visible = False
         '
-        'paisColumn
-        '
-        Me.paisColumn.HeaderText = "País"
-        Me.paisColumn.MaxInputLength = 50
-        Me.paisColumn.Name = "paisColumn"
-        Me.paisColumn.ReadOnly = True
-        Me.paisColumn.ToolTipText = "País o Región de la moneda."
-        '
-        'codigoColumn
-        '
-        Me.codigoColumn.HeaderText = "Código"
-        Me.codigoColumn.MaxInputLength = 5
-        Me.codigoColumn.Name = "codigoColumn"
-        Me.codigoColumn.ReadOnly = True
-        Me.codigoColumn.ToolTipText = "Código de la moneda (por ejemplo, ARS o USS)."
-        '
         'nombreColumn
         '
         Me.nombreColumn.HeaderText = "Nombre"
         Me.nombreColumn.MaxInputLength = 50
         Me.nombreColumn.Name = "nombreColumn"
         Me.nombreColumn.ReadOnly = True
-        Me.nombreColumn.ToolTipText = "Nombre o descripción (por ejemplo, Dólar)."
-        '
-        'favoritoColumn
-        '
-        Me.favoritoColumn.HeaderText = "Favorito"
-        Me.favoritoColumn.Name = "favoritoColumn"
-        Me.favoritoColumn.ReadOnly = True
-        Me.favoritoColumn.Visible = False
+        Me.nombreColumn.ToolTipText = "Nombre o descripción (por ejemplo, Efectivo)."
         '
         'btnNuevo
         '
-        Me.btnNuevo.Location = New System.Drawing.Point(170, 196)
+        Me.btnNuevo.Location = New System.Drawing.Point(81, 201)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
-        Me.btnNuevo.TabIndex = 7
+        Me.btnNuevo.TabIndex = 8
         Me.btnNuevo.Text = "&Nuevo"
-        Me.toolTip.SetToolTip(Me.btnNuevo, "Registrar una nueva moneda." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + N)")
+        Me.toolTip.SetToolTip(Me.btnNuevo, "Registrar un nuevo tipo de cuenta." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + N)")
         Me.btnNuevo.UseVisualStyleBackColor = True
         '
         'toolTip
@@ -144,34 +118,31 @@ Partial Class frmABMMonedas
         Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.toolTip.ToolTipTitle = "Ayuda"
         '
-        'frmABMMonedas
+        'frmABMTiposCuenta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(433, 227)
+        Me.ClientSize = New System.Drawing.Size(239, 232)
         Me.Controls.Add(Me.btnNuevo)
-        Me.Controls.Add(Me.grpMonedas)
+        Me.Controls.Add(Me.grpTiposCuenta)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmABMMonedas"
+        Me.Name = "frmABMTiposCuenta"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Configuración - Monedas"
-        Me.grpMonedas.ResumeLayout(False)
-        CType(Me.dgvMonedas, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Text = "Configuración - Tipos de Cuenta"
+        Me.grpTiposCuenta.ResumeLayout(False)
+        CType(Me.dgvTiposCuenta, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents grpMonedas As GroupBox
-    Friend WithEvents dgvMonedas As DataGridView
+    Friend WithEvents grpTiposCuenta As GroupBox
+    Friend WithEvents dgvTiposCuenta As DataGridView
     Friend WithEvents btnNuevo As Button
     Friend WithEvents toolTip As ToolTip
     Friend WithEvents idColumn As DataGridViewTextBoxColumn
-    Friend WithEvents paisColumn As DataGridViewTextBoxColumn
-    Friend WithEvents codigoColumn As DataGridViewTextBoxColumn
     Friend WithEvents nombreColumn As DataGridViewTextBoxColumn
-    Friend WithEvents favoritoColumn As DataGridViewCheckBoxColumn
 End Class

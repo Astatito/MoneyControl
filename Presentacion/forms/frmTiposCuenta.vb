@@ -3,38 +3,37 @@ Imports LogicaNegocio
 Imports System.Threading
 Imports System.Windows.Forms
 
-Public Class frmMonedas
+Public Class frmTiposCuenta
 
-    Private _moneda As EMoneda 'Objeto perteneciente a la capa de Entidades.
-    Private ReadOnly _LNMoneda As New LNMoneda() 'Objeto perteneciente a la capa de Lógica de Negocio.
+
+    Private _tipoCuenta As ETipoCuenta 'Objeto perteneciente a la capa de Entidades.
+    Private ReadOnly _LNTipoCuenta As New LNTipoCuenta() 'Objeto perteneciente a la capa de Lógica de Negocio.
 
     'Creación de una nueva instancia del formulario
     Public Sub New()
         InitializeComponent()
         Me.Text = "Nuevo"
 
-        _moneda = New EMoneda()
+        _tipoCuenta = New ETipoCuenta()
     End Sub
 
-    Public Sub New(ByVal moneda As EMoneda)
+    Public Sub New(ByVal tipoCuenta As ETipoCuenta)
         InitializeComponent()
         Me.Text = "Modificar"
 
-        _moneda = New EMoneda()
-        _moneda = moneda
+        _tipoCuenta = New ETipoCuenta()
+        _tipoCuenta = tipoCuenta
     End Sub
 
     '____EVENTOS____
 
     'Evento Load del Form
-    Private Sub frmMonedas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        txtPais.Text = _moneda.Pais
-        txtCodigo.Text = _moneda.Codigo
-        txtNombre.Text = _moneda.Nombre
+    Private Sub frmTiposCuenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        txtNombre.Text = _tipoCuenta.Nombre
     End Sub
 
     'Evento KeyDown del Form
-    Private Sub frmMonedas_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+    Private Sub frmTiposCuenta_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.Escape Then
             Me.Close()
         ElseIf e.Control And e.KeyCode = Keys.G Then
@@ -47,8 +46,8 @@ Public Class frmMonedas
         Actualizar()
         GrabarDatos()
 
-        If _LNMoneda.sb.Length <> 0 Then
-            MessageBox.Show(_LNMoneda.sb.ToString(), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        If _LNTipoCuenta.sb.Length <> 0 Then
+            MessageBox.Show(_LNTipoCuenta.sb.ToString(), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             Me.Close()
         End If
@@ -59,10 +58,10 @@ Public Class frmMonedas
     'Graba los datos ingresados en la base de datos
     Public Sub GrabarDatos()
         Try
-            If _moneda.Id = 0 Then
-                _LNMoneda.Insertar(_moneda)
+            If _tipoCuenta.Id = 0 Then
+                _LNTipoCuenta.Insertar(_tipoCuenta)
             Else
-                _LNMoneda.Actualizar(_moneda)
+                _LNTipoCuenta.Actualizar(_tipoCuenta)
             End If
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -71,8 +70,7 @@ Public Class frmMonedas
 
     'Guarda los datos ingresados en la entidad correspondiente
     Public Sub Actualizar()
-        _moneda.Pais = StrConv(txtPais.Text.ToString.Trim(), VbStrConv.ProperCase)
-        _moneda.Codigo = txtCodigo.Text.ToString.ToUpper.Trim()
-        _moneda.Nombre = StrConv(txtNombre.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _tipoCuenta.Nombre = StrConv(txtNombre.Text.ToString.Trim(), VbStrConv.ProperCase)
     End Sub
+
 End Class

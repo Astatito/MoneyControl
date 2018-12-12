@@ -19,7 +19,7 @@ Public Class frmABMMonedas
     Private Sub frmABMMonedas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             CheckForIllegalCrossThreadCalls = False
-            Dim thr As New Thread(AddressOf cargarDGV)
+            Dim thr As New Thread(AddressOf Me.cargarDGV)
             thr.Start()
 
             Dim modiCol As New DataGridViewButtonColumn()
@@ -35,8 +35,18 @@ Public Class frmABMMonedas
             dgvMonedas.Columns.Add(elimCol)
 
         Catch ex As Exception
-            MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
+    End Sub
+
+    'Evento KeyDown del Form
+    Private Sub frmABMMonedas_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.Escape Then
+            Me.Close()
+        ElseIf e.Control AndAlso e.KeyCode = Keys.N Then
+            btnNuevo_Click(sender, e)
+        End If
+
     End Sub
 
     'Evento CellPainting del DataGridView
@@ -80,7 +90,6 @@ Public Class frmABMMonedas
             form.ShowDialog()
             cargarDGV()
         End If
-
     End Sub
 
     'Evento Click del Botón Nuevo
@@ -89,13 +98,12 @@ Public Class frmABMMonedas
         form.ShowDialog()
 
         cargarDGV()
-
     End Sub
 
     '____FUNCIONES/RUTINAS____
 
     'Carga el DGV con los registros de la tabla Monedas.
-    Private Sub cargarDGV()
+    Private Sub CargarDGV()
         Try
             Dim monedas As List(Of EMoneda) = _LNMoneda.ObtenerTodos()
 
@@ -107,7 +115,7 @@ Public Class frmABMMonedas
             Me.dgvMonedas.Columns("nombreColumn").DataPropertyName = "nombre"
             Me.dgvMonedas.Columns("favoritoColumn").DataPropertyName = "favorito"
         Catch ex As Exception
-            MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
     End Sub
 
@@ -116,12 +124,12 @@ Public Class frmABMMonedas
         Try
             _LNMoneda.Eliminar(idMoneda)
         Catch ex As Exception
-            MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
     End Sub
 
     'Carga los datos de la fila seleccionada en una Entidad
-    Private Sub cargarMoneda(ByVal fila As Integer)
+    Private Sub CargarMoneda(ByVal fila As Integer)
         _moneda.Id = Me.dgvMonedas.Rows(fila).Cells(0).Value
         _moneda.Pais = Me.dgvMonedas.Rows(fila).Cells(1).Value
         _moneda.Codigo = Me.dgvMonedas.Rows(fila).Cells(2).Value
