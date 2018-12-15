@@ -30,10 +30,9 @@ Partial Class frmABMMonedas
         Me.grpMonedas = New System.Windows.Forms.GroupBox()
         Me.dgvMonedas = New System.Windows.Forms.DataGridView()
         Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.paisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.codigoColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.nombreColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.favoritoColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.descripcionColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.porDefectoColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.grpMonedas.SuspendLayout()
@@ -65,7 +64,7 @@ Partial Class frmABMMonedas
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvMonedas.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvMonedas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvMonedas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idColumn, Me.paisColumn, Me.codigoColumn, Me.nombreColumn, Me.favoritoColumn})
+        Me.dgvMonedas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idColumn, Me.codigoColumn, Me.descripcionColumn, Me.porDefectoColumn})
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -98,39 +97,33 @@ Partial Class frmABMMonedas
         Me.idColumn.ReadOnly = True
         Me.idColumn.Visible = False
         '
-        'paisColumn
-        '
-        Me.paisColumn.HeaderText = "País"
-        Me.paisColumn.MaxInputLength = 50
-        Me.paisColumn.Name = "paisColumn"
-        Me.paisColumn.ReadOnly = True
-        Me.paisColumn.ToolTipText = "País o Región de la moneda."
-        '
         'codigoColumn
         '
+        Me.codigoColumn.FillWeight = 25.0!
         Me.codigoColumn.HeaderText = "Código"
         Me.codigoColumn.MaxInputLength = 5
         Me.codigoColumn.Name = "codigoColumn"
         Me.codigoColumn.ReadOnly = True
-        Me.codigoColumn.ToolTipText = "Código de la moneda (por ejemplo, ARS o USS)."
+        Me.codigoColumn.ToolTipText = "Código de la moneda (por ejemplo, USD)."
         '
-        'nombreColumn
+        'descripcionColumn
         '
-        Me.nombreColumn.HeaderText = "Nombre"
-        Me.nombreColumn.MaxInputLength = 50
-        Me.nombreColumn.Name = "nombreColumn"
-        Me.nombreColumn.ReadOnly = True
-        Me.nombreColumn.ToolTipText = "Nombre o descripción (por ejemplo, Dólar)."
+        Me.descripcionColumn.HeaderText = "Descripción"
+        Me.descripcionColumn.MaxInputLength = 50
+        Me.descripcionColumn.Name = "descripcionColumn"
+        Me.descripcionColumn.ReadOnly = True
+        Me.descripcionColumn.ToolTipText = "Descripción (por ejemplo, Dólar)."
         '
-        'favoritoColumn
+        'porDefectoColumn
         '
-        Me.favoritoColumn.HeaderText = "Favorito"
-        Me.favoritoColumn.Name = "favoritoColumn"
-        Me.favoritoColumn.ReadOnly = True
-        Me.favoritoColumn.Visible = False
+        Me.porDefectoColumn.HeaderText = "Por Defecto"
+        Me.porDefectoColumn.Name = "porDefectoColumn"
+        Me.porDefectoColumn.ReadOnly = True
+        Me.porDefectoColumn.Visible = False
         '
         'btnNuevo
         '
+        Me.btnNuevo.Cursor = System.Windows.Forms.Cursors.Default
         Me.btnNuevo.Location = New System.Drawing.Point(170, 196)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
@@ -151,6 +144,7 @@ Partial Class frmABMMonedas
         Me.ClientSize = New System.Drawing.Size(433, 227)
         Me.Controls.Add(Me.btnNuevo)
         Me.Controls.Add(Me.grpMonedas)
+        Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
@@ -170,8 +164,7 @@ Partial Class frmABMMonedas
     Friend WithEvents btnNuevo As Button
     Friend WithEvents toolTip As ToolTip
     Friend WithEvents idColumn As DataGridViewTextBoxColumn
-    Friend WithEvents paisColumn As DataGridViewTextBoxColumn
     Friend WithEvents codigoColumn As DataGridViewTextBoxColumn
-    Friend WithEvents nombreColumn As DataGridViewTextBoxColumn
-    Friend WithEvents favoritoColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents descripcionColumn As DataGridViewTextBoxColumn
+    Friend WithEvents porDefectoColumn As DataGridViewCheckBoxColumn
 End Class

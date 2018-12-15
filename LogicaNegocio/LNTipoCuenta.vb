@@ -7,14 +7,14 @@ Public Class LNTipoCuenta
     Private _ADTipoCuenta As New ADTipoCuenta() 'Objeto perteneciente a la capa de Acceso a Datos.
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
-    'Verifica que los datos ingresados sean correctos.
+    'Verificar que los datos ingresados sean correctos.
     Public Function validarTipoCuenta(tipoCuenta As ETipoCuenta)
         sb.Clear()
 
-        If String.IsNullOrEmpty(tipoCuenta.Nombre) Then
-            sb.Append(Environment.NewLine + "Debe ingresar un nombre o descripción.")
-        ElseIf Not ObtenerPorNombre(tipoCuenta.Nombre) Is Nothing Then
-            sb.Append(Environment.NewLine + "El nombre ingresado ya existe.")
+        If String.IsNullOrEmpty(tipoCuenta.Descripcion) Then
+            sb.Append(Environment.NewLine + "Debe ingresar una descripción.")
+        ElseIf Not ObtenerPorDescripcion(tipoCuenta.Descripcion, tipoCuenta.ID) Is Nothing Then
+            sb.Append(Environment.NewLine + "La descripción ingresada ya existe.")
         End If
 
         Return sb.Length = 0
@@ -50,8 +50,8 @@ Public Class LNTipoCuenta
     End Function
 
     'Obtener un tipo de cuenta a partir de un nombre.
-    Public Function ObtenerPorNombre(ByVal nombre As String)
-        Return _ADTipoCuenta.ObtenerPorNombre(nombre)
+    Public Function ObtenerPorDescripcion(ByVal descripcion As String, ByVal idTipoCuenta As Integer)
+        Return _ADTipoCuenta.ObtenerPorDescripcion(descripcion, idTipoCuenta)
     End Function
 
 End Class

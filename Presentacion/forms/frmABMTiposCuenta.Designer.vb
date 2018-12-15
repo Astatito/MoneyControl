@@ -29,10 +29,10 @@ Partial Class frmABMTiposCuenta
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmABMTiposCuenta))
         Me.grpTiposCuenta = New System.Windows.Forms.GroupBox()
         Me.dgvTiposCuenta = New System.Windows.Forms.DataGridView()
-        Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.nombreColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.descripcionColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.grpTiposCuenta.SuspendLayout()
         CType(Me.dgvTiposCuenta, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -62,7 +62,7 @@ Partial Class frmABMTiposCuenta
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvTiposCuenta.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvTiposCuenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTiposCuenta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idColumn, Me.nombreColumn})
+        Me.dgvTiposCuenta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idColumn, Me.descripcionColumn})
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -87,22 +87,6 @@ Partial Class frmABMTiposCuenta
         Me.dgvTiposCuenta.Size = New System.Drawing.Size(203, 153)
         Me.dgvTiposCuenta.TabIndex = 4
         '
-        'idColumn
-        '
-        Me.idColumn.HeaderText = "ID"
-        Me.idColumn.MaxInputLength = 10
-        Me.idColumn.Name = "idColumn"
-        Me.idColumn.ReadOnly = True
-        Me.idColumn.Visible = False
-        '
-        'nombreColumn
-        '
-        Me.nombreColumn.HeaderText = "Nombre"
-        Me.nombreColumn.MaxInputLength = 50
-        Me.nombreColumn.Name = "nombreColumn"
-        Me.nombreColumn.ReadOnly = True
-        Me.nombreColumn.ToolTipText = "Nombre o descripción (por ejemplo, Efectivo)."
-        '
         'btnNuevo
         '
         Me.btnNuevo.Location = New System.Drawing.Point(81, 201)
@@ -117,6 +101,22 @@ Partial Class frmABMTiposCuenta
         '
         Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.toolTip.ToolTipTitle = "Ayuda"
+        '
+        'idColumn
+        '
+        Me.idColumn.HeaderText = "ID"
+        Me.idColumn.MaxInputLength = 10
+        Me.idColumn.Name = "idColumn"
+        Me.idColumn.ReadOnly = True
+        Me.idColumn.Visible = False
+        '
+        'descripcionColumn
+        '
+        Me.descripcionColumn.HeaderText = "Descripción"
+        Me.descripcionColumn.MaxInputLength = 50
+        Me.descripcionColumn.Name = "descripcionColumn"
+        Me.descripcionColumn.ReadOnly = True
+        Me.descripcionColumn.ToolTipText = "Descripción (por ejemplo, Efectivo)."
         '
         'frmABMTiposCuenta
         '
@@ -144,5 +144,5 @@ Partial Class frmABMTiposCuenta
     Friend WithEvents btnNuevo As Button
     Friend WithEvents toolTip As ToolTip
     Friend WithEvents idColumn As DataGridViewTextBoxColumn
-    Friend WithEvents nombreColumn As DataGridViewTextBoxColumn
+    Friend WithEvents descripcionColumn As DataGridViewTextBoxColumn
 End Class

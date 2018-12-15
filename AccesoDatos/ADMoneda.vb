@@ -8,12 +8,11 @@ Public Class ADMoneda
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "INSERT INTO Monedas(pais, codigo, nombre) VALUES (@pais, @codigo, @nombre)"
+            Const sqlQuery As String = "INSERT INTO Monedas(codigo, descripcion) VALUES (@cod, @desc)"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
-                cmd.Parameters.AddWithValue("@pais", moneda.Pais)
-                cmd.Parameters.AddWithValue("@codigo", moneda.Codigo)
-                cmd.Parameters.AddWithValue("@nombre", moneda.Nombre)
+                cmd.Parameters.AddWithValue("@cod", moneda.Codigo)
+                cmd.Parameters.AddWithValue("@desc", moneda.Descripcion)
 
                 cmd.ExecuteNonQuery()
             End Using
@@ -26,14 +25,13 @@ Public Class ADMoneda
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "UPDATE Monedas SET pais = @pai, codigo = @cod, nombre = @nom, favorito = @fav WHERE id = @id "
+            Const sqlQuery As String = "UPDATE Monedas SET codigo = @cod, descripcion = @desc, porDefecto = @def WHERE id = @id "
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
-                cmd.Parameters.AddWithValue("@pai", moneda.Pais)
                 cmd.Parameters.AddWithValue("@cod", moneda.Codigo)
-                cmd.Parameters.AddWithValue("@nom", moneda.Nombre)
-                cmd.Parameters.AddWithValue("@fav", moneda.Favorito)
-                cmd.Parameters.AddWithValue("@id", moneda.Id)
+                cmd.Parameters.AddWithValue("@desc", moneda.Descripcion)
+                cmd.Parameters.AddWithValue("@def", moneda.PorDefecto)
+                cmd.Parameters.AddWithValue("@id", moneda.ID)
 
                 cmd.ExecuteNonQuery()
             End Using
@@ -70,11 +68,10 @@ Public Class ADMoneda
 
                 While dr.Read()
                     Dim moneda As New EMoneda()
-                    moneda.Id = Convert.ToString(dr("id"))
-                    moneda.Pais = Convert.ToString(dr("pais"))
+                    moneda.ID = Convert.ToString(dr("id"))
                     moneda.Codigo = Convert.ToString(dr("codigo"))
-                    moneda.Nombre = Convert.ToString(dr("nombre"))
-                    moneda.Favorito = Convert.ToString(dr("favorito"))
+                    moneda.Descripcion = Convert.ToString(dr("descripcion"))
+                    moneda.PorDefecto = Convert.ToString(dr("porDefecto"))
 
                     monedas.Add(moneda)
                 End While
@@ -86,7 +83,7 @@ Public Class ADMoneda
     End Function
 
     'Obtener una moneda de la BD a partir de un ID.
-    Public Function ObtenerPorId(ByVal idMoneda As Integer) As EMoneda
+    Public Function ObtenerPorID(ByVal idMoneda As Integer) As EMoneda
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -97,11 +94,10 @@ Public Class ADMoneda
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     Dim moneda As New EMoneda()
-                    moneda.Id = Convert.ToString(dr("id"))
-                    moneda.Pais = Convert.ToString(dr("pais"))
+                    moneda.ID = Convert.ToString(dr("id"))
                     moneda.Codigo = Convert.ToString(dr("codigo"))
-                    moneda.Nombre = Convert.ToString(dr("nombre"))
-                    moneda.Favorito = Convert.ToString(dr("favorito"))
+                    moneda.Descripcion = Convert.ToString(dr("descripcion"))
+                    moneda.PorDefecto = Convert.ToString(dr("porDefecto"))
 
                     Return moneda
                 End If
@@ -113,22 +109,22 @@ Public Class ADMoneda
     End Function
 
     'Obtener una moneda de la BD a partir de un código.
-    Public Function ObtenerPorCodigo(ByVal codigo As String) As EMoneda
+    Public Function ObtenerPorCodigo(ByVal codigo As String, ByVal idMoneda As Integer) As EMoneda
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "SELECT * FROM Monedas WHERE codigo = @cod"
+            Const sqlQuery As String = "SELECT * FROM Monedas WHERE codigo = @cod AND id != @id"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
                 cmd.Parameters.AddWithValue("@cod", codigo)
+                cmd.Parameters.AddWithValue("@id", idMoneda)
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     Dim moneda As New EMoneda()
-                    moneda.Id = Convert.ToString(dr("id"))
-                    moneda.Pais = Convert.ToString(dr("pais"))
+                    moneda.ID = Convert.ToString(dr("id"))
                     moneda.Codigo = Convert.ToString(dr("codigo"))
-                    moneda.Nombre = Convert.ToString(dr("nombre"))
-                    moneda.Favorito = Convert.ToString(dr("favorito"))
+                    moneda.Descripcion = Convert.ToString(dr("descripcion"))
+                    moneda.PorDefecto = Convert.ToString(dr("porDefecto"))
 
                     Return moneda
                 End If
@@ -140,21 +136,20 @@ Public Class ADMoneda
     End Function
 
     'Obtener moneda por defecto desde la BD.
-    Public Function ObtenerMonedaPorDefecto()
+    Public Function ObtenerMonedaPorDefecto() As EMoneda
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "SELECT * FROM Monedas WHERE favorito = TRUE"
+            Const sqlQuery As String = "SELECT * FROM Monedas WHERE porDefecto = TRUE"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     Dim moneda As New EMoneda()
-                    moneda.Id = Convert.ToString(dr("id"))
-                    moneda.Pais = Convert.ToString(dr("pais"))
+                    moneda.ID = Convert.ToString(dr("id"))
                     moneda.Codigo = Convert.ToString(dr("codigo"))
-                    moneda.Nombre = Convert.ToString(dr("nombre"))
-                    moneda.Favorito = Convert.ToString(dr("favorito"))
+                    moneda.Descripcion = Convert.ToString(dr("descripcion"))
+                    moneda.PorDefecto = Convert.ToString(dr("porDefecto"))
 
                     Return moneda
                 End If
@@ -174,11 +169,11 @@ Public Class ADMoneda
                 Using cmd As New SQLiteCommand(cnx)
                     cmd.Transaction = tr
 
-                    Const sqlQuery1 As String = "UPDATE Monedas SET favorito = False WHERE favorito = True"
+                    Const sqlQuery1 As String = "UPDATE Monedas SET porDefecto = False WHERE porDefecto = True"
                     cmd.CommandText = sqlQuery1
                     cmd.ExecuteNonQuery()
 
-                    Const sqlQuery2 = "UPDATE Monedas SET favorito = True WHERE id = @id"
+                    Const sqlQuery2 = "UPDATE Monedas SET porDefecto = True WHERE id = @id"
                     cmd.CommandText = sqlQuery2
                     cmd.Parameters.AddWithValue("@id", idMoneda)
                     cmd.ExecuteNonQuery()

@@ -7,22 +7,18 @@ Public Class LNMoneda
     Private _ADMoneda As New ADMoneda() 'Objeto perteneciente a la capa de Acceso a Datos.
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
-    'Verifica que los datos ingresados sean válidos.
+    'Verificar que los datos ingresados sean válidos.
     Public Function validarMoneda(moneda As EMoneda)
         sb.Clear()
 
-        If String.IsNullOrEmpty(moneda.Pais) Then
-            sb.Append("Debe ingresar un país o región.")
-        End If
-
         If String.IsNullOrEmpty(moneda.Codigo) Then
             sb.Append(Environment.NewLine + "Debe ingresar un código.")
-        ElseIf Not ObtenerPorCodigo(moneda.Codigo) Is Nothing Then
+        ElseIf Not ObtenerPorCodigo(moneda.Codigo, moneda.ID) Is Nothing Then
             sb.Append(Environment.NewLine + "El código ingresado ya existe.")
         End If
 
-        If String.IsNullOrEmpty(moneda.Nombre) Then
-            sb.Append(Environment.NewLine + "Debe ingresar un nombre.")
+        If String.IsNullOrEmpty(moneda.Descripcion) Then
+            sb.Append(Environment.NewLine + "Debe ingresar una descripción.")
         End If
 
         Return sb.Length = 0
@@ -58,8 +54,8 @@ Public Class LNMoneda
     End Function
 
     'Obtener una moneda a partir de un código.
-    Public Function ObtenerPorCodigo(ByVal codigo As String)
-        Return _ADMoneda.ObtenerPorCodigo(codigo)
+    Public Function ObtenerPorCodigo(ByVal codigo As String, ByVal idMoneda As Integer)
+        Return _ADMoneda.ObtenerPorCodigo(codigo, idMoneda)
     End Function
 
     'Obtener la moneda por defecto.

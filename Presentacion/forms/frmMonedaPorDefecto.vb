@@ -5,7 +5,6 @@ Imports System.Windows.Forms
 
 Public Class frmMonedaPorDefecto
 
-    Private _moneda As New EMoneda() 'Objeto perteneciente a la capa de Entidades
     Private ReadOnly _LNMoneda As New LNMoneda() 'Objeto perteneciente a la capa de Lógica de Negocio.
 
     'Creación de una nueva instancia del formulario
@@ -13,12 +12,12 @@ Public Class frmMonedaPorDefecto
         InitializeComponent()
     End Sub
 
-    '____EVENTOS____
+    '                                   ____EVENTOS____
 
     'Evento Load del Form
     Private Sub frmMonedaPorDefecto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckForIllegalCrossThreadCalls = False
-        Dim thr As New Thread(AddressOf cargarCombo)
+        Dim thr As New Thread(AddressOf CargarCombo)
         thr.Start()
     End Sub
 
@@ -37,16 +36,19 @@ Public Class frmMonedaPorDefecto
         Me.Close()
     End Sub
 
-    '____FUNCIONES/RUTINAS____
+    '                               ____FUNCIONES/RUTINAS____
 
-    'Cargar combo
+    'Cargar el ComboBox con las distintas monedas.
     Public Sub CargarCombo()
         Try
             Dim monedas As List(Of EMoneda) = _LNMoneda.ObtenerTodos()
 
             Me.cmbMonedas.DataSource = monedas
-            Me.cmbMonedas.DisplayMember = "Nombre"
-            Me.cmbMonedas.ValueMember = "Id"
+            Me.cmbMonedas.DisplayMember = "Descripcion"
+            Me.cmbMonedas.ValueMember = "ID"
+
+            Dim monedaPorDefecto As EMoneda = _LNMoneda.ObtenerMonedaPorDefecto()
+            Me.cmbMonedas.SelectedValue = monedaPorDefecto.ID
 
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)

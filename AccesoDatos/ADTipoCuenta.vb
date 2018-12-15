@@ -8,10 +8,10 @@ Public Class ADTipoCuenta
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "INSERT INTO TiposCuenta(nombre) VALUES (@nombre)"
+            Const sqlQuery As String = "INSERT INTO TiposCuenta(descripcion) VALUES (@desc)"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
-                cmd.Parameters.AddWithValue("@nombre", tipoCuenta.Nombre)
+                cmd.Parameters.AddWithValue("@desc", tipoCuenta.Descripcion)
 
                 cmd.ExecuteNonQuery()
             End Using
@@ -24,11 +24,11 @@ Public Class ADTipoCuenta
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "UPDATE TiposCuenta SET nombre = @nom WHERE id = @id "
+            Const sqlQuery As String = "UPDATE TiposCuenta SET descripcion = @desc WHERE id = @id "
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
-                cmd.Parameters.AddWithValue("@nom", tipoCuenta.Nombre)
-                cmd.Parameters.AddWithValue("@id", tipoCuenta.Id)
+                cmd.Parameters.AddWithValue("@desc", tipoCuenta.Descripcion)
+                cmd.Parameters.AddWithValue("@id", tipoCuenta.ID)
 
                 cmd.ExecuteNonQuery()
             End Using
@@ -59,15 +59,15 @@ Public Class ADTipoCuenta
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "SELECT * FROM TiposCuenta ORDER BY nombre"
+            Const sqlQuery As String = "SELECT * FROM TiposCuenta ORDER BY descripcion"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
 
                 While dr.Read()
                     Dim tipoCuenta As New ETipoCuenta()
-                    tipoCuenta.Id = Convert.ToString(dr("id"))
-                    tipoCuenta.Nombre = Convert.ToString(dr("nombre"))
+                    tipoCuenta.ID = Convert.ToString(dr("id"))
+                    tipoCuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
                     tiposCuenta.Add(tipoCuenta)
                 End While
@@ -90,8 +90,8 @@ Public Class ADTipoCuenta
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     Dim tipoCuenta As New ETipoCuenta()
-                    tipoCuenta.Id = Convert.ToString(dr("id"))
-                    tipoCuenta.Nombre = Convert.ToString(dr("nombre"))
+                    tipoCuenta.ID = Convert.ToString(dr("id"))
+                    tipoCuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
                     Return tipoCuenta
                 End If
@@ -102,20 +102,21 @@ Public Class ADTipoCuenta
         Return Nothing
     End Function
 
-    'Obtener un tipo de cuenta de la BD a partir de un nombre.
-    Public Function ObtenerPorNombre(ByVal nombre As String) As ETipoCuenta
+    'Obtener un tipo de cuenta de la BD a partir de un descripcion.
+    Public Function ObtenerPorDescripcion(ByVal descripcion As String, ByVal idTipoCuenta As Integer) As ETipoCuenta
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "SELECT * FROM TiposCuenta WHERE nombre = @nom"
+            Const sqlQuery As String = "SELECT * FROM TiposCuenta WHERE descripcion = @nom AND id != @id"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
-                cmd.Parameters.AddWithValue("@nom", nombre)
+                cmd.Parameters.AddWithValue("@nom", descripcion)
+                cmd.Parameters.AddWithValue("@id", idTipoCuenta)
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     Dim tipoCuenta As New ETipoCuenta()
-                    tipoCuenta.Id = Convert.ToString(dr("id"))
-                    tipoCuenta.Nombre = Convert.ToString(dr("nombre"))
+                    tipoCuenta.ID = Convert.ToString(dr("id"))
+                    tipoCuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
                     Return tipoCuenta
                 End If

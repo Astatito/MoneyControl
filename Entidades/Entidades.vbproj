@@ -65,6 +65,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ECuenta.vb" />
     <Compile Include="EMoneda.vb" />
     <Compile Include="ETipoCuenta.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

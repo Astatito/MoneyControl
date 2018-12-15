@@ -13,7 +13,7 @@ Public Class frmABMTiposCuenta
         InitializeComponent()
     End Sub
 
-    '____EVENTOS____
+    '                                   ____EVENTOS____
 
     'Evento Load del Form
     Private Sub frmABMTiposCuenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -67,19 +67,22 @@ Public Class frmABMTiposCuenta
     'Evento CellClick del DataGridView
     Private Sub dgvTiposCuenta_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvTiposCuenta.CellClick
         Dim columna As String = Me.dgvTiposCuenta.Columns(e.ColumnIndex).Name
-
-        If columna = "columnEliminar" Then
-            If MessageBox.Show("¿Está seguro de que desea eliminar este registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
-                Dim idTipoCuenta As Integer = Me.dgvTiposCuenta.CurrentRow.Cells(0).Value
-                Eliminar(idTipoCuenta)
-                cargarDGV()
+        Try
+            If columna = "columnEliminar" Then
+                If MessageBox.Show("¿Está seguro de que desea eliminar este registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                    Dim idTipoCuenta As Integer = Me.dgvTiposCuenta.CurrentRow.Cells(0).Value
+                    Eliminar(idTipoCuenta)
+                    CargarDGV()
+                End If
+            ElseIf columna = "columnModificar" Then
+                CargarTipoCuenta(Me.dgvTiposCuenta.CurrentRow.Index)
+                Dim form As New frmTiposCuenta(_tipoCuenta)
+                form.ShowDialog()
+                CargarDGV()
             End If
-        ElseIf columna = "columnModificar" Then
-            cargarTipoCuenta(Me.dgvTiposCuenta.CurrentRow.Index)
-            Dim form As New frmTiposCuenta(_tipoCuenta)
-            form.ShowDialog()
-            cargarDGV()
-        End If
+        Catch ex As Exception
+            MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
     End Sub
 
     'Evento KeyDown del Form
@@ -99,23 +102,23 @@ Public Class frmABMTiposCuenta
         cargarDGV()
     End Sub
 
-    '____FUNCIONES/RUTINAS____
+    '                               ____FUNCIONES/RUTINAS____
 
-    'Carga el DGV con los registros de la tabla TiposCuenta.
+    'Cargar el DataGridView con los distintos tipos de cuenta.
     Private Sub CargarDGV()
         Try
             Dim tiposCuenta As List(Of ETipoCuenta) = _LNTipoCuenta.ObtenerTodos()
 
             Me.dgvTiposCuenta.AutoGenerateColumns = False
             Me.dgvTiposCuenta.DataSource = tiposCuenta
-            Me.dgvTiposCuenta.Columns("idColumn").DataPropertyName = "id"
-            Me.dgvTiposCuenta.Columns("nombreColumn").DataPropertyName = "nombre"
+            Me.dgvTiposCuenta.Columns("idColumn").DataPropertyName = "ID"
+            Me.dgvTiposCuenta.Columns("descripcionColumn").DataPropertyName = "Descripcion"
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
     End Sub
 
-    'Elimina el registro seleccionado de la tabla TiposCuenta.
+    'Elimina el tipo de cuenta seleccionado.
     Private Sub Eliminar(idTipoCuenta As Integer)
         Try
             _LNTipoCuenta.Eliminar(idTipoCuenta)
@@ -124,10 +127,10 @@ Public Class frmABMTiposCuenta
         End Try
     End Sub
 
-    'Carga los datos de la fila seleccionada en una Entidad
+    'Cargar los datos de la fila seleccionada en una Entidad
     Private Sub CargarTipoCuenta(ByVal fila As Integer)
         _tipoCuenta.Id = Me.dgvTiposCuenta.Rows(fila).Cells(0).Value
-        _tipoCuenta.Nombre = Me.dgvTiposCuenta.Rows(fila).Cells(1).Value
+        _tipoCuenta.Descripcion = Me.dgvTiposCuenta.Rows(fila).Cells(1).Value
     End Sub
 
 End Class

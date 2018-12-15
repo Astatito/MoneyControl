@@ -1,9 +1,8 @@
 ﻿Public Class EMoneda
 
-    Public Property Id() As Integer 'ID numérico.
-    Public Property Pais() As String 'País o región.
+    Public Property ID() As Integer 'ID Numérico.
     Public Property Codigo() As String 'Código ISO.
-    Public Property Nombre() As String 'Nombre o descripción.
-    Public Property Favorito() As Boolean 'Flag que señala la moneda por defecto.
+    Public Property Descripcion() As String 'Descripción de la moneda.
+    Public Property PorDefecto() As Boolean 'Flag que señala la moneda por defecto.
 
 End Class

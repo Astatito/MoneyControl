@@ -24,13 +24,12 @@ Public Class frmMonedas
         _moneda = moneda
     End Sub
 
-    '____EVENTOS____
+    '                                   ____EVENTOS____
 
     'Evento Load del Form
     Private Sub frmMonedas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        txtPais.Text = _moneda.Pais
         txtCodigo.Text = _moneda.Codigo
-        txtNombre.Text = _moneda.Nombre
+        txtDescripcion.Text = _moneda.Descripcion
     End Sub
 
     'Evento KeyDown del Form
@@ -54,12 +53,12 @@ Public Class frmMonedas
         End If
     End Sub
 
-    '____FUNCIONES/RUTINAS____
+    '                               ____FUNCIONES/RUTINAS____
 
     'Graba los datos ingresados en la base de datos
     Public Sub GrabarDatos()
         Try
-            If _moneda.Id = 0 Then
+            If _moneda.ID = 0 Then
                 _LNMoneda.Insertar(_moneda)
             Else
                 _LNMoneda.Actualizar(_moneda)
@@ -71,8 +70,7 @@ Public Class frmMonedas
 
     'Guarda los datos ingresados en la entidad correspondiente
     Public Sub Actualizar()
-        _moneda.Pais = StrConv(txtPais.Text.ToString.Trim(), VbStrConv.ProperCase)
         _moneda.Codigo = txtCodigo.Text.ToString.ToUpper.Trim()
-        _moneda.Nombre = StrConv(txtNombre.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _moneda.Descripcion = StrConv(txtDescripcion.Text.ToString.Trim(), VbStrConv.ProperCase)
     End Sub
 End Class

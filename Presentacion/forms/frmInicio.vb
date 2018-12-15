@@ -13,4 +13,9 @@
         Dim frm As New frmMonedaPorDefecto()
         frm.ShowDialog()
     End Sub
+
+    Private Sub btnABMCuentas_Click(sender As Object, e As EventArgs) Handles btnABMCuentas.Click
+        Dim frm As New frmABMCuentas()
+        frm.showDialog()
+    End Sub
 End Class

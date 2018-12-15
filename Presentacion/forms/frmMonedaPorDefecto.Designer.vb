@@ -42,7 +42,7 @@ Partial Class frmMonedaPorDefecto
         '
         'btnGuardar
         '
-        Me.btnGuardar.Location = New System.Drawing.Point(90, 46)
+        Me.btnGuardar.Location = New System.Drawing.Point(94, 59)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardar.TabIndex = 1
@@ -57,11 +57,10 @@ Partial Class frmMonedaPorDefecto
         '
         'grpMonedaDefecto
         '
-        Me.grpMonedaDefecto.Controls.Add(Me.btnGuardar)
         Me.grpMonedaDefecto.Controls.Add(Me.cmbMonedas)
         Me.grpMonedaDefecto.Location = New System.Drawing.Point(2, 7)
         Me.grpMonedaDefecto.Name = "grpMonedaDefecto"
-        Me.grpMonedaDefecto.Size = New System.Drawing.Size(254, 79)
+        Me.grpMonedaDefecto.Size = New System.Drawing.Size(254, 46)
         Me.grpMonedaDefecto.TabIndex = 2
         Me.grpMonedaDefecto.TabStop = False
         Me.grpMonedaDefecto.Text = "Moneda por defecto"
@@ -72,6 +71,7 @@ Partial Class frmMonedaPorDefecto
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(258, 88)
+        Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.grpMonedaDefecto)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)

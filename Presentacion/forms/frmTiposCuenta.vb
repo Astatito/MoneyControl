@@ -25,11 +25,11 @@ Public Class frmTiposCuenta
         _tipoCuenta = tipoCuenta
     End Sub
 
-    '____EVENTOS____
+    '                                   ____EVENTOS____
 
     'Evento Load del Form
     Private Sub frmTiposCuenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        txtNombre.Text = _tipoCuenta.Nombre
+        txtDescripcion.Text = _tipoCuenta.Descripcion
     End Sub
 
     'Evento KeyDown del Form
@@ -53,7 +53,7 @@ Public Class frmTiposCuenta
         End If
     End Sub
 
-    '____FUNCIONES/RUTINAS____
+    '                               ____FUNCIONES/RUTINAS____
 
     'Graba los datos ingresados en la base de datos
     Public Sub GrabarDatos()
@@ -70,7 +70,7 @@ Public Class frmTiposCuenta
 
     'Guarda los datos ingresados en la entidad correspondiente
     Public Sub Actualizar()
-        _tipoCuenta.Nombre = StrConv(txtNombre.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _tipoCuenta.Descripcion = StrConv(txtDescripcion.Text.ToString.Trim(), VbStrConv.ProperCase)
     End Sub
 
 End Class

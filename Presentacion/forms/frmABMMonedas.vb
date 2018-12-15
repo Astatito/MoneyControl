@@ -13,7 +13,7 @@ Public Class frmABMMonedas
         InitializeComponent()
     End Sub
 
-    '____EVENTOS____
+    '                                   ____EVENTOS____
 
     'Evento Load del Form
     Private Sub frmABMMonedas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -77,19 +77,22 @@ Public Class frmABMMonedas
     'Evento CellClick del DataGridView
     Private Sub dgvMonedas_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvMonedas.CellClick
         Dim columna As String = Me.dgvMonedas.Columns(e.ColumnIndex).Name
-
-        If columna = "columnEliminar" Then
-            If MessageBox.Show("¿Está seguro de que desea eliminar este registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
-                Dim idMoneda As Integer = Me.dgvMonedas.CurrentRow.Cells(0).Value
-                Eliminar(idMoneda)
+        Try
+            If columna = "columnEliminar" Then
+                If MessageBox.Show("¿Está seguro de que desea eliminar este registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                    Dim idMoneda As Integer = Me.dgvMonedas.CurrentRow.Cells(0).Value
+                    Eliminar(idMoneda)
+                    cargarDGV()
+                End If
+            ElseIf columna = "columnModificar" Then
+                cargarMoneda(Me.dgvMonedas.CurrentRow.Index)
+                Dim form As New frmMonedas(_moneda)
+                form.ShowDialog()
                 cargarDGV()
             End If
-        ElseIf columna = "columnModificar" Then
-            cargarMoneda(Me.dgvMonedas.CurrentRow.Index)
-            Dim form As New frmMonedas(_moneda)
-            form.ShowDialog()
-            cargarDGV()
-        End If
+        Catch ex As Exception
+            MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
     End Sub
 
     'Evento Click del Botón Nuevo
@@ -97,29 +100,28 @@ Public Class frmABMMonedas
         Dim form As New frmMonedas()
         form.ShowDialog()
 
-        cargarDGV()
+        CargarDGV()
     End Sub
 
-    '____FUNCIONES/RUTINAS____
+    '                               ____FUNCIONES/RUTINAS____
 
-    'Carga el DGV con los registros de la tabla Monedas.
+    'Cargar el DataGridView con las distintas monedas.
     Private Sub CargarDGV()
         Try
             Dim monedas As List(Of EMoneda) = _LNMoneda.ObtenerTodos()
 
             Me.dgvMonedas.AutoGenerateColumns = False
             Me.dgvMonedas.DataSource = monedas
-            Me.dgvMonedas.Columns("idColumn").DataPropertyName = "id"
-            Me.dgvMonedas.Columns("paisColumn").DataPropertyName = "pais"
-            Me.dgvMonedas.Columns("codigoColumn").DataPropertyName = "codigo"
-            Me.dgvMonedas.Columns("nombreColumn").DataPropertyName = "nombre"
-            Me.dgvMonedas.Columns("favoritoColumn").DataPropertyName = "favorito"
+            Me.dgvMonedas.Columns("idColumn").DataPropertyName = "ID"
+            Me.dgvMonedas.Columns("codigoColumn").DataPropertyName = "Codigo"
+            Me.dgvMonedas.Columns("descripcionColumn").DataPropertyName = "Descripcion"
+            Me.dgvMonedas.Columns("porDefectoColumn").DataPropertyName = "PorDefecto"
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
     End Sub
 
-    'Elimina el registro seleccionado de la tabla Monedas.
+    'Eliminar la moneda seleccionada.
     Private Sub Eliminar(idMoneda As Integer)
         Try
             _LNMoneda.Eliminar(idMoneda)
@@ -128,13 +130,12 @@ Public Class frmABMMonedas
         End Try
     End Sub
 
-    'Carga los datos de la fila seleccionada en una Entidad
+    'Cargar los datos de la fila seleccionada en una Entidad
     Private Sub CargarMoneda(ByVal fila As Integer)
-        _moneda.Id = Me.dgvMonedas.Rows(fila).Cells(0).Value
-        _moneda.Pais = Me.dgvMonedas.Rows(fila).Cells(1).Value
-        _moneda.Codigo = Me.dgvMonedas.Rows(fila).Cells(2).Value
-        _moneda.Nombre = Me.dgvMonedas.Rows(fila).Cells(3).Value
-        _moneda.Favorito = Me.dgvMonedas.Rows(fila).Cells(4).Value
+        _moneda.ID = Me.dgvMonedas.Rows(fila).Cells(0).Value
+        _moneda.Codigo = Me.dgvMonedas.Rows(fila).Cells(1).Value
+        _moneda.Descripcion = Me.dgvMonedas.Rows(fila).Cells(2).Value
+        _moneda.PorDefecto = Me.dgvMonedas.Rows(fila).Cells(3).Value
     End Sub
 
 End Class
