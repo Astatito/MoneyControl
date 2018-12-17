@@ -26,13 +26,13 @@ Public Class frmABMMonedas
             modiCol.Name = "columnModificar"
             modiCol.HeaderText = ""
             modiCol.ToolTipText = "Modificar."
-            dgvMonedas.Columns.Add(modiCol)
+            Me.dgvMonedas.Columns.Add(modiCol)
 
             Dim elimCol As New DataGridViewButtonColumn()
             elimCol.Name = "columnEliminar"
             elimCol.HeaderText = ""
             elimCol.ToolTipText = "Eliminar."
-            dgvMonedas.Columns.Add(elimCol)
+            Me.dgvMonedas.Columns.Add(elimCol)
 
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)

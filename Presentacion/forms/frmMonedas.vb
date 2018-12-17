@@ -28,8 +28,8 @@ Public Class frmMonedas
 
     'Evento Load del Form
     Private Sub frmMonedas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        txtCodigo.Text = _moneda.Codigo
-        txtDescripcion.Text = _moneda.Descripcion
+        Me.txtCodigo.Text = _moneda.Codigo
+        Me.txtDescripcion.Text = _moneda.Descripcion
     End Sub
 
     'Evento KeyDown del Form
@@ -42,7 +42,7 @@ Public Class frmMonedas
     End Sub
 
     'Evento Click del Botón Guardar
-    Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
+    Private Sub btnGuardar_Click(sender As Object, e As EventArgs) 
         Actualizar()
         GrabarDatos()
 
@@ -70,7 +70,7 @@ Public Class frmMonedas
 
     'Guarda los datos ingresados en la entidad correspondiente
     Public Sub Actualizar()
-        _moneda.Codigo = txtCodigo.Text.ToString.ToUpper.Trim()
-        _moneda.Descripcion = StrConv(txtDescripcion.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _moneda.Codigo = Me.txtCodigo.Text.ToString.ToUpper.Trim()
+        _moneda.Descripcion = StrConv(Me.txtDescripcion.Text.ToString.Trim(), VbStrConv.ProperCase)
     End Sub
 End Class

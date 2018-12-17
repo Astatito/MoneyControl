@@ -89,6 +89,7 @@ Public Class ADCuenta
         Return cuentas
     End Function
 
+    'Obtener todas las cuentas (incluídos los datos auxiliares) de la BD.
     Public Function ObtenerTodosFull() As List(Of ECuenta)
         Dim cuentas As New List(Of ECuenta)
 
@@ -96,7 +97,7 @@ Public Class ADCuenta
             cnx.Open()
 
             Const sqlQuery As String = "SELECT c.id AS id, c.nombre AS nombre, c.tipoCuenta AS tipoCuenta, tc.descripcion AS descripcionTipoCuenta, c.moneda AS moneda, m.codigo AS codigoMoneda, c.saldo AS saldo, c.descripcion AS descripcion 
-From (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c.moneda = m.id"
+From (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c.moneda = m.id ORDER BY nombre"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
@@ -106,9 +107,9 @@ From (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c
                     cuenta.ID = Convert.ToString(dr("id"))
                     cuenta.Nombre = Convert.ToString(dr("nombre"))
                     cuenta.TipoCuenta = Convert.ToString(dr("tipoCuenta"))
-                    cuenta.DescripcionTipoCuenta = Convert.ToString(dr("descripcionTipoCuenta"))
+                    cuenta.DescripcionTipoCuenta = Convert.ToString(dr("descripcionTipoCuenta")) 'Auxiliar
                     cuenta.Moneda = Convert.ToString(dr("moneda"))
-                    cuenta.CodigoMoneda = Convert.ToString(dr("codigoMoneda"))
+                    cuenta.CodigoMoneda = Convert.ToString(dr("codigoMoneda")) 'Auxiliar
                     cuenta.Saldo = Convert.ToString(dr("saldo"))
                     cuenta.Descripcion = Convert.ToString(dr("descripcion"))
 

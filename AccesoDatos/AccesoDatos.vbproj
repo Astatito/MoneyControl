@@ -102,8 +102,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADCategoria.vb" />
     <Compile Include="ADCuenta.vb" />
     <Compile Include="ADMoneda.vb" />
+    <Compile Include="ADTipoCategoria.vb" />
     <Compile Include="ADTipoCuenta.vb" />
     <Compile Include="DataBase.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

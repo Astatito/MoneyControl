@@ -68,7 +68,7 @@ Partial Class frmABMCuentas
         Me.grpCuentas.Size = New System.Drawing.Size(447, 178)
         Me.grpCuentas.TabIndex = 7
         Me.grpCuentas.TabStop = False
-        Me.grpCuentas.Text = "Monedas"
+        Me.grpCuentas.Text = "Cuentas"
         '
         'dgvCuentas
         '

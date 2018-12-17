@@ -29,7 +29,7 @@ Public Class frmTiposCuenta
 
     'Evento Load del Form
     Private Sub frmTiposCuenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        txtDescripcion.Text = _tipoCuenta.Descripcion
+        Me.txtDescripcion.Text = _tipoCuenta.Descripcion
     End Sub
 
     'Evento KeyDown del Form
@@ -42,7 +42,7 @@ Public Class frmTiposCuenta
     End Sub
 
     'Evento Click del Botón Guardar
-    Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
+    Private Sub btnGuardar_Click(sender As Object, e As EventArgs) 
         Actualizar()
         GrabarDatos()
 
@@ -70,7 +70,7 @@ Public Class frmTiposCuenta
 
     'Guarda los datos ingresados en la entidad correspondiente
     Public Sub Actualizar()
-        _tipoCuenta.Descripcion = StrConv(txtDescripcion.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _tipoCuenta.Descripcion = StrConv(Me.txtDescripcion.Text.ToString.Trim(), VbStrConv.ProperCase)
     End Sub
 
 End Class

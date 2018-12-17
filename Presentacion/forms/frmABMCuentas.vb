@@ -26,13 +26,13 @@ Public Class frmABMCuentas
             modiCol.Name = "columnModificar"
             modiCol.HeaderText = ""
             modiCol.ToolTipText = "Modificar."
-            dgvCuentas.Columns.Add(modiCol)
+            Me.dgvCuentas.Columns.Add(modiCol)
 
             Dim elimCol As New DataGridViewButtonColumn()
             elimCol.Name = "columnEliminar"
             elimCol.HeaderText = ""
             elimCol.ToolTipText = "Eliminar."
-            dgvCuentas.Columns.Add(elimCol)
+            Me.dgvCuentas.Columns.Add(elimCol)
 
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -49,7 +49,7 @@ Public Class frmABMCuentas
     End Sub
 
     'Evento CellPainting del DataGridView
-    Private Sub dgvMonedas_CellPainting(ByVal sender As Object, ByVal e As DataGridViewCellPaintingEventArgs) Handles dgvCuentas.CellPainting
+    Private Sub dgvCuentas_CellPainting(ByVal sender As Object, ByVal e As DataGridViewCellPaintingEventArgs) Handles dgvCuentas.CellPainting
         If e.ColumnIndex >= 0 AndAlso Me.dgvCuentas.Columns(e.ColumnIndex).Name = "columnModificar" AndAlso e.RowIndex >= 0 Then
             e.Paint(e.CellBounds, DataGridViewPaintParts.All)
 

@@ -35,9 +35,9 @@ Public Class frmCuentas
         Dim thrTC As New Thread(AddressOf CargarComboTiposCuenta)
         thrTC.Start()
 
-        txtNombre.Text = _cuenta.Nombre
-        txtSaldo.Text = _cuenta.Saldo
-        txtDescripcion.Text = _cuenta.Descripcion
+        Me.txtNombre.Text = _cuenta.Nombre
+        Me.txtSaldo.Text = _cuenta.Saldo
+        Me.txtDescripcion.Text = _cuenta.Descripcion
     End Sub
 
     'Evento KeyDown del Form
@@ -61,6 +61,11 @@ Public Class frmCuentas
         End If
     End Sub
 
+    'Evento KeyPress del TextBox Saldo
+    Private Sub txtSaldo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSaldo.KeyPress
+        e.Handled = Not (IsNumeric(e.KeyChar) OrElse Char.IsControl(e.KeyChar) OrElse Char.IsPunctuation(e.KeyChar))
+    End Sub
+
     '                               ____FUNCIONES/RUTINAS____
 
     'Graba los datos ingresados en la base de datos
@@ -78,11 +83,11 @@ Public Class frmCuentas
 
     'Guarda los datos ingresados en la entidad correspondiente
     Public Sub Actualizar()
-        _cuenta.Nombre = StrConv(txtNombre.Text.ToString.Trim(), VbStrConv.ProperCase)
-        _cuenta.TipoCuenta = cmbTiposCuenta.SelectedValue
-        _cuenta.Moneda = cmbMonedas.SelectedValue
-        _cuenta.Saldo = Convert.ToDouble(txtSaldo.Text)
-        _cuenta.Descripcion = txtDescripcion.Text.ToString.Trim()
+        _cuenta.Nombre = StrConv(Me.txtNombre.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _cuenta.TipoCuenta = Me.cmbTiposCuenta.SelectedValue
+        _cuenta.Moneda = Me.cmbMonedas.SelectedValue
+        _cuenta.Saldo = Convert.ToDouble(Me.txtSaldo.Text)
+        _cuenta.Descripcion = Me.txtDescripcion.Text.ToString.Trim()
     End Sub
 
     'Cargar el ComboBox con las distintas monedas.
@@ -115,7 +120,4 @@ Public Class frmCuentas
         End Try
     End Sub
 
-    Private Sub txtSaldo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSaldo.KeyPress
-        e.Handled = Not (IsNumeric(e.KeyChar) Or Char.IsControl(e.KeyChar) Or Char.IsPunctuation(e.KeyChar))
-    End Sub
 End Class

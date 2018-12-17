@@ -25,38 +25,27 @@ Partial Class frmMonedas
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMonedas))
         Me.grpMoneda = New System.Windows.Forms.GroupBox()
-        Me.btnGuardar = New System.Windows.Forms.Button()
         Me.txtDescripcion = New System.Windows.Forms.TextBox()
         Me.txtCodigo = New System.Windows.Forms.TextBox()
         Me.lblDescripcion = New System.Windows.Forms.Label()
         Me.lblCodigo = New System.Windows.Forms.Label()
         Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btnGuardar = New System.Windows.Forms.Button()
         Me.grpMoneda.SuspendLayout()
         Me.SuspendLayout()
         '
         'grpMoneda
         '
-        Me.grpMoneda.Controls.Add(Me.btnGuardar)
         Me.grpMoneda.Controls.Add(Me.txtDescripcion)
         Me.grpMoneda.Controls.Add(Me.txtCodigo)
         Me.grpMoneda.Controls.Add(Me.lblDescripcion)
         Me.grpMoneda.Controls.Add(Me.lblCodigo)
         Me.grpMoneda.Location = New System.Drawing.Point(5, 4)
         Me.grpMoneda.Name = "grpMoneda"
-        Me.grpMoneda.Size = New System.Drawing.Size(238, 134)
+        Me.grpMoneda.Size = New System.Drawing.Size(238, 83)
         Me.grpMoneda.TabIndex = 0
         Me.grpMoneda.TabStop = False
         Me.grpMoneda.Text = "Moneda"
-        '
-        'btnGuardar
-        '
-        Me.btnGuardar.Location = New System.Drawing.Point(80, 102)
-        Me.btnGuardar.Name = "btnGuardar"
-        Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
-        Me.btnGuardar.TabIndex = 4
-        Me.btnGuardar.Text = "&Guardar"
-        Me.toolTip.SetToolTip(Me.btnGuardar, "Graba los datos y vuelve a la ventana anterior." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + G, Enter)")
-        Me.btnGuardar.UseVisualStyleBackColor = True
         '
         'txtDescripcion
         '
@@ -99,12 +88,22 @@ Partial Class frmMonedas
         Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.toolTip.ToolTipTitle = "Ayuda"
         '
+        'btnGuardar
+        '
+        Me.btnGuardar.Location = New System.Drawing.Point(83, 93)
+        Me.btnGuardar.Name = "btnGuardar"
+        Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
+        Me.btnGuardar.TabIndex = 5
+        Me.btnGuardar.Text = "&Guardar"
+        Me.toolTip.SetToolTip(Me.btnGuardar, "Graba los datos y vuelve a la ventana anterior." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + G, Enter)")
+        Me.btnGuardar.UseVisualStyleBackColor = True
+        '
         'frmMonedas
         '
-        Me.AcceptButton = Me.btnGuardar
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(245, 139)
+        Me.ClientSize = New System.Drawing.Size(245, 120)
+        Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.grpMoneda)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -120,10 +119,10 @@ Partial Class frmMonedas
     End Sub
 
     Friend WithEvents grpMoneda As GroupBox
-    Friend WithEvents btnGuardar As Button
     Friend WithEvents txtDescripcion As TextBox
     Friend WithEvents txtCodigo As TextBox
     Friend WithEvents lblDescripcion As Label
     Friend WithEvents lblCodigo As Label
     Friend WithEvents toolTip As ToolTip
+    Friend WithEvents btnGuardar As Button
 End Class

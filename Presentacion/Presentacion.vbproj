@@ -76,6 +76,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\frmABMCategorias.Designer.vb">
+      <DependentUpon>frmABMCategorias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmABMCategorias.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmABMCuentas.Designer.vb">
       <DependentUpon>frmABMCuentas.vb</DependentUpon>
     </Compile>
@@ -92,6 +98,12 @@
       <DependentUpon>frmABMTiposCuenta.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmABMTiposCuenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCategorias.Designer.vb">
+      <DependentUpon>frmCategorias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCategorias.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmCuentas.Designer.vb">
@@ -141,6 +153,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="forms\frmABMCategorias.resx">
+      <DependentUpon>frmABMCategorias.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmABMCuentas.resx">
       <DependentUpon>frmABMCuentas.vb</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmABMTiposCuenta.resx">
       <DependentUpon>frmABMTiposCuenta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCategorias.resx">
+      <DependentUpon>frmCategorias.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCuentas.resx">
       <DependentUpon>frmCuentas.vb</DependentUpon>

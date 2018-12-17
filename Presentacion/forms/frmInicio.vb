@@ -18,4 +18,9 @@
         Dim frm As New frmABMCuentas()
         frm.showDialog()
     End Sub
+
+    Private Sub btnABMCategorias_Click(sender As Object, e As EventArgs) Handles btnABMCategorias.Click
+        Dim frm As New frmABMCategorias()
+        frm.ShowDialog()
+    End Sub
 End Class
