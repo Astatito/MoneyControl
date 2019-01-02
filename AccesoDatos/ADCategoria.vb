@@ -8,11 +8,11 @@ Public Class ADCategoria
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "INSERT INTO Categorias(nombre, tipo) VALUES (@nom, @tip)"
+            Const sqlQuery As String = "INSERT INTO Categorias(nombre, tipoMovimiento) VALUES (@nom, @tip)"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
                 cmd.Parameters.AddWithValue("@nom", categoria.Nombre)
-                cmd.Parameters.AddWithValue("@tip", categoria.Tipo)
+                cmd.Parameters.AddWithValue("@tip", categoria.TipoMovimiento)
 
                 cmd.ExecuteNonQuery()
             End Using
@@ -25,11 +25,11 @@ Public Class ADCategoria
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "UPDATE Categorias SET nombre = @nom, tipo = @tip WHERE id = @id "
+            Const sqlQuery As String = "UPDATE Categorias SET nombre = @nom, tipoMovimiento = @tip WHERE id = @id "
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
                 cmd.Parameters.AddWithValue("@nom", categoria.Nombre)
-                cmd.Parameters.AddWithValue("@tip", categoria.Tipo)
+                cmd.Parameters.AddWithValue("@tip", categoria.TipoMovimiento)
                 cmd.Parameters.AddWithValue("@id", categoria.ID)
 
                 cmd.ExecuteNonQuery()
@@ -53,7 +53,7 @@ Public Class ADCategoria
         End Using
     End Sub
 
-    'Obtener todos las categorías de la BD.
+    'Obtener todas las categorías de la BD.
     Public Function ObtenerTodos() As List(Of ECategoria)
         Dim categorias As New List(Of ECategoria)
 
@@ -69,7 +69,7 @@ Public Class ADCategoria
                     Dim categoria As New ECategoria()
                     categoria.ID = Convert.ToString(dr("id"))
                     categoria.Nombre = Convert.ToString(dr("nombre"))
-                    categoria.Tipo = Convert.ToString(dr("tipo"))
+                    categoria.TipoMovimiento = Convert.ToString(dr("tipoMovimiento"))
 
                     categorias.Add(categoria)
                 End While
@@ -80,14 +80,14 @@ Public Class ADCategoria
         Return categorias
     End Function
 
-    'Obtener todos las categorías de ingresos de la BD.
+    'Obtener todas las categorías de ingresos de la BD.
     Public Function ObtenerIngresos() As List(Of ECategoria)
         Dim categorias As New List(Of ECategoria)
 
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "SELECT * FROM Categorias WHERE tipo = @tip ORDER BY nombre"
+            Const sqlQuery As String = "SELECT * FROM Categorias WHERE tipoMovimiento = @tip ORDER BY nombre"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
                 cmd.Parameters.AddWithValue("@tip", "Ingreso")
 
@@ -97,7 +97,7 @@ Public Class ADCategoria
                     Dim categoria As New ECategoria()
                     categoria.ID = Convert.ToString(dr("id"))
                     categoria.Nombre = Convert.ToString(dr("nombre"))
-                    categoria.Tipo = Convert.ToString(dr("tipo"))
+                    categoria.TipoMovimiento = Convert.ToString(dr("tipoMovimiento"))
 
                     categorias.Add(categoria)
                 End While
@@ -108,14 +108,14 @@ Public Class ADCategoria
         Return categorias
     End Function
 
-    'Obtener todos las categorías de egresos de la BD.
+    'Obtener todas las categorías de egresos de la BD.
     Public Function ObtenerEgresos() As List(Of ECategoria)
         Dim categorias As New List(Of ECategoria)
 
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "SELECT * FROM Categorias WHERE tipo = @tip ORDER BY nombre "
+            Const sqlQuery As String = "SELECT * FROM Categorias WHERE tipoMovimiento = @tip ORDER BY nombre "
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
                 cmd.Parameters.AddWithValue("@tip", "Egreso")
 
@@ -125,7 +125,7 @@ Public Class ADCategoria
                     Dim categoria As New ECategoria()
                     categoria.ID = Convert.ToString(dr("id"))
                     categoria.Nombre = Convert.ToString(dr("nombre"))
-                    categoria.Tipo = Convert.ToString(dr("tipo"))
+                    categoria.TipoMovimiento = Convert.ToString(dr("tipoMovimiento"))
 
                     categorias.Add(categoria)
                 End While
@@ -138,6 +138,8 @@ Public Class ADCategoria
 
     'Obtener una categoría de la BD a partir de un ID.
     Public Function ObtenerPorID(ByVal idCategoria As Integer) As ECategoria
+        Dim categoria As ECategoria = Nothing
+
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -147,45 +149,44 @@ Public Class ADCategoria
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
-                    Dim categoria As New ECategoria()
+                    categoria = New ECategoria()
                     categoria.ID = Convert.ToString(dr("id"))
                     categoria.Nombre = Convert.ToString(dr("nombre"))
-                    categoria.Tipo = Convert.ToString(dr("tipo"))
+                    categoria.TipoMovimiento = Convert.ToString(dr("tipoMovimiento"))
 
-                    Return categoria
                 End If
             End Using
             cnx.Close()
         End Using
 
-        Return Nothing
+        Return categoria
     End Function
 
-    'Obtener una categoría de la BD a partir de un nombre.
-    Public Function ObtenerPorNombre(ByVal categoria As ECategoria) As ECategoria
+    'Obtener una categoría de la BD a partir de un nombre y un tipo.
+    Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCategoria As Integer) As ECategoria
+        Dim categoria As ECategoria = Nothing
+
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "SELECT * FROM Categorias WHERE nombre = @nom AND tipo != @tip AND id != @id"
+            Const sqlQuery As String = "SELECT * FROM Categorias WHERE nombre = @nom AND id != @id"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
-                cmd.Parameters.AddWithValue("@nom", categoria.Nombre)
-                cmd.Parameters.AddWithValue("@tip", categoria.Tipo)
-                cmd.Parameters.AddWithValue("@id", categoria.ID)
+                cmd.Parameters.AddWithValue("@nom", nombre)
+                cmd.Parameters.AddWithValue("@id", idCategoria)
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
-                    Dim _categoria As New ECategoria()
-                    _categoria.ID = Convert.ToString(dr("id"))
-                    _categoria.Nombre = Convert.ToString(dr("nombre"))
-                    _categoria.Tipo = Convert.ToString(dr("tipo"))
+                    categoria = New ECategoria()
+                    categoria.ID = Convert.ToString(dr("id"))
+                    categoria.Nombre = Convert.ToString(dr("nombre"))
+                    categoria.TipoMovimiento = Convert.ToString(dr("tipoMovimiento"))
 
-                    Return _categoria
                 End If
             End Using
             cnx.Close()
         End Using
 
-        Return Nothing
+        Return categoria
     End Function
 
 End Class

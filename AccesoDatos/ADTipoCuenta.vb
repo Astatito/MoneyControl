@@ -80,6 +80,8 @@ Public Class ADTipoCuenta
 
     'Obtener un tipo de cuenta de la BD a partir de un ID.
     Public Function ObtenerPorId(ByVal idTipoCuenta As Integer) As ETipoCuenta
+        Dim tipoCuenta As ETipoCuenta = Nothing
+
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -89,21 +91,22 @@ Public Class ADTipoCuenta
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
-                    Dim tipoCuenta As New ETipoCuenta()
+                    tipoCuenta = New ETipoCuenta()
                     tipoCuenta.ID = Convert.ToString(dr("id"))
                     tipoCuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
-                    Return tipoCuenta
                 End If
             End Using
             cnx.Close()
         End Using
 
-        Return Nothing
+        Return tipoCuenta
     End Function
 
     'Obtener un tipo de cuenta de la BD a partir de un descripcion.
     Public Function ObtenerPorDescripcion(ByVal descripcion As String, ByVal idTipoCuenta As Integer) As ETipoCuenta
+        Dim tipoCuenta As ETipoCuenta = Nothing
+
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -114,17 +117,16 @@ Public Class ADTipoCuenta
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
-                    Dim tipoCuenta As New ETipoCuenta()
+                    tipoCuenta = New ETipoCuenta()
                     tipoCuenta.ID = Convert.ToString(dr("id"))
                     tipoCuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
-                    Return tipoCuenta
                 End If
             End Using
             cnx.Close()
         End Using
 
-        Return Nothing
+        Return tipoCuenta
     End Function
 
 End Class

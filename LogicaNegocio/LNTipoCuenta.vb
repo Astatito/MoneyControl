@@ -12,9 +12,9 @@ Public Class LNTipoCuenta
         sb.Clear()
 
         If String.IsNullOrEmpty(tipoCuenta.Descripcion) Then
-            sb.Append(Environment.NewLine + "Debe ingresar una descripción.")
+            sb.Append("Debe ingresar una descripción." + Environment.NewLine)
         ElseIf Not ObtenerPorDescripcion(tipoCuenta.Descripcion, tipoCuenta.ID) Is Nothing Then
-            sb.Append(Environment.NewLine + "La descripción ingresada ya existe.")
+            sb.Append("La descripción ingresada ya existe." + Environment.NewLine)
         End If
 
         Return sb.Length = 0

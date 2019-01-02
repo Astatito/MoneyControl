@@ -47,7 +47,8 @@ Partial Class frmMonedaPorDefecto
         Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardar.TabIndex = 1
         Me.btnGuardar.Text = "&Guardar"
-        Me.toolTip.SetToolTip(Me.btnGuardar, "Registra la moneda seleccionada como favorita." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + G, Enter)")
+        Me.toolTip.SetToolTip(Me.btnGuardar, "Registra la moneda seleccionada como moneda por defecto." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + G, Enter" &
+        ")")
         Me.btnGuardar.UseVisualStyleBackColor = True
         '
         'toolTip

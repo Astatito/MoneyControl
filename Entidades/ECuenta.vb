@@ -11,4 +11,5 @@
 
     '* Campo auxiliar, perteneciente a la tabla TiposCuenta.
     '** Campo auxiliar, perteneciente a la tabla Monedas.
+
 End Class

@@ -68,7 +68,8 @@
     <Compile Include="LNCategoria.vb" />
     <Compile Include="LNCuenta.vb" />
     <Compile Include="LNMoneda.vb" />
-    <Compile Include="LNTipoCategoria.vb" />
+    <Compile Include="LNSubCategoria.vb" />
+    <Compile Include="LNTipoMovimiento.vb" />
     <Compile Include="LNTipoCuenta.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

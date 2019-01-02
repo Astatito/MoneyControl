@@ -12,13 +12,13 @@ Public Class LNMoneda
         sb.Clear()
 
         If String.IsNullOrEmpty(moneda.Codigo) Then
-            sb.Append(Environment.NewLine + "Debe ingresar un código.")
+            sb.Append("Debe ingresar un código." + Environment.NewLine)
         ElseIf Not ObtenerPorCodigo(moneda.Codigo, moneda.ID) Is Nothing Then
-            sb.Append(Environment.NewLine + "El código ingresado ya existe.")
+            sb.Append("El código ingresado ya existe." + Environment.NewLine)
         End If
 
         If String.IsNullOrEmpty(moneda.Descripcion) Then
-            sb.Append(Environment.NewLine + "Debe ingresar una descripción.")
+            sb.Append("Debe ingresar una descripción." + Environment.NewLine)
         End If
 
         Return sb.Length = 0

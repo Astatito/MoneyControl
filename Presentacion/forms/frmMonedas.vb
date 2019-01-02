@@ -42,7 +42,7 @@ Public Class frmMonedas
     End Sub
 
     'Evento Click del Botón Guardar
-    Private Sub btnGuardar_Click(sender As Object, e As EventArgs) 
+    Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         Actualizar()
         GrabarDatos()
 

@@ -96,8 +96,7 @@ Public Class ADCuenta
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "SELECT c.id AS id, c.nombre AS nombre, c.tipoCuenta AS tipoCuenta, tc.descripcion AS descripcionTipoCuenta, c.moneda AS moneda, m.codigo AS codigoMoneda, c.saldo AS saldo, c.descripcion AS descripcion 
-From (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c.moneda = m.id ORDER BY nombre"
+            Const sqlQuery As String = "SELECT c.id AS id, c.nombre AS nombre, c.tipoCuenta AS tipoCuenta, tc.descripcion AS descripcionTipoCuenta, c.moneda AS moneda, m.codigo AS codigoMoneda, c.saldo AS saldo, c.descripcion AS descripcion FROM (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c.moneda = m.id ORDER BY c.nombre"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
@@ -124,6 +123,8 @@ From (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c
 
     'Obtener una cuenta de la BD a partir de un ID.
     Public Function ObtenerPorID(ByVal idCuenta As Integer) As ECuenta
+        Dim cuenta As ECuenta = Nothing
+
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -133,7 +134,7 @@ From (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
-                    Dim cuenta As New ECuenta()
+                    cuenta = New ECuenta()
                     cuenta.ID = Convert.ToString(dr("id"))
                     cuenta.Nombre = Convert.ToString(dr("nombre"))
                     cuenta.TipoCuenta = Convert.ToString(dr("tipoCuenta"))
@@ -141,17 +142,18 @@ From (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c
                     cuenta.Saldo = Convert.ToString(dr("saldo"))
                     cuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
-                    Return cuenta
                 End If
             End Using
             cnx.Close()
         End Using
 
-        Return Nothing
+        Return cuenta
     End Function
 
     'Obtener una cuenta de la BD a partir de un nombre.
     Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCuenta As Integer) As ECuenta
+        Dim cuenta As ECuenta = Nothing
+
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -162,7 +164,7 @@ From (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
-                    Dim cuenta As New ECuenta()
+                    cuenta = New ECuenta()
                     cuenta.ID = Convert.ToString(dr("id"))
                     cuenta.Nombre = Convert.ToString(dr("nombre"))
                     cuenta.TipoCuenta = Convert.ToString(dr("tipoCuenta"))
@@ -170,12 +172,12 @@ From (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c
                     cuenta.Saldo = Convert.ToString(dr("saldo"))
                     cuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
-                    Return cuenta
                 End If
             End Using
             cnx.Close()
         End Using
 
-        Return Nothing
+        Return cuenta
     End Function
+
 End Class

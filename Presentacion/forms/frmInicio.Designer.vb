@@ -28,6 +28,7 @@ Partial Class frmInicio
         Me.btnMonedaPorDefecto = New System.Windows.Forms.Button()
         Me.btnABMCuentas = New System.Windows.Forms.Button()
         Me.btnABMCategorias = New System.Windows.Forms.Button()
+        Me.btnABMSubCategorias = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnABMMonedas
@@ -72,14 +73,24 @@ Partial Class frmInicio
         Me.btnABMCategorias.Name = "btnABMCategorias"
         Me.btnABMCategorias.Size = New System.Drawing.Size(117, 40)
         Me.btnABMCategorias.TabIndex = 4
-        Me.btnABMCategorias.Text = "ABM Categorias"
+        Me.btnABMCategorias.Text = "ABM Categorías"
         Me.btnABMCategorias.UseVisualStyleBackColor = True
+        '
+        'btnABMSubCategorias
+        '
+        Me.btnABMSubCategorias.Location = New System.Drawing.Point(12, 242)
+        Me.btnABMSubCategorias.Name = "btnABMSubCategorias"
+        Me.btnABMSubCategorias.Size = New System.Drawing.Size(117, 40)
+        Me.btnABMSubCategorias.TabIndex = 5
+        Me.btnABMSubCategorias.Text = "ABM Subcategorías"
+        Me.btnABMSubCategorias.UseVisualStyleBackColor = True
         '
         'frmInicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(609, 345)
+        Me.Controls.Add(Me.btnABMSubCategorias)
         Me.Controls.Add(Me.btnABMCategorias)
         Me.Controls.Add(Me.btnABMCuentas)
         Me.Controls.Add(Me.btnMonedaPorDefecto)
@@ -97,4 +108,5 @@ Partial Class frmInicio
     Friend WithEvents btnMonedaPorDefecto As Button
     Friend WithEvents btnABMCuentas As Button
     Friend WithEvents btnABMCategorias As Button
+    Friend WithEvents btnABMSubCategorias As Button
 End Class

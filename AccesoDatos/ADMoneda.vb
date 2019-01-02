@@ -84,6 +84,8 @@ Public Class ADMoneda
 
     'Obtener una moneda de la BD a partir de un ID.
     Public Function ObtenerPorID(ByVal idMoneda As Integer) As EMoneda
+        Dim moneda As EMoneda = Nothing
+
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -93,23 +95,24 @@ Public Class ADMoneda
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
-                    Dim moneda As New EMoneda()
+                    moneda = New EMoneda()
                     moneda.ID = Convert.ToString(dr("id"))
                     moneda.Codigo = Convert.ToString(dr("codigo"))
                     moneda.Descripcion = Convert.ToString(dr("descripcion"))
                     moneda.PorDefecto = Convert.ToString(dr("porDefecto"))
 
-                    Return moneda
                 End If
             End Using
             cnx.Close()
         End Using
 
-        Return Nothing
+        Return moneda
     End Function
 
     'Obtener una moneda de la BD a partir de un código.
     Public Function ObtenerPorCodigo(ByVal codigo As String, ByVal idMoneda As Integer) As EMoneda
+        Dim moneda As EMoneda = Nothing
+
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -120,23 +123,24 @@ Public Class ADMoneda
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
-                    Dim moneda As New EMoneda()
+                    moneda = New EMoneda()
                     moneda.ID = Convert.ToString(dr("id"))
                     moneda.Codigo = Convert.ToString(dr("codigo"))
                     moneda.Descripcion = Convert.ToString(dr("descripcion"))
                     moneda.PorDefecto = Convert.ToString(dr("porDefecto"))
 
-                    Return moneda
                 End If
             End Using
             cnx.Close()
         End Using
 
-        Return Nothing
+        Return moneda
     End Function
 
     'Obtener moneda por defecto desde la BD.
     Public Function ObtenerMonedaPorDefecto() As EMoneda
+        Dim moneda As EMoneda = Nothing
+
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -145,19 +149,18 @@ Public Class ADMoneda
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
-                    Dim moneda As New EMoneda()
+                    moneda = New EMoneda()
                     moneda.ID = Convert.ToString(dr("id"))
                     moneda.Codigo = Convert.ToString(dr("codigo"))
                     moneda.Descripcion = Convert.ToString(dr("descripcion"))
                     moneda.PorDefecto = Convert.ToString(dr("porDefecto"))
 
-                    Return moneda
                 End If
             End Using
             cnx.Close()
         End Using
 
-        Return Nothing
+        Return moneda
     End Function
 
     'Establecer moneda por defecto en la BD.
@@ -166,22 +169,37 @@ Public Class ADMoneda
             cnx.Open()
 
             Using tr As SQLiteTransaction = cnx.BeginTransaction()
-                Using cmd As New SQLiteCommand(cnx)
-                    cmd.Transaction = tr
+                Try
+                    Using cmd As New SQLiteCommand(cnx)
 
-                    Const sqlQuery1 As String = "UPDATE Monedas SET porDefecto = False WHERE porDefecto = True"
-                    cmd.CommandText = sqlQuery1
-                    cmd.ExecuteNonQuery()
+                        Const sqlQuery1 As String = "UPDATE Monedas SET porDefecto = False WHERE porDefecto = True"
+                        cmd.CommandText = sqlQuery1
+                        cmd.ExecuteNonQuery()
 
-                    Const sqlQuery2 = "UPDATE Monedas SET porDefecto = True WHERE id = @id"
-                    cmd.CommandText = sqlQuery2
-                    cmd.Parameters.AddWithValue("@id", idMoneda)
-                    cmd.ExecuteNonQuery()
+                        Const sqlQuery2 = "UPDATE Monedas SET porDefecto = True WHERE id = @id"
+                        cmd.CommandText = sqlQuery2
+                        cmd.Parameters.AddWithValue("@id", idMoneda)
+                        cmd.ExecuteNonQuery()
 
-                End Using
-                tr.Commit()
+                        cmd.Transaction = tr
+
+                        cmd.Dispose()
+                    End Using
+                    GC.Collect()
+
+                    tr.Commit()
+                Catch ex As Exception
+                    tr.Rollback()
+                End Try
+
+                tr.Dispose()
             End Using
+            GC.Collect()
+
+            cnx.Close()
+            cnx.Dispose()
         End Using
+        GC.Collect()
     End Sub
 
 End Class

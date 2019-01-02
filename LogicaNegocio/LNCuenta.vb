@@ -12,17 +12,17 @@ Public Class LNCuenta
         sb.Clear()
 
         If String.IsNullOrEmpty(cuenta.Nombre) Then
-            sb.Append(Environment.NewLine + "Debe ingresar un nombre.")
+            sb.Append("Debe ingresar un nombre." + Environment.NewLine)
         ElseIf Not ObtenerPorNombre(cuenta.Nombre, cuenta.ID) Is Nothing Then
-            sb.Append(Environment.NewLine + "El nombre ingresado ya existe.")
+            sb.Append("El nombre ingresado ya existe." + Environment.NewLine)
         End If
 
         If cuenta.TipoCuenta = 0 Then
-            sb.Append(Environment.NewLine + "Debe seleccionar un tipo de cuenta.")
+            sb.Append("Debe seleccionar un tipo de cuenta." + Environment.NewLine)
         End If
 
         If cuenta.Moneda = 0 Then
-            sb.Append(Environment.NewLine + "Debe seleccionar una moneda.")
+            sb.Append("Debe seleccionar una moneda." + Environment.NewLine)
         End If
 
         Return sb.Length = 0
@@ -65,4 +65,5 @@ Public Class LNCuenta
     Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCuenta As Integer)
         Return _ADCuenta.ObtenerPorNombre(nombre, idCuenta)
     End Function
+
 End Class

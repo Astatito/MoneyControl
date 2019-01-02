@@ -31,14 +31,14 @@ Partial Class frmABMCuentas
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.grpCuentas = New System.Windows.Forms.GroupBox()
         Me.dgvCuentas = New System.Windows.Forms.DataGridView()
-        Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.nombreColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.tipoCuentaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.descripcionTipoCuentaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.monedaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.codigoMonedaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.saldoColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.descripcionColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.saldoColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.codigoMonedaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.monedaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.descripcionTipoCuentaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tipoCuentaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nombreColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.grpCuentas.SuspendLayout()
         CType(Me.dgvCuentas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -109,53 +109,14 @@ Partial Class frmABMCuentas
         Me.dgvCuentas.Size = New System.Drawing.Size(435, 150)
         Me.dgvCuentas.TabIndex = 4
         '
-        'idColumn
+        'descripcionColumn
         '
-        Me.idColumn.HeaderText = "ID"
-        Me.idColumn.MaxInputLength = 10
-        Me.idColumn.Name = "idColumn"
-        Me.idColumn.ReadOnly = True
-        Me.idColumn.Visible = False
-        '
-        'nombreColumn
-        '
-        Me.nombreColumn.HeaderText = "Nombre"
-        Me.nombreColumn.MaxInputLength = 50
-        Me.nombreColumn.Name = "nombreColumn"
-        Me.nombreColumn.ReadOnly = True
-        Me.nombreColumn.ToolTipText = "Nombre (por ejemplo, Billetera)."
-        '
-        'tipoCuentaColumn
-        '
-        Me.tipoCuentaColumn.HeaderText = "ID Tipo de Cuenta"
-        Me.tipoCuentaColumn.MaxInputLength = 10
-        Me.tipoCuentaColumn.Name = "tipoCuentaColumn"
-        Me.tipoCuentaColumn.ReadOnly = True
-        Me.tipoCuentaColumn.Visible = False
-        '
-        'descripcionTipoCuentaColumn
-        '
-        Me.descripcionTipoCuentaColumn.HeaderText = "Tipo de Cuenta"
-        Me.descripcionTipoCuentaColumn.MaxInputLength = 50
-        Me.descripcionTipoCuentaColumn.Name = "descripcionTipoCuentaColumn"
-        Me.descripcionTipoCuentaColumn.ReadOnly = True
-        Me.descripcionTipoCuentaColumn.ToolTipText = "Tipo de Cuenta (por ejemplo, Efectivo)."
-        '
-        'monedaColumn
-        '
-        Me.monedaColumn.HeaderText = "ID Moneda"
-        Me.monedaColumn.MaxInputLength = 10
-        Me.monedaColumn.Name = "monedaColumn"
-        Me.monedaColumn.ReadOnly = True
-        Me.monedaColumn.Visible = False
-        '
-        'codigoMonedaColumn
-        '
-        Me.codigoMonedaColumn.HeaderText = "Moneda"
-        Me.codigoMonedaColumn.MaxInputLength = 5
-        Me.codigoMonedaColumn.Name = "codigoMonedaColumn"
-        Me.codigoMonedaColumn.ReadOnly = True
-        Me.codigoMonedaColumn.ToolTipText = "Moneda o divisa en la que está expresado el saldo de la cuenta."
+        Me.descripcionColumn.HeaderText = "Descripción"
+        Me.descripcionColumn.MaxInputLength = 100
+        Me.descripcionColumn.Name = "descripcionColumn"
+        Me.descripcionColumn.ReadOnly = True
+        Me.descripcionColumn.ToolTipText = "Información adicional acerca de la cuenta (CBU, Banco, Titular, etc.)."
+        Me.descripcionColumn.Visible = False
         '
         'saldoColumn
         '
@@ -165,14 +126,53 @@ Partial Class frmABMCuentas
         Me.saldoColumn.ReadOnly = True
         Me.saldoColumn.ToolTipText = "Cantidad de dinero actual en la cuenta."
         '
-        'descripcionColumn
+        'codigoMonedaColumn
         '
-        Me.descripcionColumn.HeaderText = "Descripción"
-        Me.descripcionColumn.MaxInputLength = 100
-        Me.descripcionColumn.Name = "descripcionColumn"
-        Me.descripcionColumn.ReadOnly = True
-        Me.descripcionColumn.ToolTipText = "Información adicional acerca de la cuenta (CBU, Banco, Titular, etc.)."
-        Me.descripcionColumn.Visible = False
+        Me.codigoMonedaColumn.HeaderText = "Moneda"
+        Me.codigoMonedaColumn.MaxInputLength = 5
+        Me.codigoMonedaColumn.Name = "codigoMonedaColumn"
+        Me.codigoMonedaColumn.ReadOnly = True
+        Me.codigoMonedaColumn.ToolTipText = "Moneda o divisa en la que está expresado el saldo de la cuenta."
+        '
+        'monedaColumn
+        '
+        Me.monedaColumn.HeaderText = "ID Moneda"
+        Me.monedaColumn.MaxInputLength = 10
+        Me.monedaColumn.Name = "monedaColumn"
+        Me.monedaColumn.ReadOnly = True
+        Me.monedaColumn.Visible = False
+        '
+        'descripcionTipoCuentaColumn
+        '
+        Me.descripcionTipoCuentaColumn.HeaderText = "Tipo de Cuenta"
+        Me.descripcionTipoCuentaColumn.MaxInputLength = 50
+        Me.descripcionTipoCuentaColumn.Name = "descripcionTipoCuentaColumn"
+        Me.descripcionTipoCuentaColumn.ReadOnly = True
+        Me.descripcionTipoCuentaColumn.ToolTipText = "Tipo de Cuenta (por ejemplo, Efectivo)."
+        '
+        'tipoCuentaColumn
+        '
+        Me.tipoCuentaColumn.HeaderText = "ID Tipo de Cuenta"
+        Me.tipoCuentaColumn.MaxInputLength = 10
+        Me.tipoCuentaColumn.Name = "tipoCuentaColumn"
+        Me.tipoCuentaColumn.ReadOnly = True
+        Me.tipoCuentaColumn.Visible = False
+        '
+        'nombreColumn
+        '
+        Me.nombreColumn.HeaderText = "Nombre"
+        Me.nombreColumn.MaxInputLength = 50
+        Me.nombreColumn.Name = "nombreColumn"
+        Me.nombreColumn.ReadOnly = True
+        Me.nombreColumn.ToolTipText = "Nombre (por ejemplo, Billetera)."
+        '
+        'idColumn
+        '
+        Me.idColumn.HeaderText = "ID"
+        Me.idColumn.MaxInputLength = 10
+        Me.idColumn.Name = "idColumn"
+        Me.idColumn.ReadOnly = True
+        Me.idColumn.Visible = False
         '
         'frmABMCuentas
         '

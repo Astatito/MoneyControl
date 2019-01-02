@@ -12,13 +12,13 @@ Public Class LNCategoria
         sb.Clear()
 
         If String.IsNullOrEmpty(categoria.Nombre) Then
-            sb.Append(Environment.NewLine + "Debe ingresar un nombre.")
-        ElseIf Not ObtenerPorNombre(categoria) Is Nothing Then
-            sb.Append(Environment.NewLine + "El nombre ingresado ya existe para ese tipo de categoría.")
+            sb.Append("Debe ingresar un nombre." + Environment.NewLine)
+        ElseIf Not ObtenerPorNombre(categoria.Nombre, categoria.ID) Is Nothing Then
+            sb.Append("El nombre ingresado ya existe." + Environment.NewLine)
         End If
 
-        If String.IsNullOrEmpty(categoria.Tipo) Then
-            sb.Append(Environment.NewLine + "Debe seleccionar un tipo de categoría.")
+        If String.IsNullOrEmpty(categoria.TipoMovimiento) Then
+            sb.Append("Debe seleccionar un tipo de categoría." + Environment.NewLine)
         End If
 
         Return sb.Length = 0
@@ -63,9 +63,9 @@ Public Class LNCategoria
         Return _ADCategoria.ObtenerPorID(idCategoria)
     End Function
 
-    'Obtener una categoría a partir de un nombre.
-    Public Function ObtenerPorNombre(ByVal categoria As ECategoria)
-        Return _ADCategoria.ObtenerPorNombre(categoria)
+    'Obtener una categoría a partir de un nombre y un tipo.
+    Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCategoria As Integer)
+        Return _ADCategoria.ObtenerPorNombre(nombre, idCategoria)
     End Function
 
 End Class

@@ -29,7 +29,7 @@ Partial Class frmCategorias
         Me.lblNombre = New System.Windows.Forms.Label()
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.grpCategoria = New System.Windows.Forms.GroupBox()
-        Me.cmbTiposCategoria = New System.Windows.Forms.ComboBox()
+        Me.cmbTiposMovimiento = New System.Windows.Forms.ComboBox()
         Me.txtNombre = New System.Windows.Forms.TextBox()
         Me.grpCategoria.SuspendLayout()
         Me.SuspendLayout()
@@ -47,7 +47,7 @@ Partial Class frmCategorias
         Me.lblTipo.Size = New System.Drawing.Size(28, 13)
         Me.lblTipo.TabIndex = 19
         Me.lblTipo.Text = "Tipo"
-        Me.toolTip.SetToolTip(Me.lblTipo, "Tipo de Cuenta (por ejemplo, Efectivo).")
+        Me.toolTip.SetToolTip(Me.lblTipo, "Tipo de movimiento (por ejemplo, Ingreso).")
         '
         'lblNombre
         '
@@ -57,7 +57,7 @@ Partial Class frmCategorias
         Me.lblNombre.Size = New System.Drawing.Size(44, 13)
         Me.lblNombre.TabIndex = 17
         Me.lblNombre.Text = "Nombre"
-        Me.toolTip.SetToolTip(Me.lblNombre, "Nombre (por ejemplo, Billetera).")
+        Me.toolTip.SetToolTip(Me.lblNombre, "Nombre (por ejemplo, Salario).")
         '
         'btnGuardar
         '
@@ -71,7 +71,7 @@ Partial Class frmCategorias
         '
         'grpCategoria
         '
-        Me.grpCategoria.Controls.Add(Me.cmbTiposCategoria)
+        Me.grpCategoria.Controls.Add(Me.cmbTiposMovimiento)
         Me.grpCategoria.Controls.Add(Me.lblTipo)
         Me.grpCategoria.Controls.Add(Me.txtNombre)
         Me.grpCategoria.Controls.Add(Me.lblNombre)
@@ -82,14 +82,14 @@ Partial Class frmCategorias
         Me.grpCategoria.TabStop = False
         Me.grpCategoria.Text = "Categoría"
         '
-        'cmbTiposCategoria
+        'cmbTiposMovimiento
         '
-        Me.cmbTiposCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbTiposCategoria.FormattingEnabled = True
-        Me.cmbTiposCategoria.Location = New System.Drawing.Point(75, 52)
-        Me.cmbTiposCategoria.Name = "cmbTiposCategoria"
-        Me.cmbTiposCategoria.Size = New System.Drawing.Size(167, 21)
-        Me.cmbTiposCategoria.TabIndex = 2
+        Me.cmbTiposMovimiento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbTiposMovimiento.FormattingEnabled = True
+        Me.cmbTiposMovimiento.Location = New System.Drawing.Point(75, 52)
+        Me.cmbTiposMovimiento.Name = "cmbTiposMovimiento"
+        Me.cmbTiposMovimiento.Size = New System.Drawing.Size(167, 21)
+        Me.cmbTiposMovimiento.TabIndex = 2
         '
         'txtNombre
         '
@@ -113,6 +113,7 @@ Partial Class frmCategorias
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmCategorias"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.grpCategoria.ResumeLayout(False)
         Me.grpCategoria.PerformLayout()
         Me.ResumeLayout(False)
@@ -121,7 +122,7 @@ Partial Class frmCategorias
 
     Friend WithEvents toolTip As ToolTip
     Friend WithEvents grpCategoria As GroupBox
-    Friend WithEvents cmbTiposCategoria As ComboBox
+    Friend WithEvents cmbTiposMovimiento As ComboBox
     Friend WithEvents lblTipo As Label
     Friend WithEvents txtNombre As TextBox
     Friend WithEvents lblNombre As Label

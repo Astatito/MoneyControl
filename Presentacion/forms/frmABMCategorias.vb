@@ -18,10 +18,6 @@ Public Class frmABMCategorias
     'Evento Load del Form
     Private Sub frmABMCategorias_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            CheckForIllegalCrossThreadCalls = False
-            Dim thr As New Thread(AddressOf Me.CargarDGV)
-            thr.Start()
-
             Dim modiCol As New DataGridViewButtonColumn()
             modiCol.Name = "columnModificar"
             modiCol.HeaderText = ""
@@ -46,7 +42,7 @@ Public Class frmABMCategorias
         ElseIf e.Control AndAlso e.KeyCode = Keys.N Then
             btnNuevo_Click(sender, e)
         ElseIf e.Control AndAlso e.KeyCode = Keys.T Then
-            rbTodos.Checked = True
+            rbTodas.Checked = True
         ElseIf e.Control AndAlso e.KeyCode = Keys.I Then
             rbIngreso.Checked = True
         ElseIf e.Control AndAlso e.KeyCode = Keys.E Then
@@ -112,18 +108,18 @@ Public Class frmABMCategorias
     End Sub
 
     'Evento CheckedChanged de los RadioButton
-    Private Sub rb_CheckedChanged(sender As Object, e As EventArgs) Handles rbTodos.CheckedChanged, rbEgreso.CheckedChanged, rbIngreso.CheckedChanged
+    Private Sub rb_CheckedChanged(sender As Object, e As EventArgs) Handles rbTodas.CheckedChanged, rbEgreso.CheckedChanged, rbIngreso.CheckedChanged
         CargarDGV()
     End Sub
 
     '                               ____FUNCIONES/RUTINAS____
 
-    'Cargar el DataGridView con las distintas monedas.
+    'Cargar el DataGridView con las distintas categorías.
     Private Sub CargarDGV()
         Try
             Dim categorias As List(Of ECategoria) = Nothing
 
-            If Me.rbTodos.Checked Then
+            If Me.rbTodas.Checked Then
                 categorias = _LNCategoria.ObtenerTodos()
             ElseIf Me.rbIngreso.Checked Then
                 categorias = _LNCategoria.ObtenerIngresos()
@@ -135,13 +131,13 @@ Public Class frmABMCategorias
             Me.dgvCategorias.DataSource = categorias
             Me.dgvCategorias.Columns("idColumn").DataPropertyName = "ID"
             Me.dgvCategorias.Columns("nombreColumn").DataPropertyName = "Nombre"
-            Me.dgvCategorias.Columns("tipoColumn").DataPropertyName = "Tipo"
+            Me.dgvCategorias.Columns("tipoMovimientoColumn").DataPropertyName = "TipoMovimiento"
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
     End Sub
 
-    'Eliminar la moneda seleccionada.
+    'Eliminar la categoría seleccionada.
     Private Sub Eliminar(idCategoria As Integer)
         Try
             _LNCategoria.Eliminar(idCategoria)
@@ -154,7 +150,7 @@ Public Class frmABMCategorias
     Private Sub CargarCategoria(ByVal fila As Integer)
         _categoria.ID = Me.dgvCategorias.Rows(fila).Cells(0).Value
         _categoria.Nombre = Me.dgvCategorias.Rows(fila).Cells(1).Value
-        _categoria.Tipo = Me.dgvCategorias.Rows(fila).Cells(2).Value
+        _categoria.TipoMovimiento = Me.dgvCategorias.Rows(fila).Cells(2).Value
     End Sub
 
 

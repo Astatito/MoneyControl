@@ -136,7 +136,7 @@ Public Class frmABMCuentas
         End Try
     End Sub
 
-    'Cargar los datos de la fila seleccionada en una Entidad
+    'Cargar los datos de la fila seleccionada en una Entidad.
     Private Sub CargarCuenta(ByVal fila As Integer)
         _cuenta.ID = Me.dgvCuentas.Rows(fila).Cells(0).Value
         _cuenta.Nombre = Me.dgvCuentas.Rows(fila).Cells(1).Value
@@ -148,4 +148,5 @@ Public Class frmABMCuentas
         _cuenta.Descripcion = Me.dgvCuentas.Rows(fila).Cells(7).Value
 
     End Sub
+
 End Class

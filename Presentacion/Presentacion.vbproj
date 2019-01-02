@@ -94,6 +94,12 @@
     <Compile Include="forms\frmABMMonedas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmABMSubCategorias.Designer.vb">
+      <DependentUpon>frmABMSubCategorias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmABMSubCategorias.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmABMTiposCuenta.Designer.vb">
       <DependentUpon>frmABMTiposCuenta.vb</DependentUpon>
     </Compile>
@@ -130,6 +136,12 @@
     <Compile Include="forms\frmMonedas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmSubCategorias.Designer.vb">
+      <DependentUpon>frmSubCategorias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmSubCategorias.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmTiposCuenta.Designer.vb">
       <DependentUpon>frmTiposCuenta.vb</DependentUpon>
     </Compile>
@@ -162,6 +174,9 @@
     <EmbeddedResource Include="forms\frmABMMonedas.resx">
       <DependentUpon>frmABMMonedas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmABMSubCategorias.resx">
+      <DependentUpon>frmABMSubCategorias.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmABMTiposCuenta.resx">
       <DependentUpon>frmABMTiposCuenta.vb</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmMonedas.resx">
       <DependentUpon>frmMonedas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSubCategorias.resx">
+      <DependentUpon>frmSubCategorias.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTiposCuenta.resx">
       <DependentUpon>frmTiposCuenta.vb</DependentUpon>
