@@ -124,16 +124,16 @@
     <Compile Include="forms\frmInicio.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmMonedaPorDefecto.Designer.vb">
-      <DependentUpon>frmMonedaPorDefecto.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmMonedaPorDefecto.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\frmMonedas.Designer.vb">
       <DependentUpon>frmMonedas.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmMonedas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmMovimientos.Designer.vb">
+      <DependentUpon>frmMovimientos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmMovimientos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmSubCategorias.Designer.vb">
@@ -148,6 +148,7 @@
     <Compile Include="forms\frmTiposCuenta.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Functions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -189,11 +190,11 @@
     <EmbeddedResource Include="forms\frmInicio.resx">
       <DependentUpon>frmInicio.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmMonedaPorDefecto.resx">
-      <DependentUpon>frmMonedaPorDefecto.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmMonedas.resx">
       <DependentUpon>frmMonedas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmMovimientos.resx">
+      <DependentUpon>frmMovimientos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSubCategorias.resx">
       <DependentUpon>frmSubCategorias.vb</DependentUpon>

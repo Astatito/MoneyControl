@@ -1,7 +1,6 @@
 ﻿Imports Entidades
 Imports LogicaNegocio
 Imports System.Threading
-Imports System.Windows.Forms
 
 Public Class frmABMMonedas
 
@@ -115,7 +114,6 @@ Public Class frmABMMonedas
             Me.dgvMonedas.Columns("idColumn").DataPropertyName = "ID"
             Me.dgvMonedas.Columns("codigoColumn").DataPropertyName = "Codigo"
             Me.dgvMonedas.Columns("descripcionColumn").DataPropertyName = "Descripcion"
-            Me.dgvMonedas.Columns("porDefectoColumn").DataPropertyName = "PorDefecto"
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
@@ -130,12 +128,11 @@ Public Class frmABMMonedas
         End Try
     End Sub
 
-    'Cargar los datos de la fila seleccionada en una Entidad
+    'Setear el objeto Moneda con los datos de la fila seleccionada.
     Private Sub CargarMoneda(ByVal fila As Integer)
         _moneda.ID = Me.dgvMonedas.Rows(fila).Cells(0).Value
         _moneda.Codigo = Me.dgvMonedas.Rows(fila).Cells(1).Value
         _moneda.Descripcion = Me.dgvMonedas.Rows(fila).Cells(2).Value
-        _moneda.PorDefecto = Me.dgvMonedas.Rows(fila).Cells(3).Value
     End Sub
 
 End Class

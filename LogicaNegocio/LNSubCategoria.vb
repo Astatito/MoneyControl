@@ -8,7 +8,7 @@ Public Class LNSubCategoria
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
     'Verificar que los datos ingresados sean válidos.
-    Public Function validarSubCategoria(subCategoria As ESubCategoria)
+    Public Function ValidarSubCategoria(subCategoria As ESubCategoria) As Boolean
         sb.Clear()
 
         If String.IsNullOrEmpty(subCategoria.Nombre) Then
@@ -44,30 +44,21 @@ Public Class LNSubCategoria
     End Sub
 
     'Obtener todas las subcategorías.
-    Public Function ObtenerTodos()
-        Return _ADSubCategoria.ObtenerTodos()
-    End Function
-
-    Public Function ObtenerTodosFull()
+    Public Function ObtenerTodosFull() As List(Of ESubCategoria)
         Return _ADSubCategoria.ObtenerTodosFull()
     End Function
 
     'Obtener todas las subcategorías de una categoría.
-    Public Function ObtenerPorCategoria(ByVal idCategoria As Integer)
+    Public Function ObtenerPorCategoria(ByVal idCategoria As Integer) As List(Of ESubCategoria)
         Return _ADSubCategoria.ObtenerPorCategoria(idCategoria)
     End Function
 
-    Public Function ObtenerPorCategoriaFull(ByVal idCategoria As Integer)
+    Public Function ObtenerPorCategoriaFull(ByVal idCategoria As Integer) As List(Of ESubCategoria)
         Return _ADSubCategoria.ObtenerPorCategoriaFull(idCategoria)
     End Function
 
-    'Obtener una subcategoría a partir de un ID.
-    Public Function ObtenerPorID(ByVal idCategoria As Integer)
-        Return _ADSubCategoria.ObtenerPorID(idCategoria)
-    End Function
-
-    'Obtener una subcategorías a partir de un nombre.
-    Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idSubCategoria As Integer)
+    'Obtener una subcategoría a partir de un nombre.
+    Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idSubCategoria As Integer) As ESubCategoria
         Return _ADSubCategoria.ObtenerPorNombre(nombre, idSubCategoria)
     End Function
 

@@ -8,7 +8,7 @@ Public Class LNTipoCuenta
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
     'Verificar que los datos ingresados sean correctos.
-    Public Function validarTipoCuenta(tipoCuenta As ETipoCuenta)
+    Public Function ValidarTipoCuenta(tipoCuenta As ETipoCuenta) As Boolean
         sb.Clear()
 
         If String.IsNullOrEmpty(tipoCuenta.Descripcion) Then
@@ -40,17 +40,12 @@ Public Class LNTipoCuenta
     End Sub
 
     'Obtener todos los tipos de cuenta.
-    Public Function ObtenerTodos()
+    Public Function ObtenerTodos() As List(Of ETipoCuenta)
         Return _ADTipoCuenta.ObtenerTodos()
     End Function
 
-    'Obtener un tipo de cuenta a partir de un ID.
-    Public Function ObtenerPorID(ByVal idTipoCuenta As Integer)
-        Return _ADTipoCuenta.ObtenerPorId(idTipoCuenta)
-    End Function
-
-    'Obtener un tipo de cuenta a partir de un nombre.
-    Public Function ObtenerPorDescripcion(ByVal descripcion As String, ByVal idTipoCuenta As Integer)
+    'Obtener un tipo de cuenta a partir de una descripción.
+    Public Function ObtenerPorDescripcion(ByVal descripcion As String, ByVal idTipoCuenta As Integer) As ETipoCuenta
         Return _ADTipoCuenta.ObtenerPorDescripcion(descripcion, idTipoCuenta)
     End Function
 

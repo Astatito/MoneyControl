@@ -8,7 +8,7 @@ Public Class LNCategoria
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
     'Verificar que los datos ingresados sean válidos.
-    Public Function validarCategoria(categoria As ECategoria)
+    Public Function ValidarCategoria(categoria As ECategoria) As Boolean
         sb.Clear()
 
         If String.IsNullOrEmpty(categoria.Nombre) Then
@@ -44,27 +44,22 @@ Public Class LNCategoria
     End Sub
 
     'Obtener todas las categorías.
-    Public Function ObtenerTodos()
+    Public Function ObtenerTodos() As List(Of ECategoria)
         Return _ADCategoria.ObtenerTodos()
     End Function
 
     'Obtener todas las categorías de ingresos.
-    Public Function ObtenerIngresos()
+    Public Function ObtenerIngresos() As List(Of ECategoria)
         Return _ADCategoria.ObtenerIngresos()
     End Function
 
-    'Obtener todas las categorías de egresos.
-    Public Function ObtenerEgresos()
-        Return _ADCategoria.ObtenerEgresos()
+    'Obtener todas las categorías de gastos.
+    Public Function ObtenerGastos() As List(Of ECategoria)
+        Return _ADCategoria.ObtenerGastos()
     End Function
 
-    'Obtener una categoría a partir de un ID.
-    Public Function ObtenerPorID(ByVal idCategoria As Integer)
-        Return _ADCategoria.ObtenerPorID(idCategoria)
-    End Function
-
-    'Obtener una categoría a partir de un nombre y un tipo.
-    Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCategoria As Integer)
+    'Obtener una categoría a partir de un nombre.
+    Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCategoria As Integer) As ECategoria
         Return _ADCategoria.ObtenerPorNombre(nombre, idCategoria)
     End Function
 

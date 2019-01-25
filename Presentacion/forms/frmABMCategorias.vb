@@ -1,7 +1,5 @@
 ﻿Imports Entidades
 Imports LogicaNegocio
-Imports System.Threading
-Imports System.Windows.Forms
 
 Public Class frmABMCategorias
 
@@ -46,7 +44,7 @@ Public Class frmABMCategorias
         ElseIf e.Control AndAlso e.KeyCode = Keys.I Then
             rbIngreso.Checked = True
         ElseIf e.Control AndAlso e.KeyCode = Keys.E Then
-            rbEgreso.Checked = True
+            rbGasto.Checked = True
         End If
 
     End Sub
@@ -108,7 +106,7 @@ Public Class frmABMCategorias
     End Sub
 
     'Evento CheckedChanged de los RadioButton
-    Private Sub rb_CheckedChanged(sender As Object, e As EventArgs) Handles rbTodas.CheckedChanged, rbEgreso.CheckedChanged, rbIngreso.CheckedChanged
+    Private Sub rb_CheckedChanged(sender As Object, e As EventArgs) Handles rbTodas.CheckedChanged, rbGasto.CheckedChanged, rbIngreso.CheckedChanged
         CargarDGV()
     End Sub
 
@@ -123,8 +121,8 @@ Public Class frmABMCategorias
                 categorias = _LNCategoria.ObtenerTodos()
             ElseIf Me.rbIngreso.Checked Then
                 categorias = _LNCategoria.ObtenerIngresos()
-            ElseIf Me.rbEgreso.Checked Then
-                categorias = _LNCategoria.ObtenerEgresos()
+            ElseIf Me.rbGasto.Checked Then
+                categorias = _LNCategoria.ObtenerGastos()
             End If
 
             Me.dgvCategorias.AutoGenerateColumns = False
@@ -146,7 +144,7 @@ Public Class frmABMCategorias
         End Try
     End Sub
 
-    'Cargar los datos de la fila seleccionada en una Entidad
+    'Setear el objeto Categoría con los datos de la fila seleccionada.
     Private Sub CargarCategoria(ByVal fila As Integer)
         _categoria.ID = Me.dgvCategorias.Rows(fila).Cells(0).Value
         _categoria.Nombre = Me.dgvCategorias.Rows(fila).Cells(1).Value

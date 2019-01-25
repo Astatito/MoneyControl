@@ -108,8 +108,8 @@ Public Class ADCategoria
         Return categorias
     End Function
 
-    'Obtener todas las categorías de egresos de la BD.
-    Public Function ObtenerEgresos() As List(Of ECategoria)
+    'Obtener todas las categorías de gastos de la BD.
+    Public Function ObtenerGastos() As List(Of ECategoria)
         Dim categorias As New List(Of ECategoria)
 
         Using cnx As New SQLiteConnection(connString)
@@ -117,7 +117,7 @@ Public Class ADCategoria
 
             Const sqlQuery As String = "SELECT * FROM Categorias WHERE tipoMovimiento = @tip ORDER BY nombre "
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
-                cmd.Parameters.AddWithValue("@tip", "Egreso")
+                cmd.Parameters.AddWithValue("@tip", "Gasto")
 
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
 
@@ -136,33 +136,7 @@ Public Class ADCategoria
         Return categorias
     End Function
 
-    'Obtener una categoría de la BD a partir de un ID.
-    Public Function ObtenerPorID(ByVal idCategoria As Integer) As ECategoria
-        Dim categoria As ECategoria = Nothing
-
-        Using cnx As New SQLiteConnection(connString)
-            cnx.Open()
-
-            Const sqlQuery As String = "SELECT * FROM Categorias WHERE id = @id"
-            Using cmd As New SQLiteCommand(sqlQuery, cnx)
-                cmd.Parameters.AddWithValue("@id", idCategoria)
-
-                Dim dr As SQLiteDataReader = cmd.ExecuteReader()
-                If dr.Read() Then
-                    categoria = New ECategoria()
-                    categoria.ID = Convert.ToString(dr("id"))
-                    categoria.Nombre = Convert.ToString(dr("nombre"))
-                    categoria.TipoMovimiento = Convert.ToString(dr("tipoMovimiento"))
-
-                End If
-            End Using
-            cnx.Close()
-        End Using
-
-        Return categoria
-    End Function
-
-    'Obtener una categoría de la BD a partir de un nombre y un tipo.
+    'Obtener una categoría de la BD a partir de un nombre.
     Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCategoria As Integer) As ECategoria
         Dim categoria As ECategoria = Nothing
 

@@ -1,9 +1,9 @@
 ﻿Imports Entidades
 Imports LogicaNegocio
 Imports System.Threading
-Imports System.Windows.Forms
 
 Public Class frmCuentas
+
     Private _cuenta As New ECuenta() 'Objeto perteneciente a la capa de Entidades
     Private ReadOnly _LNCuenta As New LNCuenta() 'Objeto perteneciente a la capa de Lógica de Negocio.
     Private ReadOnly _LNTipoCuenta As New LNTipoCuenta() 'Objeto perteneciente a la capa de Lógica de Negocio.
@@ -51,6 +51,11 @@ Public Class frmCuentas
 
     'Evento Click del Botón Guardar
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
+        If Not EsNumero(Me.txtSaldo.Text) Then
+            MessageBox.Show("El saldo ingresado no es válido.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
         Actualizar()
         GrabarDatos()
 
@@ -61,14 +66,9 @@ Public Class frmCuentas
         End If
     End Sub
 
-    'Evento KeyPress del TextBox Saldo
-    Private Sub txtSaldo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSaldo.KeyPress
-        e.Handled = Not (IsNumeric(e.KeyChar) OrElse Char.IsControl(e.KeyChar) OrElse Char.IsPunctuation(e.KeyChar))
-    End Sub
-
     '                               ____FUNCIONES/RUTINAS____
 
-    'Graba los datos ingresados en la base de datos
+    'Grabar los datos ingresados en la base de datos.
     Public Sub GrabarDatos()
         Try
             If _cuenta.ID = 0 Then
@@ -81,9 +81,9 @@ Public Class frmCuentas
         End Try
     End Sub
 
-    'Guarda los datos ingresados en la entidad correspondiente
+    'Setear el objeto Cuenta según los datos del formulario.
     Public Sub Actualizar()
-        _cuenta.Nombre = StrConv(Me.txtNombre.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _cuenta.Nombre = Me.txtNombre.Text.ToString.Trim()
         _cuenta.TipoCuenta = Me.cmbTiposCuenta.SelectedValue
         _cuenta.Moneda = Me.cmbMonedas.SelectedValue
         _cuenta.Saldo = Convert.ToDouble(Me.txtSaldo.Text)
@@ -105,7 +105,7 @@ Public Class frmCuentas
         End Try
     End Sub
 
-    'Cargar el ComboBox con los distintos tipos de Cuenta.
+    'Cargar el ComboBox con los distintos tipos de cuenta.
     Public Sub CargarComboTiposCuenta()
         Try
             Dim tiposCuenta As List(Of ETipoCuenta) = _LNTipoCuenta.ObtenerTodos()

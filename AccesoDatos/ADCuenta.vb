@@ -15,7 +15,11 @@ Public Class ADCuenta
                 cmd.Parameters.AddWithValue("@tipo", cuenta.TipoCuenta)
                 cmd.Parameters.AddWithValue("@mone", cuenta.Moneda)
                 cmd.Parameters.AddWithValue("@sal", cuenta.Saldo)
-                cmd.Parameters.AddWithValue("@desc", cuenta.Descripcion)
+                If cuenta.Descripcion <> "" Then
+                    cmd.Parameters.AddWithValue("@desc", cuenta.Descripcion)
+                Else
+                    cmd.Parameters.AddWithValue("@desc", DBNull.Value)
+                End If
 
                 cmd.ExecuteNonQuery()
             End Using
@@ -35,7 +39,11 @@ Public Class ADCuenta
                 cmd.Parameters.AddWithValue("@tipo", cuenta.TipoCuenta)
                 cmd.Parameters.AddWithValue("@mone", cuenta.Moneda)
                 cmd.Parameters.AddWithValue("@sal", cuenta.Saldo)
-                cmd.Parameters.AddWithValue("@desc", cuenta.Descripcion)
+                If cuenta.Descripcion <> "" Then
+                    cmd.Parameters.AddWithValue("@desc", cuenta.Descripcion)
+                Else
+                    cmd.Parameters.AddWithValue("@desc", DBNull.Value)
+                End If
                 cmd.Parameters.AddWithValue("@id", cuenta.ID)
 
                 cmd.ExecuteNonQuery()
@@ -119,35 +127,6 @@ Public Class ADCuenta
         End Using
 
         Return cuentas
-    End Function
-
-    'Obtener una cuenta de la BD a partir de un ID.
-    Public Function ObtenerPorID(ByVal idCuenta As Integer) As ECuenta
-        Dim cuenta As ECuenta = Nothing
-
-        Using cnx As New SQLiteConnection(connString)
-            cnx.Open()
-
-            Const sqlQuery As String = "SELECT * FROM Cuentas WHERE id = @id"
-            Using cmd As New SQLiteCommand(sqlQuery, cnx)
-                cmd.Parameters.AddWithValue("@id", idCuenta)
-
-                Dim dr As SQLiteDataReader = cmd.ExecuteReader()
-                If dr.Read() Then
-                    cuenta = New ECuenta()
-                    cuenta.ID = Convert.ToString(dr("id"))
-                    cuenta.Nombre = Convert.ToString(dr("nombre"))
-                    cuenta.TipoCuenta = Convert.ToString(dr("tipoCuenta"))
-                    cuenta.Moneda = Convert.ToString(dr("moneda"))
-                    cuenta.Saldo = Convert.ToString(dr("saldo"))
-                    cuenta.Descripcion = Convert.ToString(dr("descripcion"))
-
-                End If
-            End Using
-            cnx.Close()
-        End Using
-
-        Return cuenta
     End Function
 
     'Obtener una cuenta de la BD a partir de un nombre.

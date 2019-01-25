@@ -1,10 +1,7 @@
 ﻿Imports Entidades
 Imports LogicaNegocio
-Imports System.Threading
-Imports System.Windows.Forms
 
 Public Class frmTiposCuenta
-
 
     Private _tipoCuenta As ETipoCuenta 'Objeto perteneciente a la capa de Entidades.
     Private ReadOnly _LNTipoCuenta As New LNTipoCuenta() 'Objeto perteneciente a la capa de Lógica de Negocio.
@@ -55,7 +52,7 @@ Public Class frmTiposCuenta
 
     '                               ____FUNCIONES/RUTINAS____
 
-    'Graba los datos ingresados en la base de datos
+    'Grabar los datos ingresados en la base de datos.
     Public Sub GrabarDatos()
         Try
             If _tipoCuenta.Id = 0 Then
@@ -68,9 +65,9 @@ Public Class frmTiposCuenta
         End Try
     End Sub
 
-    'Guarda los datos ingresados en la entidad correspondiente
+    'Actualizar el objeto TipoCuenta con los datos del formulario.
     Public Sub Actualizar()
-        _tipoCuenta.Descripcion = StrConv(Me.txtDescripcion.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _tipoCuenta.Descripcion = Me.txtDescripcion.Text.ToString.Trim()
     End Sub
 
 End Class

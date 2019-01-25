@@ -8,7 +8,7 @@ Public Class LNCuenta
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
     'Verificar que los datos ingresados sean válidos.
-    Public Function validarCuenta(cuenta As ECuenta)
+    Public Function ValidarCuenta(cuenta As ECuenta) As Boolean
         sb.Clear()
 
         If String.IsNullOrEmpty(cuenta.Nombre) Then
@@ -48,21 +48,16 @@ Public Class LNCuenta
     End Sub
 
     'Obtener todas las cuentas.
-    Public Function ObtenerTodos()
+    Public Function ObtenerTodos() As List(Of ECuenta)
         Return _ADCuenta.ObtenerTodos()
     End Function
 
-    Public Function ObtenerTodosFull()
+    Public Function ObtenerTodosFull() As List(Of ECuenta)
         Return _ADCuenta.ObtenerTodosFull()
     End Function
 
-    'Obtener una cuenta a partir de un ID.
-    Public Function ObtenerPorID(ByVal idCuenta As Integer)
-        Return _ADCuenta.ObtenerPorId(idCuenta)
-    End Function
-
     'Obtener una cuenta a partir de un nombre.
-    Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCuenta As Integer)
+    Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCuenta As Integer) As ECuenta
         Return _ADCuenta.ObtenerPorNombre(nombre, idCuenta)
     End Function
 

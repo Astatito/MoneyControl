@@ -1,14 +1,12 @@
 ﻿Imports Entidades
 Imports LogicaNegocio
 Imports System.Threading
-Imports System.Windows.Forms
 
 Public Class frmCategorias
 
     Private _categoria As New ECategoria() 'Objeto perteneciente a la capa de Entidades
     Private ReadOnly _LNCategoria As New LNCategoria() 'Objeto perteneciente a la capa de Lógica de Negocio.
     Private ReadOnly _LNTipoMovimiento As New LNTipoMovimiento() 'Objeto perteneciente a la capa de Lógica de Negocio.
-
 
     'Creación de una nueva instancia del formulario
     Public Sub New()
@@ -60,7 +58,7 @@ Public Class frmCategorias
 
     '                               ____FUNCIONES/RUTINAS____
 
-    'Graba los datos ingresados en la base de datos
+    'Grabar los datos ingresados en la base de datos
     Public Sub GrabarDatos()
         Try
             If _categoria.ID = 0 Then
@@ -73,9 +71,9 @@ Public Class frmCategorias
         End Try
     End Sub
 
-    'Guarda los datos ingresados en la entidad correspondiente
+    'Setear el objeto Categoría segun los datos del formulario.
     Public Sub Actualizar()
-        _categoria.Nombre = StrConv(Me.txtNombre.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _categoria.Nombre = Me.txtNombre.Text.ToString.Trim()
         _categoria.TipoMovimiento = Me.cmbTiposMovimiento.SelectedValue
     End Sub
 

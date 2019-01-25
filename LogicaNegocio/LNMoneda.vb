@@ -8,7 +8,7 @@ Public Class LNMoneda
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
     'Verificar que los datos ingresados sean válidos.
-    Public Function validarMoneda(moneda As EMoneda)
+    Public Function ValidarMoneda(moneda As EMoneda) As Boolean
         sb.Clear()
 
         If String.IsNullOrEmpty(moneda.Codigo) Then
@@ -44,28 +44,13 @@ Public Class LNMoneda
     End Sub
 
     'Obtener todas las monedas.
-    Public Function ObtenerTodos()
+    Public Function ObtenerTodos() As List(Of EMoneda)
         Return _ADMoneda.ObtenerTodos()
     End Function
 
-    'Obtener una moneda a partir de un ID.
-    Public Function ObtenerPorID(ByVal idMoneda As Integer)
-        Return _ADMoneda.ObtenerPorId(idMoneda)
-    End Function
-
     'Obtener una moneda a partir de un código.
-    Public Function ObtenerPorCodigo(ByVal codigo As String, ByVal idMoneda As Integer)
+    Public Function ObtenerPorCodigo(ByVal codigo As String, ByVal idMoneda As Integer) As EMoneda
         Return _ADMoneda.ObtenerPorCodigo(codigo, idMoneda)
     End Function
-
-    'Obtener la moneda por defecto.
-    Public Function ObtenerMonedaPorDefecto()
-        Return _ADMoneda.ObtenerMonedaPorDefecto()
-    End Function
-
-    'Establecer la moneda por defecto.
-    Public Sub DefinirMonedaPorDefecto(ByVal idMoneda As Integer)
-        _ADMoneda.DefinirMonedaPorDefecto(idMoneda)
-    End Sub
 
 End Class

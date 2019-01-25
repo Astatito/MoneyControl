@@ -1,7 +1,6 @@
 ﻿Imports Entidades
 Imports LogicaNegocio
 Imports System.Threading
-Imports System.Windows.Forms
 
 Public Class frmABMCuentas
 
@@ -19,7 +18,7 @@ Public Class frmABMCuentas
     Private Sub frmABMCuentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             CheckForIllegalCrossThreadCalls = False
-            Dim thr As New Thread(AddressOf Me.cargarDGV)
+            Dim thr As New Thread(AddressOf Me.CargarDGV)
             thr.Start()
 
             Dim modiCol As New DataGridViewButtonColumn()
@@ -106,7 +105,7 @@ Public Class frmABMCuentas
 
     '                               ____FUNCIONES/RUTINAS____
 
-    'Carga el DataGridView con las distintas cuentas.
+    'Cargar el DataGridView con las distintas cuentas.
     Private Sub CargarDGV()
         Try
             Dim cuentas As List(Of ECuenta) = _LNCuenta.ObtenerTodosFull()
@@ -136,7 +135,7 @@ Public Class frmABMCuentas
         End Try
     End Sub
 
-    'Cargar los datos de la fila seleccionada en una Entidad.
+    'Cargar el objeto Cuenta con los datos de la fila seleccionada.
     Private Sub CargarCuenta(ByVal fila As Integer)
         _cuenta.ID = Me.dgvCuentas.Rows(fila).Cells(0).Value
         _cuenta.Nombre = Me.dgvCuentas.Rows(fila).Cells(1).Value

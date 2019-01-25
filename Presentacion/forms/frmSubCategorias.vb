@@ -59,7 +59,7 @@ Public Class frmSubCategorias
 
     '                               ____FUNCIONES/RUTINAS____
 
-    'Graba los datos ingresados en la base de datos
+    'Grabar los datos ingresados en la base de datos.
     Public Sub GrabarDatos()
         Try
             If _subCategoria.ID = 0 Then
@@ -72,9 +72,9 @@ Public Class frmSubCategorias
         End Try
     End Sub
 
-    'Guarda los datos ingresados en la entidad correspondiente
+    'Setear el objeto Subcategoría con los datos del formulario.
     Public Sub Actualizar()
-        _subCategoria.Nombre = StrConv(Me.txtNombre.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _subCategoria.Nombre = Me.txtNombre.Text.ToString.Trim()
         _subCategoria.Categoria = Me.cmbCategorias.SelectedValue
     End Sub
 

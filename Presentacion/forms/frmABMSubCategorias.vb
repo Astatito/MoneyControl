@@ -1,7 +1,6 @@
 ﻿Imports Entidades
 Imports LogicaNegocio
 Imports System.Threading
-Imports System.Windows.Forms
 
 Public Class frmABMSubCategorias
 
@@ -119,6 +118,7 @@ Public Class frmABMSubCategorias
 
     'Evento SelectionChangeCommited del ComboBox de Tipos de Categoría
     Private Sub cmbTiposCategoria_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbTiposMovimiento.SelectionChangeCommitted
+        cmbCategorias.DataSource = Nothing
         CargarComboCategorias()
     End Sub
 
@@ -159,8 +159,8 @@ Public Class frmABMSubCategorias
 
             If cmbTiposMovimiento.SelectedValue = "Ingreso" Then
                 categorias = _LNCategoria.ObtenerIngresos()
-            ElseIf cmbTiposMovimiento.SelectedValue = "Egreso" Then
-                categorias = _LNCategoria.ObtenerEgresos()
+            ElseIf cmbTiposMovimiento.SelectedValue = "Gasto" Then
+                categorias = _LNCategoria.ObtenerGastos()
             End If
 
             Me.cmbCategorias.DataSource = categorias
@@ -195,7 +195,7 @@ Public Class frmABMSubCategorias
         End Try
     End Sub
 
-    'Cargar los datos de la fila seleccionada en una Entidad.
+    'Setear el objeto Subcategoría con los datos de la fila seleccionada.
     Private Sub CargarSubCategoria(ByVal fila As Integer)
         _subcategoria.ID = Me.dgvSubCategorias.Rows(fila).Cells(0).Value
         _subcategoria.Nombre = Me.dgvSubCategorias.Rows(fila).Cells(1).Value

@@ -11,8 +11,11 @@ Public Class ADTipoCuenta
             Const sqlQuery As String = "INSERT INTO TiposCuenta(descripcion) VALUES (@desc)"
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
-                cmd.Parameters.AddWithValue("@desc", tipoCuenta.Descripcion)
-
+                If tipoCuenta.Descripcion <> "" Then
+                    cmd.Parameters.AddWithValue("@desc", tipoCuenta.Descripcion)
+                Else
+                    cmd.Parameters.AddWithValue("@desc", DBNull.Value)
+                End If
                 cmd.ExecuteNonQuery()
             End Using
             cnx.Close()
@@ -27,7 +30,11 @@ Public Class ADTipoCuenta
             Const sqlQuery As String = "UPDATE TiposCuenta SET descripcion = @desc WHERE id = @id "
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
-                cmd.Parameters.AddWithValue("@desc", tipoCuenta.Descripcion)
+                If tipoCuenta.Descripcion <> "" Then
+                    cmd.Parameters.AddWithValue("@desc", tipoCuenta.Descripcion)
+                Else
+                    cmd.Parameters.AddWithValue("@desc", DBNull.Value)
+                End If
                 cmd.Parameters.AddWithValue("@id", tipoCuenta.ID)
 
                 cmd.ExecuteNonQuery()
@@ -78,32 +85,7 @@ Public Class ADTipoCuenta
         Return tiposCuenta
     End Function
 
-    'Obtener un tipo de cuenta de la BD a partir de un ID.
-    Public Function ObtenerPorId(ByVal idTipoCuenta As Integer) As ETipoCuenta
-        Dim tipoCuenta As ETipoCuenta = Nothing
-
-        Using cnx As New SQLiteConnection(connString)
-            cnx.Open()
-
-            Const sqlQuery As String = "SELECT * FROM TiposCuenta WHERE id = @id"
-            Using cmd As New SQLiteCommand(sqlQuery, cnx)
-                cmd.Parameters.AddWithValue("@id", idTipoCuenta)
-
-                Dim dr As SQLiteDataReader = cmd.ExecuteReader()
-                If dr.Read() Then
-                    tipoCuenta = New ETipoCuenta()
-                    tipoCuenta.ID = Convert.ToString(dr("id"))
-                    tipoCuenta.Descripcion = Convert.ToString(dr("descripcion"))
-
-                End If
-            End Using
-            cnx.Close()
-        End Using
-
-        Return tipoCuenta
-    End Function
-
-    'Obtener un tipo de cuenta de la BD a partir de un descripcion.
+    'Obtener un tipo de cuenta de la BD a partir de una descripción.
     Public Function ObtenerPorDescripcion(ByVal descripcion As String, ByVal idTipoCuenta As Integer) As ETipoCuenta
         Dim tipoCuenta As ETipoCuenta = Nothing
 

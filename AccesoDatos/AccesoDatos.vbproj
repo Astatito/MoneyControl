@@ -105,9 +105,11 @@
     <Compile Include="ADCategoria.vb" />
     <Compile Include="ADCuenta.vb" />
     <Compile Include="ADMoneda.vb" />
+    <Compile Include="ADMovimiento.vb" />
     <Compile Include="ADSubCategoria.vb" />
     <Compile Include="ADTipoMovimiento.vb" />
     <Compile Include="ADTipoCuenta.vb" />
+    <Compile Include="ADTransferencia.vb" />
     <Compile Include="DataBase.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

@@ -9,14 +9,9 @@
         frm.ShowDialog()
     End Sub
 
-    Private Sub btnMonedaPorDefecto_Click(sender As Object, e As EventArgs) Handles btnMonedaPorDefecto.Click
-        Dim frm As New frmMonedaPorDefecto()
-        frm.ShowDialog()
-    End Sub
-
     Private Sub btnABMCuentas_Click(sender As Object, e As EventArgs) Handles btnABMCuentas.Click
         Dim frm As New frmABMCuentas()
-        frm.showDialog()
+        frm.ShowDialog()
     End Sub
 
     Private Sub btnABMCategorias_Click(sender As Object, e As EventArgs) Handles btnABMCategorias.Click
@@ -27,5 +22,21 @@
     Private Sub btnABMSubCategorias_Click(sender As Object, e As EventArgs) Handles btnABMSubCategorias.Click
         Dim frm As New frmABMSubCategorias()
         frm.ShowDialog()
+    End Sub
+
+    Private Sub btnIngreso_Click(sender As Object, e As EventArgs) Handles btnIngreso.Click
+        Dim frm As New frmMovimientos("Ingreso")
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub btnEgreso_Click(sender As Object, e As EventArgs) Handles btnGasto.Click
+        Dim frm As New frmMovimientos("Gasto")
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        Dim proc As New Process()
+        proc.StartInfo.FileName = "chrome.exe"
+        proc.Start()
     End Sub
 End Class

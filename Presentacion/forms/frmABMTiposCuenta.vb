@@ -1,7 +1,6 @@
 ﻿Imports Entidades
 Imports LogicaNegocio
 Imports System.Threading
-Imports System.Windows.Forms
 
 Public Class frmABMTiposCuenta
 
@@ -127,7 +126,7 @@ Public Class frmABMTiposCuenta
         End Try
     End Sub
 
-    'Cargar los datos de la fila seleccionada en una Entidad
+    'Setear el objeto TipoCuenta con los datos de la fila seleccionada
     Private Sub CargarTipoCuenta(ByVal fila As Integer)
         _tipoCuenta.Id = Me.dgvTiposCuenta.Rows(fila).Cells(0).Value
         _tipoCuenta.Descripcion = Me.dgvTiposCuenta.Rows(fila).Cells(1).Value

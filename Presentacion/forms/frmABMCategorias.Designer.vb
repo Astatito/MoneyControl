@@ -30,14 +30,14 @@ Partial Class frmABMCategorias
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.grpCategorias = New System.Windows.Forms.GroupBox()
         Me.grpFiltro = New System.Windows.Forms.GroupBox()
-        Me.rbEgreso = New System.Windows.Forms.RadioButton()
+        Me.rbGasto = New System.Windows.Forms.RadioButton()
         Me.rbIngreso = New System.Windows.Forms.RadioButton()
         Me.rbTodas = New System.Windows.Forms.RadioButton()
         Me.dgvCategorias = New System.Windows.Forms.DataGridView()
-        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nombreColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tipoMovimientoColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.grpCategorias.SuspendLayout()
         Me.grpFiltro.SuspendLayout()
         CType(Me.dgvCategorias, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,7 +67,7 @@ Partial Class frmABMCategorias
         '
         'grpFiltro
         '
-        Me.grpFiltro.Controls.Add(Me.rbEgreso)
+        Me.grpFiltro.Controls.Add(Me.rbGasto)
         Me.grpFiltro.Controls.Add(Me.rbIngreso)
         Me.grpFiltro.Controls.Add(Me.rbTodas)
         Me.grpFiltro.Location = New System.Drawing.Point(31, 176)
@@ -77,26 +77,26 @@ Partial Class frmABMCategorias
         Me.grpFiltro.TabStop = False
         Me.grpFiltro.Text = "Filtrar"
         '
-        'rbEgreso
+        'rbGasto
         '
-        Me.rbEgreso.AutoSize = True
-        Me.rbEgreso.Location = New System.Drawing.Point(221, 19)
-        Me.rbEgreso.Name = "rbEgreso"
-        Me.rbEgreso.Size = New System.Drawing.Size(58, 17)
-        Me.rbEgreso.TabIndex = 3
-        Me.rbEgreso.Text = "&Egreso"
-        Me.toolTip.SetToolTip(Me.rbEgreso, "Mostrar sólo las categorías de Egreso." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + E)")
-        Me.rbEgreso.UseVisualStyleBackColor = True
+        Me.rbGasto.AutoSize = True
+        Me.rbGasto.Location = New System.Drawing.Point(221, 19)
+        Me.rbGasto.Name = "rbGasto"
+        Me.rbGasto.Size = New System.Drawing.Size(58, 17)
+        Me.rbGasto.TabIndex = 3
+        Me.rbGasto.Text = "&Gastos"
+        Me.toolTip.SetToolTip(Me.rbGasto, "Mostrar sólo las categorías de Gastos." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + E)")
+        Me.rbGasto.UseVisualStyleBackColor = True
         '
         'rbIngreso
         '
         Me.rbIngreso.AutoSize = True
         Me.rbIngreso.Location = New System.Drawing.Point(122, 19)
         Me.rbIngreso.Name = "rbIngreso"
-        Me.rbIngreso.Size = New System.Drawing.Size(60, 17)
+        Me.rbIngreso.Size = New System.Drawing.Size(65, 17)
         Me.rbIngreso.TabIndex = 2
-        Me.rbIngreso.Text = "&Ingreso"
-        Me.toolTip.SetToolTip(Me.rbIngreso, "Mostrar sólo las categorías de Ingreso." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + I)")
+        Me.rbIngreso.Text = "&Ingresos"
+        Me.toolTip.SetToolTip(Me.rbIngreso, "Mostrar sólo las categorías de Ingresos." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + I)")
         Me.rbIngreso.UseVisualStyleBackColor = True
         '
         'rbTodas
@@ -149,11 +149,6 @@ Partial Class frmABMCategorias
         Me.dgvCategorias.Size = New System.Drawing.Size(397, 150)
         Me.dgvCategorias.TabIndex = 4
         '
-        'toolTip
-        '
-        Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.toolTip.ToolTipTitle = "Ayuda"
-        '
         'idColumn
         '
         Me.idColumn.HeaderText = "ID"
@@ -176,6 +171,11 @@ Partial Class frmABMCategorias
         Me.tipoMovimientoColumn.Name = "tipoMovimientoColumn"
         Me.tipoMovimientoColumn.ReadOnly = True
         Me.tipoMovimientoColumn.ToolTipText = "Tipo de movimiento (por ejemplo, Ingreso)."
+        '
+        'toolTip
+        '
+        Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.toolTip.ToolTipTitle = "Ayuda"
         '
         'frmABMCategorias
         '
@@ -205,7 +205,7 @@ Partial Class frmABMCategorias
     Friend WithEvents dgvCategorias As DataGridView
     Friend WithEvents toolTip As ToolTip
     Friend WithEvents grpFiltro As GroupBox
-    Friend WithEvents rbEgreso As RadioButton
+    Friend WithEvents rbGasto As RadioButton
     Friend WithEvents rbIngreso As RadioButton
     Friend WithEvents rbTodas As RadioButton
     Friend WithEvents idColumn As DataGridViewTextBoxColumn

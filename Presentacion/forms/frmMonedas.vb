@@ -1,7 +1,5 @@
 ﻿Imports Entidades
 Imports LogicaNegocio
-Imports System.Threading
-Imports System.Windows.Forms
 
 Public Class frmMonedas
 
@@ -55,7 +53,7 @@ Public Class frmMonedas
 
     '                               ____FUNCIONES/RUTINAS____
 
-    'Graba los datos ingresados en la base de datos
+    'Grabar los datos ingresados en la base de datos.
     Public Sub GrabarDatos()
         Try
             If _moneda.ID = 0 Then
@@ -68,9 +66,10 @@ Public Class frmMonedas
         End Try
     End Sub
 
-    'Guarda los datos ingresados en la entidad correspondiente
+    'Actualizar el objeto Moneda con los datos del formulario.
     Public Sub Actualizar()
         _moneda.Codigo = Me.txtCodigo.Text.ToString.ToUpper.Trim()
-        _moneda.Descripcion = StrConv(Me.txtDescripcion.Text.ToString.Trim(), VbStrConv.ProperCase)
+        _moneda.Descripcion = Me.txtDescripcion.Text.ToString.Trim()
     End Sub
+
 End Class

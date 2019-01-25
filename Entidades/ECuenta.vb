@@ -1,7 +1,7 @@
 ﻿Public Class ECuenta
 
     Public Property ID() As Integer 'ID numérico.
-    Public Property Nombre() As String 'Nombre o descripción de la cuenta
+    Public Property Nombre() As String 'Nombre o descripción de la cuenta.
     Public Property TipoCuenta() As Integer 'Referencia al ID del tipo de cuenta.
     Public Property DescripcionTipoCuenta() As String 'Descripción del tipo de cuenta. *
     Public Property Moneda() As Integer 'Referencia al ID de la moneda.

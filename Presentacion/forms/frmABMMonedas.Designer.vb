@@ -29,12 +29,11 @@ Partial Class frmABMMonedas
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmABMMonedas))
         Me.grpMonedas = New System.Windows.Forms.GroupBox()
         Me.dgvMonedas = New System.Windows.Forms.DataGridView()
+        Me.btnNuevo = New System.Windows.Forms.Button()
+        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.codigoColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.descripcionColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.porDefectoColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.btnNuevo = New System.Windows.Forms.Button()
-        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.grpMonedas.SuspendLayout()
         CType(Me.dgvMonedas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -64,7 +63,7 @@ Partial Class frmABMMonedas
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvMonedas.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvMonedas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvMonedas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idColumn, Me.codigoColumn, Me.descripcionColumn, Me.porDefectoColumn})
+        Me.dgvMonedas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idColumn, Me.codigoColumn, Me.descripcionColumn})
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -88,6 +87,22 @@ Partial Class frmABMMonedas
         Me.dgvMonedas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.dgvMonedas.Size = New System.Drawing.Size(397, 150)
         Me.dgvMonedas.TabIndex = 4
+        '
+        'btnNuevo
+        '
+        Me.btnNuevo.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnNuevo.Location = New System.Drawing.Point(170, 196)
+        Me.btnNuevo.Name = "btnNuevo"
+        Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
+        Me.btnNuevo.TabIndex = 7
+        Me.btnNuevo.Text = "&Nuevo"
+        Me.toolTip.SetToolTip(Me.btnNuevo, "Registrar una nueva moneda." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + N)")
+        Me.btnNuevo.UseVisualStyleBackColor = True
+        '
+        'toolTip
+        '
+        Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.toolTip.ToolTipTitle = "Ayuda"
         '
         'idColumn
         '
@@ -113,29 +128,6 @@ Partial Class frmABMMonedas
         Me.descripcionColumn.Name = "descripcionColumn"
         Me.descripcionColumn.ReadOnly = True
         Me.descripcionColumn.ToolTipText = "Descripción (por ejemplo, Dólar)."
-        '
-        'porDefectoColumn
-        '
-        Me.porDefectoColumn.HeaderText = "Por Defecto"
-        Me.porDefectoColumn.Name = "porDefectoColumn"
-        Me.porDefectoColumn.ReadOnly = True
-        Me.porDefectoColumn.Visible = False
-        '
-        'btnNuevo
-        '
-        Me.btnNuevo.Cursor = System.Windows.Forms.Cursors.Default
-        Me.btnNuevo.Location = New System.Drawing.Point(170, 196)
-        Me.btnNuevo.Name = "btnNuevo"
-        Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
-        Me.btnNuevo.TabIndex = 7
-        Me.btnNuevo.Text = "&Nuevo"
-        Me.toolTip.SetToolTip(Me.btnNuevo, "Registrar una nueva moneda." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + N)")
-        Me.btnNuevo.UseVisualStyleBackColor = True
-        '
-        'toolTip
-        '
-        Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.toolTip.ToolTipTitle = "Ayuda"
         '
         'frmABMMonedas
         '
@@ -166,5 +158,4 @@ Partial Class frmABMMonedas
     Friend WithEvents idColumn As DataGridViewTextBoxColumn
     Friend WithEvents codigoColumn As DataGridViewTextBoxColumn
     Friend WithEvents descripcionColumn As DataGridViewTextBoxColumn
-    Friend WithEvents porDefectoColumn As DataGridViewCheckBoxColumn
 End Class
