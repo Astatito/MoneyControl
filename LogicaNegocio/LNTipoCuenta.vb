@@ -5,6 +5,7 @@ Imports System.Text
 Public Class LNTipoCuenta
 
     Private _ADTipoCuenta As New ADTipoCuenta() 'Objeto perteneciente a la capa de Acceso a Datos.
+    Private _LNCuenta As New LNCuenta() 'Objeto perteneciente a la capa de Lógica de Negocio.
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
     'Verificar que los datos ingresados sean correctos.
@@ -15,6 +16,17 @@ Public Class LNTipoCuenta
             sb.Append("Debe ingresar una descripción." + Environment.NewLine)
         ElseIf Not ObtenerPorDescripcion(tipoCuenta.Descripcion, tipoCuenta.ID) Is Nothing Then
             sb.Append("La descripción ingresada ya existe." + Environment.NewLine)
+        End If
+
+        Return sb.Length = 0
+    End Function
+
+    'Verificar si se puede eliminar el tipo de cuenta.
+    Public Function SePuedeEliminar(ByVal idTipoCuenta As Integer) As Boolean
+        sb.Clear()
+
+        If _LNCuenta.ObtenerPorTipoDeCuenta(idTipoCuenta).Count <> 0 Then
+            sb.Append("No se puede eliminar este tipo de cuenta porque hay cuentas asociadas. Sólo se pueden eliminar aquellos tipos de cuenta que no están asociados a ninguna cuenta.")
         End If
 
         Return sb.Length = 0

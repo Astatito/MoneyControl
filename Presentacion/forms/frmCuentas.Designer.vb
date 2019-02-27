@@ -31,11 +31,11 @@ Partial Class frmCuentas
         Me.txtSaldo = New System.Windows.Forms.TextBox()
         Me.lblSaldo = New System.Windows.Forms.Label()
         Me.lblTipoCuenta = New System.Windows.Forms.Label()
-        Me.btnGuardar = New System.Windows.Forms.Button()
         Me.txtDescripcion = New System.Windows.Forms.TextBox()
         Me.txtNombre = New System.Windows.Forms.TextBox()
         Me.lblDescripcion = New System.Windows.Forms.Label()
         Me.lblNombre = New System.Windows.Forms.Label()
+        Me.btnGuardar = New System.Windows.Forms.Button()
         Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.grpCuenta.SuspendLayout()
         Me.SuspendLayout()
@@ -104,7 +104,8 @@ Partial Class frmCuentas
         Me.lblSaldo.Size = New System.Drawing.Size(34, 13)
         Me.lblSaldo.TabIndex = 21
         Me.lblSaldo.Text = "Saldo"
-        Me.toolTip.SetToolTip(Me.lblSaldo, "Cantidad de dinero actual en la cuenta.")
+        Me.toolTip.SetToolTip(Me.lblSaldo, "Cantidad actual de dinero en la cuenta." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Para modificar el saldo de la cuenta, d" &
+        "ebe crear un nuevo movimiento en el menú correspondiente.)")
         '
         'lblTipoCuenta
         '
@@ -115,16 +116,6 @@ Partial Class frmCuentas
         Me.lblTipoCuenta.TabIndex = 19
         Me.lblTipoCuenta.Text = "Tipo de Cuenta"
         Me.toolTip.SetToolTip(Me.lblTipoCuenta, "Tipo de Cuenta (por ejemplo, Efectivo).")
-        '
-        'btnGuardar
-        '
-        Me.btnGuardar.Location = New System.Drawing.Point(103, 210)
-        Me.btnGuardar.Name = "btnGuardar"
-        Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
-        Me.btnGuardar.TabIndex = 6
-        Me.btnGuardar.Text = "&Guardar"
-        Me.toolTip.SetToolTip(Me.btnGuardar, "Graba los datos y vuelve a la ventana anterior." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + G, Enter)")
-        Me.btnGuardar.UseVisualStyleBackColor = True
         '
         'txtDescripcion
         '
@@ -162,6 +153,16 @@ Partial Class frmCuentas
         Me.lblNombre.TabIndex = 17
         Me.lblNombre.Text = "Nombre"
         Me.toolTip.SetToolTip(Me.lblNombre, "Nombre (por ejemplo, Billetera).")
+        '
+        'btnGuardar
+        '
+        Me.btnGuardar.Location = New System.Drawing.Point(103, 210)
+        Me.btnGuardar.Name = "btnGuardar"
+        Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
+        Me.btnGuardar.TabIndex = 6
+        Me.btnGuardar.Text = "&Guardar"
+        Me.toolTip.SetToolTip(Me.btnGuardar, "Graba los datos y vuelve a la ventana anterior." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + G, Enter)")
+        Me.btnGuardar.UseVisualStyleBackColor = True
         '
         'toolTip
         '

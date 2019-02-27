@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmMovimientos
+Partial Class frmAMMovimientos
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,6 +22,8 @@ Partial Class frmMovimientos
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAMMovimientos))
         Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
         Me.lblFecha = New System.Windows.Forms.Label()
         Me.lblCategoria = New System.Windows.Forms.Label()
@@ -35,20 +37,21 @@ Partial Class frmMovimientos
         Me.lblDescripcion = New System.Windows.Forms.Label()
         Me.txtDescripcion = New System.Windows.Forms.TextBox()
         Me.btnGuardar = New System.Windows.Forms.Button()
+        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'dtpFecha
         '
         Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFecha.Location = New System.Drawing.Point(119, 16)
+        Me.dtpFecha.Location = New System.Drawing.Point(119, 20)
         Me.dtpFecha.Name = "dtpFecha"
         Me.dtpFecha.Size = New System.Drawing.Size(121, 20)
-        Me.dtpFecha.TabIndex = 0
+        Me.dtpFecha.TabIndex = 1
         '
         'lblFecha
         '
         Me.lblFecha.AutoSize = True
-        Me.lblFecha.Location = New System.Drawing.Point(58, 22)
+        Me.lblFecha.Location = New System.Drawing.Point(60, 26)
         Me.lblFecha.Name = "lblFecha"
         Me.lblFecha.Size = New System.Drawing.Size(37, 13)
         Me.lblFecha.TabIndex = 1
@@ -59,18 +62,18 @@ Partial Class frmMovimientos
         Me.lblCategoria.AutoSize = True
         Me.lblCategoria.Location = New System.Drawing.Point(43, 49)
         Me.lblCategoria.Name = "lblCategoria"
-        Me.lblCategoria.Size = New System.Drawing.Size(52, 13)
+        Me.lblCategoria.Size = New System.Drawing.Size(54, 13)
         Me.lblCategoria.TabIndex = 2
-        Me.lblCategoria.Text = "Categoria"
+        Me.lblCategoria.Text = "Categoría"
         '
         'lblSubCategoria
         '
         Me.lblSubCategoria.AutoSize = True
-        Me.lblSubCategoria.Location = New System.Drawing.Point(24, 78)
+        Me.lblSubCategoria.Location = New System.Drawing.Point(25, 76)
         Me.lblSubCategoria.Name = "lblSubCategoria"
-        Me.lblSubCategoria.Size = New System.Drawing.Size(71, 13)
+        Me.lblSubCategoria.Size = New System.Drawing.Size(72, 13)
         Me.lblSubCategoria.TabIndex = 3
-        Me.lblSubCategoria.Text = "SubCategoria"
+        Me.lblSubCategoria.Text = "Subcategoría"
         '
         'cmbCategorias
         '
@@ -79,22 +82,22 @@ Partial Class frmMovimientos
         Me.cmbCategorias.Location = New System.Drawing.Point(119, 46)
         Me.cmbCategorias.Name = "cmbCategorias"
         Me.cmbCategorias.Size = New System.Drawing.Size(121, 21)
-        Me.cmbCategorias.TabIndex = 4
+        Me.cmbCategorias.TabIndex = 2
         '
         'cmbSubCategorias
         '
         Me.cmbSubCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSubCategorias.Enabled = False
         Me.cmbSubCategorias.FormattingEnabled = True
-        Me.cmbSubCategorias.Location = New System.Drawing.Point(119, 75)
+        Me.cmbSubCategorias.Location = New System.Drawing.Point(119, 73)
         Me.cmbSubCategorias.Name = "cmbSubCategorias"
         Me.cmbSubCategorias.Size = New System.Drawing.Size(121, 21)
-        Me.cmbSubCategorias.TabIndex = 5
+        Me.cmbSubCategorias.TabIndex = 3
         '
         'lblMonto
         '
         Me.lblMonto.AutoSize = True
-        Me.lblMonto.Location = New System.Drawing.Point(58, 110)
+        Me.lblMonto.Location = New System.Drawing.Point(60, 103)
         Me.lblMonto.Name = "lblMonto"
         Me.lblMonto.Size = New System.Drawing.Size(37, 13)
         Me.lblMonto.TabIndex = 6
@@ -102,24 +105,24 @@ Partial Class frmMovimientos
         '
         'txtMonto
         '
-        Me.txtMonto.Location = New System.Drawing.Point(119, 107)
+        Me.txtMonto.Location = New System.Drawing.Point(119, 100)
         Me.txtMonto.Name = "txtMonto"
         Me.txtMonto.Size = New System.Drawing.Size(121, 20)
-        Me.txtMonto.TabIndex = 7
+        Me.txtMonto.TabIndex = 4
         '
         'cmbCuentas
         '
         Me.cmbCuentas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCuentas.FormattingEnabled = True
-        Me.cmbCuentas.Location = New System.Drawing.Point(119, 143)
+        Me.cmbCuentas.Location = New System.Drawing.Point(119, 126)
         Me.cmbCuentas.Name = "cmbCuentas"
         Me.cmbCuentas.Size = New System.Drawing.Size(121, 21)
-        Me.cmbCuentas.TabIndex = 8
+        Me.cmbCuentas.TabIndex = 5
         '
         'lblCuenta
         '
         Me.lblCuenta.AutoSize = True
-        Me.lblCuenta.Location = New System.Drawing.Point(54, 146)
+        Me.lblCuenta.Location = New System.Drawing.Point(56, 129)
         Me.lblCuenta.Name = "lblCuenta"
         Me.lblCuenta.Size = New System.Drawing.Size(41, 13)
         Me.lblCuenta.TabIndex = 9
@@ -128,7 +131,7 @@ Partial Class frmMovimientos
         'lblDescripcion
         '
         Me.lblDescripcion.AutoSize = True
-        Me.lblDescripcion.Location = New System.Drawing.Point(32, 177)
+        Me.lblDescripcion.Location = New System.Drawing.Point(34, 156)
         Me.lblDescripcion.Name = "lblDescripcion"
         Me.lblDescripcion.Size = New System.Drawing.Size(63, 13)
         Me.lblDescripcion.TabIndex = 10
@@ -136,26 +139,33 @@ Partial Class frmMovimientos
         '
         'txtDescripcion
         '
-        Me.txtDescripcion.Location = New System.Drawing.Point(119, 177)
+        Me.txtDescripcion.Location = New System.Drawing.Point(119, 153)
         Me.txtDescripcion.Multiline = True
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(121, 64)
-        Me.txtDescripcion.TabIndex = 11
+        Me.txtDescripcion.TabIndex = 6
         '
         'btnGuardar
         '
-        Me.btnGuardar.Location = New System.Drawing.Point(98, 273)
+        Me.btnGuardar.Location = New System.Drawing.Point(94, 232)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
-        Me.btnGuardar.TabIndex = 12
-        Me.btnGuardar.Text = "Guardar"
+        Me.btnGuardar.TabIndex = 7
+        Me.btnGuardar.Text = "&Guardar"
+        Me.toolTip.SetToolTip(Me.btnGuardar, "Graba los datos y vuelve a la ventana anterior." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + G, Enter)")
         Me.btnGuardar.UseVisualStyleBackColor = True
         '
-        'frmMovimientos
+        'toolTip
         '
+        Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.toolTip.ToolTipTitle = "Ayuda"
+        '
+        'frmAMMovimientos
+        '
+        Me.AcceptButton = Me.btnGuardar
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(302, 308)
+        Me.ClientSize = New System.Drawing.Size(272, 264)
         Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.txtDescripcion)
         Me.Controls.Add(Me.lblDescripcion)
@@ -169,8 +179,12 @@ Partial Class frmMovimientos
         Me.Controls.Add(Me.lblCategoria)
         Me.Controls.Add(Me.lblFecha)
         Me.Controls.Add(Me.dtpFecha)
-        Me.Name = "frmMovimientos"
-        Me.Text = "frmMovimientos"
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.KeyPreview = True
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
+        Me.Name = "frmAMMovimientos"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -189,4 +203,5 @@ Partial Class frmMovimientos
     Friend WithEvents lblDescripcion As Label
     Friend WithEvents txtDescripcion As TextBox
     Friend WithEvents btnGuardar As Button
+    Friend WithEvents toolTip As ToolTip
 End Class

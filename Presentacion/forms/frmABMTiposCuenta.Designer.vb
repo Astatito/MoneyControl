@@ -31,6 +31,9 @@ Partial Class frmABMTiposCuenta
         Me.dgvTiposCuenta = New System.Windows.Forms.DataGridView()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btnEliminar = New System.Windows.Forms.Button()
+        Me.btnEditar = New System.Windows.Forms.Button()
+        Me.btnExportar = New System.Windows.Forms.Button()
         Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.descripcionColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.grpTiposCuenta.SuspendLayout()
@@ -89,18 +92,51 @@ Partial Class frmABMTiposCuenta
         '
         'btnNuevo
         '
-        Me.btnNuevo.Location = New System.Drawing.Point(81, 201)
+        Me.btnNuevo.Location = New System.Drawing.Point(258, 31)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
         Me.btnNuevo.TabIndex = 8
         Me.btnNuevo.Text = "&Nuevo"
-        Me.toolTip.SetToolTip(Me.btnNuevo, "Registrar un nuevo tipo de cuenta." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + N)")
+        Me.toolTip.SetToolTip(Me.btnNuevo, "Agregar un nuevo tipo de cuenta." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + N)")
         Me.btnNuevo.UseVisualStyleBackColor = True
         '
         'toolTip
         '
         Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.toolTip.ToolTipTitle = "Ayuda"
+        '
+        'btnEliminar
+        '
+        Me.btnEliminar.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnEliminar.Location = New System.Drawing.Point(258, 89)
+        Me.btnEliminar.Name = "btnEliminar"
+        Me.btnEliminar.Size = New System.Drawing.Size(75, 23)
+        Me.btnEliminar.TabIndex = 10
+        Me.btnEliminar.Text = "E&liminar"
+        Me.toolTip.SetToolTip(Me.btnEliminar, "Eliminar el tipo de cuenta seleccionado." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Supr)")
+        Me.btnEliminar.UseVisualStyleBackColor = True
+        '
+        'btnEditar
+        '
+        Me.btnEditar.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnEditar.Location = New System.Drawing.Point(258, 60)
+        Me.btnEditar.Name = "btnEditar"
+        Me.btnEditar.Size = New System.Drawing.Size(75, 23)
+        Me.btnEditar.TabIndex = 9
+        Me.btnEditar.Text = "E&ditar"
+        Me.toolTip.SetToolTip(Me.btnEditar, "Modificar el tipo de cuenta seleccionado." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + D)")
+        Me.btnEditar.UseVisualStyleBackColor = True
+        '
+        'btnExportar
+        '
+        Me.btnExportar.Location = New System.Drawing.Point(258, 118)
+        Me.btnExportar.Name = "btnExportar"
+        Me.btnExportar.Size = New System.Drawing.Size(75, 23)
+        Me.btnExportar.TabIndex = 11
+        Me.btnExportar.Text = "&Exportar"
+        Me.toolTip.SetToolTip(Me.btnExportar, "Exportar datos a Excel." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + E)")
+        Me.btnExportar.UseVisualStyleBackColor = True
         '
         'idColumn
         '
@@ -116,13 +152,15 @@ Partial Class frmABMTiposCuenta
         Me.descripcionColumn.MaxInputLength = 50
         Me.descripcionColumn.Name = "descripcionColumn"
         Me.descripcionColumn.ReadOnly = True
-        Me.descripcionColumn.ToolTipText = "Descripción (por ejemplo, Efectivo)."
         '
         'frmABMTiposCuenta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(239, 232)
+        Me.ClientSize = New System.Drawing.Size(369, 202)
+        Me.Controls.Add(Me.btnEliminar)
+        Me.Controls.Add(Me.btnEditar)
+        Me.Controls.Add(Me.btnExportar)
         Me.Controls.Add(Me.btnNuevo)
         Me.Controls.Add(Me.grpTiposCuenta)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
@@ -132,6 +170,7 @@ Partial Class frmABMTiposCuenta
         Me.MinimizeBox = False
         Me.Name = "frmABMTiposCuenta"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Tag = "Tipos de Cuenta"
         Me.Text = "Configuración - Tipos de Cuenta"
         Me.grpTiposCuenta.ResumeLayout(False)
         CType(Me.dgvTiposCuenta, System.ComponentModel.ISupportInitialize).EndInit()
@@ -143,6 +182,9 @@ Partial Class frmABMTiposCuenta
     Friend WithEvents dgvTiposCuenta As DataGridView
     Friend WithEvents btnNuevo As Button
     Friend WithEvents toolTip As ToolTip
+    Friend WithEvents btnEliminar As Button
+    Friend WithEvents btnEditar As Button
+    Friend WithEvents btnExportar As Button
     Friend WithEvents idColumn As DataGridViewTextBoxColumn
     Friend WithEvents descripcionColumn As DataGridViewTextBoxColumn
 End Class

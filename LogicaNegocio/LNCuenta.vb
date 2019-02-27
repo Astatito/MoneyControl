@@ -5,6 +5,7 @@ Imports System.Text
 Public Class LNCuenta
 
     Private _ADCuenta As New ADCuenta() 'Objeto perteneciente a la capa de Acceso a Datos.
+    Private _LNMovimiento As New LNMovimiento() 'Objeto perteneciente a la capa de Lógica de Negocio.
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
     'Verificar que los datos ingresados sean válidos.
@@ -59,6 +60,16 @@ Public Class LNCuenta
     'Obtener una cuenta a partir de un nombre.
     Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCuenta As Integer) As ECuenta
         Return _ADCuenta.ObtenerPorNombre(nombre, idCuenta)
+    End Function
+
+    'Obtener cuentas a partir de una moneda.
+    Public Function ObtenerPorMoneda(ByVal idMoneda As Integer) As List(Of ECuenta)
+        Return _ADCuenta.ObtenerPorMoneda(idMoneda)
+    End Function
+
+    'Obtener cuentas a partir de un tipo de cuenta.
+    Public Function ObtenerPorTipoDeCuenta(ByVal idTipoCuenta As Integer) As List(Of ECuenta)
+        Return _ADCuenta.ObtenerPorTipoDeCuenta(idTipoCuenta)
     End Function
 
 End Class

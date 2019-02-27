@@ -57,7 +57,7 @@ Partial Class frmCategorias
         Me.lblNombre.Size = New System.Drawing.Size(44, 13)
         Me.lblNombre.TabIndex = 17
         Me.lblNombre.Text = "Nombre"
-        Me.toolTip.SetToolTip(Me.lblNombre, "Nombre (por ejemplo, Salario).")
+        Me.toolTip.SetToolTip(Me.lblNombre, "Nombre o descripción (por ejemplo, Salario).")
         '
         'btnGuardar
         '

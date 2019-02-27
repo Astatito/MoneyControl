@@ -67,9 +67,9 @@ Public Class ADSubCategoria
 
                 While dr.Read()
                     Dim subcategoria As New ESubCategoria()
-                    subcategoria.ID = Convert.ToString(dr("id"))
+                    subcategoria.ID = Convert.ToInt32(dr("id"))
                     subcategoria.Nombre = Convert.ToString(dr("nombre"))
-                    subcategoria.Categoria = Convert.ToString(dr("categoria"))
+                    subcategoria.Categoria = Convert.ToInt32(dr("categoria"))
                     subcategoria.NombreCategoria = Convert.ToString(dr("nombreCategoria")) 'Auxiliar
 
                     subcategorias.Add(subcategoria)
@@ -97,9 +97,9 @@ Public Class ADSubCategoria
 
                 While dr.Read()
                     Dim subcategoria As New ESubCategoria()
-                    subcategoria.ID = Convert.ToString(dr("id"))
+                    subcategoria.ID = Convert.ToInt32(dr("id"))
                     subcategoria.Nombre = Convert.ToString(dr("nombre"))
-                    subcategoria.Categoria = Convert.ToString(dr("categoria"))
+                    subcategoria.Categoria = Convert.ToInt32(dr("categoria"))
 
                     subcategorias.Add(subcategoria)
                 End While
@@ -126,9 +126,9 @@ Public Class ADSubCategoria
 
                 While dr.Read()
                     Dim subcategoria As New ESubCategoria()
-                    subcategoria.ID = Convert.ToString(dr("id"))
+                    subcategoria.ID = Convert.ToInt32(dr("id"))
                     subcategoria.Nombre = Convert.ToString(dr("nombre"))
-                    subcategoria.Categoria = Convert.ToString(dr("categoria"))
+                    subcategoria.Categoria = Convert.ToInt32(dr("categoria"))
                     subcategoria.NombreCategoria = Convert.ToString(dr("nombreCategoria")) 'Auxiliar
 
                     subcategorias.Add(subcategoria)
@@ -155,9 +155,9 @@ Public Class ADSubCategoria
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     subcategoria = New ESubCategoria()
-                    subcategoria.ID = Convert.ToString(dr("id"))
+                    subcategoria.ID = Convert.ToInt32(dr("id"))
                     subcategoria.Nombre = Convert.ToString(dr("nombre"))
-                    subcategoria.Categoria = Convert.ToString(dr("categoria"))
+                    subcategoria.Categoria = Convert.ToInt32(dr("categoria"))
 
                 End If
             End Using

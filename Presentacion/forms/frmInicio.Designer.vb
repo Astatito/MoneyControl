@@ -30,6 +30,8 @@ Partial Class frmInicio
         Me.btnABMSubCategorias = New System.Windows.Forms.Button()
         Me.btnIngreso = New System.Windows.Forms.Button()
         Me.btnGasto = New System.Windows.Forms.Button()
+        Me.btnConfiguracion = New System.Windows.Forms.Button()
+        Me.btnConsultaMovimientos = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnABMMonedas
@@ -52,7 +54,7 @@ Partial Class frmInicio
         '
         'btnABMCuentas
         '
-        Me.btnABMCuentas.Location = New System.Drawing.Point(12, 104)
+        Me.btnABMCuentas.Location = New System.Drawing.Point(12, 133)
         Me.btnABMCuentas.Name = "btnABMCuentas"
         Me.btnABMCuentas.Size = New System.Drawing.Size(117, 40)
         Me.btnABMCuentas.TabIndex = 3
@@ -61,7 +63,7 @@ Partial Class frmInicio
         '
         'btnABMCategorias
         '
-        Me.btnABMCategorias.Location = New System.Drawing.Point(12, 150)
+        Me.btnABMCategorias.Location = New System.Drawing.Point(12, 212)
         Me.btnABMCategorias.Name = "btnABMCategorias"
         Me.btnABMCategorias.Size = New System.Drawing.Size(117, 40)
         Me.btnABMCategorias.TabIndex = 4
@@ -70,7 +72,7 @@ Partial Class frmInicio
         '
         'btnABMSubCategorias
         '
-        Me.btnABMSubCategorias.Location = New System.Drawing.Point(12, 196)
+        Me.btnABMSubCategorias.Location = New System.Drawing.Point(12, 258)
         Me.btnABMSubCategorias.Name = "btnABMSubCategorias"
         Me.btnABMSubCategorias.Size = New System.Drawing.Size(117, 40)
         Me.btnABMSubCategorias.TabIndex = 5
@@ -95,11 +97,31 @@ Partial Class frmInicio
         Me.btnGasto.Text = "Nuevo Gasto"
         Me.btnGasto.UseVisualStyleBackColor = True
         '
+        'btnConfiguracion
+        '
+        Me.btnConfiguracion.Location = New System.Drawing.Point(305, 12)
+        Me.btnConfiguracion.Name = "btnConfiguracion"
+        Me.btnConfiguracion.Size = New System.Drawing.Size(117, 40)
+        Me.btnConfiguracion.TabIndex = 8
+        Me.btnConfiguracion.Text = "Configuración"
+        Me.btnConfiguracion.UseVisualStyleBackColor = True
+        '
+        'btnConsultaMovimientos
+        '
+        Me.btnConsultaMovimientos.Location = New System.Drawing.Point(153, 104)
+        Me.btnConsultaMovimientos.Name = "btnConsultaMovimientos"
+        Me.btnConsultaMovimientos.Size = New System.Drawing.Size(117, 40)
+        Me.btnConsultaMovimientos.TabIndex = 9
+        Me.btnConsultaMovimientos.Text = "Consultar Movimientos"
+        Me.btnConsultaMovimientos.UseVisualStyleBackColor = True
+        '
         'frmInicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(696, 362)
+        Me.Controls.Add(Me.btnConsultaMovimientos)
+        Me.Controls.Add(Me.btnConfiguracion)
         Me.Controls.Add(Me.btnGasto)
         Me.Controls.Add(Me.btnIngreso)
         Me.Controls.Add(Me.btnABMSubCategorias)
@@ -121,4 +143,6 @@ Partial Class frmInicio
     Friend WithEvents btnABMSubCategorias As Button
     Friend WithEvents btnIngreso As Button
     Friend WithEvents btnGasto As Button
+    Friend WithEvents btnConfiguracion As Button
+    Friend WithEvents btnConsultaMovimientos As Button
 End Class

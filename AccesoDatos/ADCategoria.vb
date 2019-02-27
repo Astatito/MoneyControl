@@ -39,18 +39,52 @@ Public Class ADCategoria
     End Sub
 
     'Eliminar una categoría de la BD a partir de un ID.
-    Public Sub Eliminar(ByVal idCategoria As Integer)
+    Public Sub Eliminar(ByVal idCategoria As Integer, ByVal tipoCategoria As String, ByVal config As EConfiguracion)
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "DELETE FROM Categorias WHERE id = @id"
-            Using cmd As New SQLiteCommand(sqlQuery, cnx)
-                cmd.Parameters.AddWithValue("@id", idCategoria)
+            Using tr As SQLiteTransaction = cnx.BeginTransaction()
 
-                cmd.ExecuteNonQuery()
+                Try
+                    Using cmd As New SQLiteCommand(cnx)
+
+                        Const sqlQuery1 As String = "DELETE FROM SubCategorias WHERE categoria = @cate"
+                        cmd.CommandText = sqlQuery1
+                        cmd.Parameters.AddWithValue("@cate", idCategoria)
+                        cmd.ExecuteNonQuery()
+
+                        Const sqlQuery2 As String = "UPDATE Movimientos SET categoria = @nueva WHERE categoria = @vieja"
+                        cmd.CommandText = sqlQuery2
+                        If tipoCategoria = "Ingreso" Then
+                            cmd.Parameters.AddWithValue("@nueva", config.CategoriaIngresosPorDefecto)
+                        Else
+                            cmd.Parameters.AddWithValue("@nueva", config.CategoriaGastosPorDefecto)
+                        End If
+                        cmd.Parameters.AddWithValue("@vieja", idCategoria)
+                        cmd.ExecuteNonQuery()
+
+                        Const sqlQuery3 As String = "DELETE FROM Categorias WHERE id = @id"
+                        cmd.CommandText = sqlQuery3
+                        cmd.Parameters.AddWithValue("@id", idCategoria)
+                        cmd.ExecuteNonQuery()
+
+                        cmd.Transaction = tr
+                        cmd.Dispose()
+                    End Using
+                    GC.Collect()
+
+                    tr.Commit()
+                Catch ex As Exception
+                    tr.Rollback()
+                End Try
+                tr.Dispose()
             End Using
+            GC.Collect()
+
             cnx.Close()
+            cnx.Dispose()
         End Using
+        GC.Collect()
     End Sub
 
     'Obtener todas las categorías de la BD.
@@ -67,7 +101,7 @@ Public Class ADCategoria
 
                 While dr.Read()
                     Dim categoria As New ECategoria()
-                    categoria.ID = Convert.ToString(dr("id"))
+                    categoria.ID = Convert.ToInt32(dr("id"))
                     categoria.Nombre = Convert.ToString(dr("nombre"))
                     categoria.TipoMovimiento = Convert.ToString(dr("tipoMovimiento"))
 
@@ -95,7 +129,7 @@ Public Class ADCategoria
 
                 While dr.Read()
                     Dim categoria As New ECategoria()
-                    categoria.ID = Convert.ToString(dr("id"))
+                    categoria.ID = Convert.ToInt32(dr("id"))
                     categoria.Nombre = Convert.ToString(dr("nombre"))
                     categoria.TipoMovimiento = Convert.ToString(dr("tipoMovimiento"))
 
@@ -123,7 +157,7 @@ Public Class ADCategoria
 
                 While dr.Read()
                     Dim categoria As New ECategoria()
-                    categoria.ID = Convert.ToString(dr("id"))
+                    categoria.ID = Convert.ToInt32(dr("id"))
                     categoria.Nombre = Convert.ToString(dr("nombre"))
                     categoria.TipoMovimiento = Convert.ToString(dr("tipoMovimiento"))
 
@@ -151,7 +185,7 @@ Public Class ADCategoria
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     categoria = New ECategoria()
-                    categoria.ID = Convert.ToString(dr("id"))
+                    categoria.ID = Convert.ToInt32(dr("id"))
                     categoria.Nombre = Convert.ToString(dr("nombre"))
                     categoria.TipoMovimiento = Convert.ToString(dr("tipoMovimiento"))
 

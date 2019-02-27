@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmABMMonedas
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmABMMonedas
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -31,6 +31,9 @@ Partial Class frmABMMonedas
         Me.dgvMonedas = New System.Windows.Forms.DataGridView()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btnEliminar = New System.Windows.Forms.Button()
+        Me.btnEditar = New System.Windows.Forms.Button()
+        Me.btnExportar = New System.Windows.Forms.Button()
         Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.codigoColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.descripcionColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -44,7 +47,7 @@ Partial Class frmABMMonedas
         Me.grpMonedas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpMonedas.Location = New System.Drawing.Point(12, 12)
         Me.grpMonedas.Name = "grpMonedas"
-        Me.grpMonedas.Size = New System.Drawing.Size(412, 178)
+        Me.grpMonedas.Size = New System.Drawing.Size(412, 203)
         Me.grpMonedas.TabIndex = 6
         Me.grpMonedas.TabStop = False
         Me.grpMonedas.Text = "Monedas"
@@ -85,16 +88,17 @@ Partial Class frmABMMonedas
         Me.dgvMonedas.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvMonedas.RowHeadersVisible = False
         Me.dgvMonedas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgvMonedas.Size = New System.Drawing.Size(397, 150)
-        Me.dgvMonedas.TabIndex = 4
+        Me.dgvMonedas.Size = New System.Drawing.Size(397, 178)
+        Me.dgvMonedas.TabIndex = 5
+        Me.dgvMonedas.TabStop = False
         '
         'btnNuevo
         '
         Me.btnNuevo.Cursor = System.Windows.Forms.Cursors.Default
-        Me.btnNuevo.Location = New System.Drawing.Point(170, 196)
+        Me.btnNuevo.Location = New System.Drawing.Point(446, 31)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
-        Me.btnNuevo.TabIndex = 7
+        Me.btnNuevo.TabIndex = 1
         Me.btnNuevo.Text = "&Nuevo"
         Me.toolTip.SetToolTip(Me.btnNuevo, "Registrar una nueva moneda." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + N)")
         Me.btnNuevo.UseVisualStyleBackColor = True
@@ -103,6 +107,39 @@ Partial Class frmABMMonedas
         '
         Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.toolTip.ToolTipTitle = "Ayuda"
+        '
+        'btnEliminar
+        '
+        Me.btnEliminar.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnEliminar.Location = New System.Drawing.Point(446, 89)
+        Me.btnEliminar.Name = "btnEliminar"
+        Me.btnEliminar.Size = New System.Drawing.Size(75, 23)
+        Me.btnEliminar.TabIndex = 3
+        Me.btnEliminar.Text = "E&liminar"
+        Me.toolTip.SetToolTip(Me.btnEliminar, "Eliminar la moneda seleccionada." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Supr)")
+        Me.btnEliminar.UseVisualStyleBackColor = True
+        '
+        'btnEditar
+        '
+        Me.btnEditar.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnEditar.Location = New System.Drawing.Point(446, 60)
+        Me.btnEditar.Name = "btnEditar"
+        Me.btnEditar.Size = New System.Drawing.Size(75, 23)
+        Me.btnEditar.TabIndex = 2
+        Me.btnEditar.Text = "E&ditar"
+        Me.toolTip.SetToolTip(Me.btnEditar, "Modificar la moneda seleccionada." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + D)")
+        Me.btnEditar.UseVisualStyleBackColor = True
+        '
+        'btnExportar
+        '
+        Me.btnExportar.Location = New System.Drawing.Point(446, 118)
+        Me.btnExportar.Name = "btnExportar"
+        Me.btnExportar.Size = New System.Drawing.Size(75, 23)
+        Me.btnExportar.TabIndex = 4
+        Me.btnExportar.Text = "&Exportar"
+        Me.toolTip.SetToolTip(Me.btnExportar, "Exportar datos a Excel." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + E)")
+        Me.btnExportar.UseVisualStyleBackColor = True
         '
         'idColumn
         '
@@ -119,7 +156,6 @@ Partial Class frmABMMonedas
         Me.codigoColumn.MaxInputLength = 5
         Me.codigoColumn.Name = "codigoColumn"
         Me.codigoColumn.ReadOnly = True
-        Me.codigoColumn.ToolTipText = "Código de la moneda (por ejemplo, USD)."
         '
         'descripcionColumn
         '
@@ -127,13 +163,15 @@ Partial Class frmABMMonedas
         Me.descripcionColumn.MaxInputLength = 50
         Me.descripcionColumn.Name = "descripcionColumn"
         Me.descripcionColumn.ReadOnly = True
-        Me.descripcionColumn.ToolTipText = "Descripción (por ejemplo, Dólar)."
         '
         'frmABMMonedas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(433, 227)
+        Me.ClientSize = New System.Drawing.Size(542, 227)
+        Me.Controls.Add(Me.btnEliminar)
+        Me.Controls.Add(Me.btnEditar)
+        Me.Controls.Add(Me.btnExportar)
         Me.Controls.Add(Me.btnNuevo)
         Me.Controls.Add(Me.grpMonedas)
         Me.Cursor = System.Windows.Forms.Cursors.Default
@@ -144,6 +182,7 @@ Partial Class frmABMMonedas
         Me.MinimizeBox = False
         Me.Name = "frmABMMonedas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Tag = "Monedas"
         Me.Text = "Configuración - Monedas"
         Me.grpMonedas.ResumeLayout(False)
         CType(Me.dgvMonedas, System.ComponentModel.ISupportInitialize).EndInit()
@@ -155,6 +194,9 @@ Partial Class frmABMMonedas
     Friend WithEvents dgvMonedas As DataGridView
     Friend WithEvents btnNuevo As Button
     Friend WithEvents toolTip As ToolTip
+    Friend WithEvents btnEliminar As Button
+    Friend WithEvents btnEditar As Button
+    Friend WithEvents btnExportar As Button
     Friend WithEvents idColumn As DataGridViewTextBoxColumn
     Friend WithEvents codigoColumn As DataGridViewTextBoxColumn
     Friend WithEvents descripcionColumn As DataGridViewTextBoxColumn

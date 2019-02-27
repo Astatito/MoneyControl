@@ -9,6 +9,7 @@ Public Class ADMoneda
             cnx.Open()
 
             Const sqlQuery As String = "INSERT INTO Monedas(codigo, descripcion) VALUES (@cod, @desc)"
+
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
                 cmd.Parameters.AddWithValue("@cod", moneda.Codigo)
@@ -26,6 +27,7 @@ Public Class ADMoneda
             cnx.Open()
 
             Const sqlQuery As String = "UPDATE Monedas SET codigo = @cod, descripcion = @desc WHERE id = @id "
+
             Using cmd As New SQLiteCommand(sqlQuery, cnx)
 
                 cmd.Parameters.AddWithValue("@cod", moneda.Codigo)
@@ -53,7 +55,7 @@ Public Class ADMoneda
         End Using
     End Sub
 
-    'Obtener todos las monedas de la BD.
+    'Obtener todas las monedas de la BD.
     Public Function ObtenerTodos() As List(Of EMoneda)
         Dim monedas As New List(Of EMoneda)
 
@@ -67,7 +69,7 @@ Public Class ADMoneda
 
                 While dr.Read()
                     Dim moneda As New EMoneda()
-                    moneda.ID = Convert.ToString(dr("id"))
+                    moneda.ID = Convert.ToInt32(dr("id"))
                     moneda.Codigo = Convert.ToString(dr("codigo"))
                     moneda.Descripcion = Convert.ToString(dr("descripcion"))
 
@@ -95,7 +97,7 @@ Public Class ADMoneda
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     moneda = New EMoneda()
-                    moneda.ID = Convert.ToString(dr("id"))
+                    moneda.ID = Convert.ToInt32(dr("id"))
                     moneda.Codigo = Convert.ToString(dr("codigo"))
                     moneda.Descripcion = Convert.ToString(dr("descripcion"))
 

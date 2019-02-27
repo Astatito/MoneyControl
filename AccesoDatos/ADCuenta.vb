@@ -57,14 +57,39 @@ Public Class ADCuenta
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
-            Const sqlQuery As String = "DELETE FROM Cuentas WHERE id = @id"
-            Using cmd As New SQLiteCommand(sqlQuery, cnx)
-                cmd.Parameters.AddWithValue("@id", idCuenta)
+            Using tr As SQLiteTransaction = cnx.BeginTransaction
 
-                cmd.ExecuteNonQuery()
+                Try
+                    Using cmd As New SQLiteCommand(cnx)
+                        Const sqlQuery1 As String = "DELETE FROM Movimientos WHERE cuenta = @cuen"
+                        cmd.CommandText = sqlQuery1
+                        cmd.Parameters.AddWithValue("@cuen", idCuenta)
+                        cmd.ExecuteNonQuery()
+
+                        Const sqlQuery2 As String = "DELETE FROM Cuentas WHERE id = @id"
+                        cmd.CommandText = sqlQuery2
+                        cmd.Parameters.AddWithValue("@id", idCuenta)
+                        cmd.ExecuteNonQuery()
+
+                        cmd.Transaction = tr
+                        cmd.Dispose()
+                    End Using
+                    GC.Collect()
+
+                    tr.Commit()
+                Catch ex As Exception
+                    tr.Rollback()
+                End Try
+
+                tr.Dispose()
             End Using
+            GC.Collect()
+
             cnx.Close()
+            cnx.Dispose()
         End Using
+        GC.Collect()
+
     End Sub
 
     'Obtener todas las cuentas de la BD.
@@ -81,11 +106,11 @@ Public Class ADCuenta
 
                 While dr.Read()
                     Dim cuenta As New ECuenta()
-                    cuenta.ID = Convert.ToString(dr("id"))
+                    cuenta.ID = Convert.ToInt32(dr("id"))
                     cuenta.Nombre = Convert.ToString(dr("nombre"))
-                    cuenta.TipoCuenta = Convert.ToString(dr("tipoCuenta"))
-                    cuenta.Moneda = Convert.ToString(dr("moneda"))
-                    cuenta.Saldo = Convert.ToString(dr("saldo"))
+                    cuenta.TipoCuenta = Convert.ToInt32(dr("tipoCuenta"))
+                    cuenta.Moneda = Convert.ToInt32(dr("moneda"))
+                    cuenta.Saldo = Convert.ToDouble(dr("saldo"))
                     cuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
                     cuentas.Add(cuenta)
@@ -111,13 +136,13 @@ Public Class ADCuenta
 
                 While dr.Read()
                     Dim cuenta As New ECuenta()
-                    cuenta.ID = Convert.ToString(dr("id"))
+                    cuenta.ID = Convert.ToInt32(dr("id"))
                     cuenta.Nombre = Convert.ToString(dr("nombre"))
-                    cuenta.TipoCuenta = Convert.ToString(dr("tipoCuenta"))
+                    cuenta.TipoCuenta = Convert.ToInt32(dr("tipoCuenta"))
                     cuenta.DescripcionTipoCuenta = Convert.ToString(dr("descripcionTipoCuenta")) 'Auxiliar
-                    cuenta.Moneda = Convert.ToString(dr("moneda"))
+                    cuenta.Moneda = Convert.ToInt32(dr("moneda"))
                     cuenta.CodigoMoneda = Convert.ToString(dr("codigoMoneda")) 'Auxiliar
-                    cuenta.Saldo = Convert.ToString(dr("saldo"))
+                    cuenta.Saldo = Convert.ToDouble(dr("saldo"))
                     cuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
                     cuentas.Add(cuenta)
@@ -144,11 +169,11 @@ Public Class ADCuenta
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     cuenta = New ECuenta()
-                    cuenta.ID = Convert.ToString(dr("id"))
+                    cuenta.ID = Convert.ToInt32(dr("id"))
                     cuenta.Nombre = Convert.ToString(dr("nombre"))
-                    cuenta.TipoCuenta = Convert.ToString(dr("tipoCuenta"))
-                    cuenta.Moneda = Convert.ToString(dr("moneda"))
-                    cuenta.Saldo = Convert.ToString(dr("saldo"))
+                    cuenta.TipoCuenta = Convert.ToInt32(dr("tipoCuenta"))
+                    cuenta.Moneda = Convert.ToInt32(dr("moneda"))
+                    cuenta.Saldo = Convert.ToDouble(dr("saldo"))
                     cuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
                 End If
@@ -157,6 +182,68 @@ Public Class ADCuenta
         End Using
 
         Return cuenta
+    End Function
+
+    'Obtener todas las cuentas asociadas a una moneda.
+    Public Function ObtenerPorMoneda(ByVal idMoneda As Integer) As List(Of ECuenta)
+        Dim cuentas As New List(Of ECuenta)
+
+        Using cnx As New SQLiteConnection(connString)
+            cnx.Open()
+
+            Const sqlQuery As String = "SELECT * FROM Cuentas WHERE moneda = @mon"
+            Using cmd As New SQLiteCommand(sqlQuery, cnx)
+                cmd.Parameters.AddWithValue("@mon", idMoneda)
+
+                Dim dr As SQLiteDataReader = cmd.ExecuteReader()
+
+                While dr.Read()
+                    Dim cuenta As New ECuenta()
+                    cuenta.ID = Convert.ToInt32(dr("id"))
+                    cuenta.Nombre = Convert.ToString(dr("nombre"))
+                    cuenta.TipoCuenta = Convert.ToInt32(dr("tipoCuenta"))
+                    cuenta.Moneda = Convert.ToInt32(dr("moneda"))
+                    cuenta.Saldo = Convert.ToDouble(dr("saldo"))
+                    cuenta.Descripcion = Convert.ToString(dr("descripcion"))
+
+                    cuentas.Add(cuenta)
+                End While
+            End Using
+            cnx.Close()
+        End Using
+
+        Return cuentas
+    End Function
+
+    'Obtener todas las cuentas asociadas a un tipo de cuenta.
+    Public Function ObtenerPorTipoDeCuenta(ByVal idTipoCuenta As Integer) As List(Of ECuenta)
+        Dim cuentas As New List(Of ECuenta)
+
+        Using cnx As New SQLiteConnection(connString)
+            cnx.Open()
+
+            Const sqlQuery As String = "SELECT * FROM Cuentas WHERE tipoCuenta = @tipo"
+            Using cmd As New SQLiteCommand(sqlQuery, cnx)
+                cmd.Parameters.AddWithValue("@tipo", idTipoCuenta)
+
+                Dim dr As SQLiteDataReader = cmd.ExecuteReader()
+
+                While dr.Read()
+                    Dim cuenta As New ECuenta()
+                    cuenta.ID = Convert.ToInt32(dr("id"))
+                    cuenta.Nombre = Convert.ToString(dr("nombre"))
+                    cuenta.TipoCuenta = Convert.ToInt32(dr("tipoCuenta"))
+                    cuenta.Moneda = Convert.ToInt32(dr("moneda"))
+                    cuenta.Saldo = Convert.ToDouble(dr("saldo"))
+                    cuenta.Descripcion = Convert.ToString(dr("descripcion"))
+
+                    cuentas.Add(cuenta)
+                End While
+            End Using
+            cnx.Close()
+        End Using
+
+        Return cuentas
     End Function
 
 End Class

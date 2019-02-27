@@ -8,7 +8,7 @@ Public Class LNMovimiento
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
     'Verificar que los datos ingresados sean válidos.
-    Public Function ValidarMovimiento(movimiento As EMovimiento)
+    Public Function ValidarMovimiento(movimiento As EMovimiento) As Boolean
         sb.Clear()
 
         If String.IsNullOrEmpty(movimiento.Fecha) Then
@@ -36,5 +36,22 @@ Public Class LNMovimiento
             _ADMovimiento.Insertar(movimiento)
         End If
     End Sub
+
+    'Actualizar un movimiento.
+    Public Sub Actualizar(ByVal old_movimiento As EMovimiento, ByVal movimiento As EMovimiento)
+        If ValidarMovimiento(movimiento) Then
+            _ADMovimiento.Actualizar(old_movimiento, movimiento)
+        End If
+    End Sub
+
+    'Eliminar un movimiento.
+    Public Sub Eliminar(movimiento As EMovimiento)
+        _ADMovimiento.Eliminar(movimiento)
+    End Sub
+
+    'Obtener los movimientos de una cuenta entre dos fechas.
+    Public Function ObtenerPorCuentaYFecha(ByVal idCuenta As Integer, ByVal fechaDesde As Date, ByVal fechaHasta As Date)
+        Return _ADMovimiento.ObtenerPorCuentaYFecha(idCuenta, fechaDesde, fechaHasta)
+    End Function
 
 End Class

@@ -34,11 +34,4 @@ Public Class LNTransferencia
         Return sb.Length = 0
     End Function
 
-    'Insertar un movimiento.
-    Public Sub Insertar(movimiento As EMovimiento)
-        If validarMovimiento(movimiento) Then
-            _ADMovimiento.Insertar(movimiento)
-        End If
-    End Sub
-
 End Class

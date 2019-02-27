@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADCategoria.vb" />
+    <Compile Include="ADConfiguracion.vb" />
     <Compile Include="ADCuenta.vb" />
     <Compile Include="ADMoneda.vb" />
     <Compile Include="ADMovimiento.vb" />

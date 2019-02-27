@@ -5,6 +5,7 @@ Imports System.Text
 Public Class LNCategoria
 
     Private _ADCategoria As New ADCategoria() 'Objeto perteneciente a la capa de Acceso a Datos.
+    Private _LNSubCategoria As New LNSubCategoria() 'Objeto perteneciente a la capa de Lógica de Negocios.
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
     'Verificar que los datos ingresados sean válidos.
@@ -39,8 +40,8 @@ Public Class LNCategoria
     End Sub
 
     'Eliminar una categoría.
-    Public Sub Eliminar(ByVal idCategoria As Integer)
-        _ADCategoria.Eliminar(idCategoria)
+    Public Sub Eliminar(ByVal idCategoria As Integer, ByVal tipoCategoria As String, ByVal config As EConfiguracion)
+        _ADCategoria.Eliminar(idCategoria, tipoCategoria, config)
     End Sub
 
     'Obtener todas las categorías.

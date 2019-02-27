@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LNCategoria.vb" />
+    <Compile Include="LNConfiguracion.vb" />
     <Compile Include="LNCuenta.vb" />
     <Compile Include="LNMoneda.vb" />
     <Compile Include="LNMovimiento.vb" />

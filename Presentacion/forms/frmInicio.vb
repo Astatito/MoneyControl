@@ -25,18 +25,30 @@
     End Sub
 
     Private Sub btnIngreso_Click(sender As Object, e As EventArgs) Handles btnIngreso.Click
-        Dim frm As New frmMovimientos("Ingreso")
+        Dim frm As New frmAMMovimientos("Ingreso")
         frm.ShowDialog()
     End Sub
 
     Private Sub btnEgreso_Click(sender As Object, e As EventArgs) Handles btnGasto.Click
-        Dim frm As New frmMovimientos("Gasto")
+        Dim frm As New frmAMMovimientos("Gasto")
         frm.ShowDialog()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        Dim proc As New Process()
-        proc.StartInfo.FileName = "chrome.exe"
-        proc.Start()
+    Private Sub frmInicio_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Application.Exit()
+    End Sub
+
+    Private Sub frmInicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ObtenerConfiguracion()
+    End Sub
+
+    Private Sub btnConfiguracion_Click(sender As Object, e As EventArgs) Handles btnConfiguracion.Click
+        Dim frm As New frmConfiguracion()
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub btnConsultaMovimientos_Click(sender As Object, e As EventArgs) Handles btnConsultaMovimientos.Click
+        Dim frm As New frmConsultaMovimientos()
+        frm.ShowDialog()
     End Sub
 End Class

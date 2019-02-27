@@ -38,11 +38,14 @@ Partial Class frmABMSubCategorias
         Me.cmbTiposMovimiento = New System.Windows.Forms.ComboBox()
         Me.cmbCategorias = New System.Windows.Forms.ComboBox()
         Me.dgvSubCategorias = New System.Windows.Forms.DataGridView()
+        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btnEliminar = New System.Windows.Forms.Button()
+        Me.btnEditar = New System.Windows.Forms.Button()
+        Me.btnExportar = New System.Windows.Forms.Button()
         Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nombreColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.categoriaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nombreCategoriaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.toolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.grpSubCategorias.SuspendLayout()
         Me.grpFiltro.SuspendLayout()
         Me.grpSeleccion.SuspendLayout()
@@ -52,10 +55,10 @@ Partial Class frmABMSubCategorias
         'btnNuevo
         '
         Me.btnNuevo.Cursor = System.Windows.Forms.Cursors.Default
-        Me.btnNuevo.Location = New System.Drawing.Point(188, 289)
+        Me.btnNuevo.Location = New System.Drawing.Point(497, 31)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
-        Me.btnNuevo.TabIndex = 10
+        Me.btnNuevo.TabIndex = 1
         Me.btnNuevo.Text = "&Nuevo"
         Me.toolTip.SetToolTip(Me.btnNuevo, "Registrar una nueva subcategoría." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + N)")
         Me.btnNuevo.UseVisualStyleBackColor = True
@@ -77,7 +80,7 @@ Partial Class frmABMSubCategorias
         Me.grpFiltro.Controls.Add(Me.rbSeleccion)
         Me.grpFiltro.Controls.Add(Me.rbTodas)
         Me.grpFiltro.Controls.Add(Me.grpSeleccion)
-        Me.grpFiltro.Location = New System.Drawing.Point(42, 173)
+        Me.grpFiltro.Location = New System.Drawing.Point(25, 173)
         Me.grpFiltro.Name = "grpFiltro"
         Me.grpFiltro.Size = New System.Drawing.Size(399, 92)
         Me.grpFiltro.TabIndex = 6
@@ -90,8 +93,8 @@ Partial Class frmABMSubCategorias
         Me.rbSeleccion.Location = New System.Drawing.Point(54, 53)
         Me.rbSeleccion.Name = "rbSeleccion"
         Me.rbSeleccion.Size = New System.Drawing.Size(72, 17)
-        Me.rbSeleccion.TabIndex = 10
-        Me.rbSeleccion.Text = "Selección"
+        Me.rbSeleccion.TabIndex = 6
+        Me.rbSeleccion.Text = "&Selección"
         Me.toolTip.SetToolTip(Me.rbSeleccion, "Mostrar las subcategorías de la categoría seleccionada." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + S)")
         Me.rbSeleccion.UseVisualStyleBackColor = True
         '
@@ -101,8 +104,8 @@ Partial Class frmABMSubCategorias
         Me.rbTodas.Location = New System.Drawing.Point(54, 28)
         Me.rbTodas.Name = "rbTodas"
         Me.rbTodas.Size = New System.Drawing.Size(55, 17)
-        Me.rbTodas.TabIndex = 8
-        Me.rbTodas.Text = "Todas"
+        Me.rbTodas.TabIndex = 5
+        Me.rbTodas.Text = "&Todas"
         Me.toolTip.SetToolTip(Me.rbTodas, "Mostrar todas las subcategorías." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + T)")
         Me.rbTodas.UseVisualStyleBackColor = True
         '
@@ -146,7 +149,7 @@ Partial Class frmABMSubCategorias
         Me.cmbTiposMovimiento.Location = New System.Drawing.Point(67, 15)
         Me.cmbTiposMovimiento.Name = "cmbTiposMovimiento"
         Me.cmbTiposMovimiento.Size = New System.Drawing.Size(124, 21)
-        Me.cmbTiposMovimiento.TabIndex = 16
+        Me.cmbTiposMovimiento.TabIndex = 7
         '
         'cmbCategorias
         '
@@ -155,7 +158,7 @@ Partial Class frmABMSubCategorias
         Me.cmbCategorias.Location = New System.Drawing.Point(67, 40)
         Me.cmbCategorias.Name = "cmbCategorias"
         Me.cmbCategorias.Size = New System.Drawing.Size(124, 21)
-        Me.cmbCategorias.TabIndex = 15
+        Me.cmbCategorias.TabIndex = 8
         '
         'dgvSubCategorias
         '
@@ -194,7 +197,46 @@ Partial Class frmABMSubCategorias
         Me.dgvSubCategorias.RowHeadersVisible = False
         Me.dgvSubCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.dgvSubCategorias.Size = New System.Drawing.Size(435, 150)
-        Me.dgvSubCategorias.TabIndex = 4
+        Me.dgvSubCategorias.TabIndex = 9
+        Me.dgvSubCategorias.TabStop = False
+        '
+        'toolTip
+        '
+        Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.toolTip.ToolTipTitle = "Ayuda"
+        '
+        'btnEliminar
+        '
+        Me.btnEliminar.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnEliminar.Location = New System.Drawing.Point(497, 89)
+        Me.btnEliminar.Name = "btnEliminar"
+        Me.btnEliminar.Size = New System.Drawing.Size(75, 23)
+        Me.btnEliminar.TabIndex = 3
+        Me.btnEliminar.Text = "E&liminar"
+        Me.toolTip.SetToolTip(Me.btnEliminar, "Eliminar la subcategoría seleccionada." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Supr)")
+        Me.btnEliminar.UseVisualStyleBackColor = True
+        '
+        'btnEditar
+        '
+        Me.btnEditar.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnEditar.Location = New System.Drawing.Point(497, 60)
+        Me.btnEditar.Name = "btnEditar"
+        Me.btnEditar.Size = New System.Drawing.Size(75, 23)
+        Me.btnEditar.TabIndex = 2
+        Me.btnEditar.Text = "E&ditar"
+        Me.toolTip.SetToolTip(Me.btnEditar, "Modificar la subcategoría seleccionada." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + D)")
+        Me.btnEditar.UseVisualStyleBackColor = True
+        '
+        'btnExportar
+        '
+        Me.btnExportar.Location = New System.Drawing.Point(497, 118)
+        Me.btnExportar.Name = "btnExportar"
+        Me.btnExportar.Size = New System.Drawing.Size(75, 23)
+        Me.btnExportar.TabIndex = 4
+        Me.btnExportar.Text = "&Exportar"
+        Me.toolTip.SetToolTip(Me.btnExportar, "Exportar datos a Excel." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Ctrl + E)")
+        Me.btnExportar.UseVisualStyleBackColor = True
         '
         'idColumn
         '
@@ -211,7 +253,6 @@ Partial Class frmABMSubCategorias
         Me.nombreColumn.MaxInputLength = 50
         Me.nombreColumn.Name = "nombreColumn"
         Me.nombreColumn.ReadOnly = True
-        Me.nombreColumn.ToolTipText = "Nombre (por ejemplo, Apuntes)."
         '
         'categoriaColumn
         '
@@ -225,18 +266,15 @@ Partial Class frmABMSubCategorias
         Me.nombreCategoriaColumn.HeaderText = "Categoría"
         Me.nombreCategoriaColumn.Name = "nombreCategoriaColumn"
         Me.nombreCategoriaColumn.ReadOnly = True
-        Me.nombreCategoriaColumn.ToolTipText = "Categoría principal (por ejemplo, Educación)."
-        '
-        'toolTip
-        '
-        Me.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.toolTip.ToolTipTitle = "Ayuda"
         '
         'frmABMSubCategorias
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(463, 315)
+        Me.ClientSize = New System.Drawing.Size(592, 289)
+        Me.Controls.Add(Me.btnEliminar)
+        Me.Controls.Add(Me.btnEditar)
+        Me.Controls.Add(Me.btnExportar)
         Me.Controls.Add(Me.btnNuevo)
         Me.Controls.Add(Me.grpSubCategorias)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
@@ -246,6 +284,7 @@ Partial Class frmABMSubCategorias
         Me.MinimizeBox = False
         Me.Name = "frmABMSubCategorias"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Tag = "Subcategorías"
         Me.Text = "Configuración - Subcategorías"
         Me.grpSubCategorias.ResumeLayout(False)
         Me.grpFiltro.ResumeLayout(False)
@@ -269,6 +308,9 @@ Partial Class frmABMSubCategorias
     Friend WithEvents lblTipo As Label
     Friend WithEvents cmbTiposMovimiento As ComboBox
     Friend WithEvents cmbCategorias As ComboBox
+    Friend WithEvents btnEliminar As Button
+    Friend WithEvents btnEditar As Button
+    Friend WithEvents btnExportar As Button
     Friend WithEvents idColumn As DataGridViewTextBoxColumn
     Friend WithEvents nombreColumn As DataGridViewTextBoxColumn
     Friend WithEvents categoriaColumn As DataGridViewTextBoxColumn

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>Presentacion.My.MyApplication</StartupObject>
     <RootNamespace>Presentacion</RootNamespace>
-    <AssemblyName>Presentacion</AssemblyName>
+    <AssemblyName>Money Manager</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Presentacion.xml</DocumentationFile>
+    <DocumentationFile>Money Manager.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +32,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Presentacion.xml</DocumentationFile>
+    <DocumentationFile>Money Manager.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -76,6 +76,19 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\frmConsultaMovimientos.Designer.vb">
+      <DependentUpon>frmConsultaMovimientos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmConsultaMovimientos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmExcel.Designer.vb">
+      <DependentUpon>frmExcel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modules\Configuracion.vb" />
     <Compile Include="forms\frmABMCategorias.Designer.vb">
       <DependentUpon>frmABMCategorias.vb</DependentUpon>
     </Compile>
@@ -112,6 +125,12 @@
     <Compile Include="forms\frmCategorias.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmConfiguracion.Designer.vb">
+      <DependentUpon>frmConfiguracion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmConfiguracion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmCuentas.Designer.vb">
       <DependentUpon>frmCuentas.vb</DependentUpon>
     </Compile>
@@ -131,9 +150,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmMovimientos.Designer.vb">
-      <DependentUpon>frmMovimientos.vb</DependentUpon>
+      <DependentUpon>frmAMMovimientos.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmMovimientos.vb">
+    <Compile Include="forms\frmAMMovimientos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmSubCategorias.Designer.vb">
@@ -148,7 +167,7 @@
     <Compile Include="forms\frmTiposCuenta.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Functions.vb" />
+    <Compile Include="modules\Funciones.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -181,20 +200,29 @@
     <EmbeddedResource Include="forms\frmABMTiposCuenta.resx">
       <DependentUpon>frmABMTiposCuenta.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmAMMovimientos.resx">
+      <DependentUpon>frmAMMovimientos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCategorias.resx">
       <DependentUpon>frmCategorias.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmConfiguracion.resx">
+      <DependentUpon>frmConfiguracion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmConsultaMovimientos.resx">
+      <DependentUpon>frmConsultaMovimientos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCuentas.resx">
       <DependentUpon>frmCuentas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmExcel.resx">
+      <DependentUpon>frmExcel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmInicio.resx">
       <DependentUpon>frmInicio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmMonedas.resx">
       <DependentUpon>frmMonedas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmMovimientos.resx">
-      <DependentUpon>frmMovimientos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSubCategorias.resx">
       <DependentUpon>frmSubCategorias.vb</DependentUpon>
@@ -219,7 +247,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.vbproj">
@@ -232,7 +262,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="db\MoneyControl.db3" />
+    <Content Include="db\MoneyManager.db3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="img\money.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -242,6 +274,35 @@
     <Content Include="img\trash.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

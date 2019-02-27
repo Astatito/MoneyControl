@@ -9,14 +9,14 @@ Public Class frmTiposCuenta
     'Creación de una nueva instancia del formulario
     Public Sub New()
         InitializeComponent()
-        Me.Text = "Nuevo"
+        Text = "Nuevo"
 
         _tipoCuenta = New ETipoCuenta()
     End Sub
 
     Public Sub New(ByVal tipoCuenta As ETipoCuenta)
         InitializeComponent()
-        Me.Text = "Modificar"
+        Text = "Modificar"
 
         _tipoCuenta = New ETipoCuenta()
         _tipoCuenta = tipoCuenta
@@ -26,13 +26,13 @@ Public Class frmTiposCuenta
 
     'Evento Load del Form
     Private Sub frmTiposCuenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.txtDescripcion.Text = _tipoCuenta.Descripcion
+        txtDescripcion.Text = _tipoCuenta.Descripcion
     End Sub
 
     'Evento KeyDown del Form
     Private Sub frmTiposCuenta_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.Escape Then
-            Me.Close()
+            Close()
         ElseIf e.Control And e.KeyCode = Keys.G Then
             btnGuardar_Click(sender, e)
         End If
@@ -46,7 +46,7 @@ Public Class frmTiposCuenta
         If _LNTipoCuenta.sb.Length <> 0 Then
             MessageBox.Show(_LNTipoCuenta.sb.ToString(), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            Me.Close()
+            Close()
         End If
     End Sub
 
@@ -67,7 +67,7 @@ Public Class frmTiposCuenta
 
     'Actualizar el objeto TipoCuenta con los datos del formulario.
     Public Sub Actualizar()
-        _tipoCuenta.Descripcion = Me.txtDescripcion.Text.ToString.Trim()
+        _tipoCuenta.Descripcion = txtDescripcion.Text.ToString.Trim()
     End Sub
 
 End Class

@@ -5,6 +5,7 @@ Imports System.Text
 Public Class LNMoneda
 
     Private _ADMoneda As New ADMoneda() 'Objeto perteneciente a la capa de Acceso a Datos.
+    Private _LNCuenta As New LNCuenta() 'Objeto perteneciente a la capa de Lógica de Negocio.
     Public ReadOnly sb As New StringBuilder() 'Objeto que almacena la cadena de errores.
 
     'Verificar que los datos ingresados sean válidos.
@@ -19,6 +20,17 @@ Public Class LNMoneda
 
         If String.IsNullOrEmpty(moneda.Descripcion) Then
             sb.Append("Debe ingresar una descripción." + Environment.NewLine)
+        End If
+
+        Return sb.Length = 0
+    End Function
+
+    'Verificar si se puede eliminar la moneda.
+    Public Function SePuedeEliminar(ByVal idMoneda As Integer) As Boolean
+        sb.Clear()
+
+        If _LNCuenta.ObtenerPorMoneda(idMoneda).Count <> 0 Then
+            sb.Append("No se puede eliminar esta moneda porque hay cuentas asociadas. Sólo se pueden eliminar aquellas monedas que no están asociadas a ninguna cuenta.")
         End If
 
         Return sb.Length = 0

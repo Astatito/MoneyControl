@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ECategoria.vb" />
+    <Compile Include="EConfiguracion.vb" />
     <Compile Include="ECuenta.vb" />
     <Compile Include="EMoneda.vb" />
     <Compile Include="EMovimiento.vb" />

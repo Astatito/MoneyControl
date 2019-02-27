@@ -71,7 +71,7 @@ Partial Class frmMonedas
         Me.lblDescripcion.Size = New System.Drawing.Size(63, 13)
         Me.lblDescripcion.TabIndex = 18
         Me.lblDescripcion.Text = "Descripción"
-        Me.toolTip.SetToolTip(Me.lblDescripcion, "Descripción (por ejemplo, Dólar).")
+        Me.toolTip.SetToolTip(Me.lblDescripcion, "Nombre o descripción (por ejemplo, Dólar).")
         '
         'lblCodigo
         '

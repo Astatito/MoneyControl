@@ -73,7 +73,7 @@ Public Class ADTipoCuenta
 
                 While dr.Read()
                     Dim tipoCuenta As New ETipoCuenta()
-                    tipoCuenta.ID = Convert.ToString(dr("id"))
+                    tipoCuenta.ID = Convert.ToInt32(dr("id"))
                     tipoCuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
                     tiposCuenta.Add(tipoCuenta)
@@ -100,7 +100,7 @@ Public Class ADTipoCuenta
                 Dim dr As SQLiteDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     tipoCuenta = New ETipoCuenta()
-                    tipoCuenta.ID = Convert.ToString(dr("id"))
+                    tipoCuenta.ID = Convert.ToInt32(dr("id"))
                     tipoCuenta.Descripcion = Convert.ToString(dr("descripcion"))
 
                 End If

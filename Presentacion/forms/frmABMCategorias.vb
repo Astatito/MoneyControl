@@ -13,90 +13,6 @@ Public Class frmABMCategorias
 
     '                                   ____EVENTOS____
 
-    'Evento Load del Form
-    Private Sub frmABMCategorias_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            Dim modiCol As New DataGridViewButtonColumn()
-            modiCol.Name = "columnModificar"
-            modiCol.HeaderText = ""
-            modiCol.ToolTipText = "Modificar."
-            Me.dgvCategorias.Columns.Add(modiCol)
-
-            Dim elimCol As New DataGridViewButtonColumn()
-            elimCol.Name = "columnEliminar"
-            elimCol.HeaderText = ""
-            elimCol.ToolTipText = "Eliminar."
-            Me.dgvCategorias.Columns.Add(elimCol)
-
-        Catch ex As Exception
-            MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End Try
-    End Sub
-
-    'Evento KeyDown del Form
-    Private Sub frmABMCategorias_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
-        If e.KeyCode = Keys.Escape Then
-            Me.Close()
-        ElseIf e.Control AndAlso e.KeyCode = Keys.N Then
-            btnNuevo_Click(sender, e)
-        ElseIf e.Control AndAlso e.KeyCode = Keys.T Then
-            rbTodas.Checked = True
-        ElseIf e.Control AndAlso e.KeyCode = Keys.I Then
-            rbIngreso.Checked = True
-        ElseIf e.Control AndAlso e.KeyCode = Keys.E Then
-            rbGasto.Checked = True
-        End If
-
-    End Sub
-
-    'Evento CellPainting del DataGridView
-    Private Sub dgvCategorias_CellPainting(ByVal sender As Object, ByVal e As DataGridViewCellPaintingEventArgs) Handles dgvCategorias.CellPainting
-        If e.ColumnIndex >= 0 AndAlso Me.dgvCategorias.Columns(e.ColumnIndex).Name = "columnModificar" AndAlso e.RowIndex >= 0 Then
-            e.Paint(e.CellBounds, DataGridViewPaintParts.All)
-
-            Dim celBoton As DataGridViewButtonCell = TryCast(Me.dgvCategorias.Rows(e.RowIndex).Cells("columnModificar"), DataGridViewButtonCell)
-            Dim icoLapiz As Icon = New Icon(Environment.CurrentDirectory + "\img\pencil.ico", 15, 15)
-
-            e.Graphics.DrawIcon(icoLapiz, e.CellBounds.Left + 5, e.CellBounds.Top + 5)
-            Me.dgvCategorias.Rows(e.RowIndex).Height = icoLapiz.Height + 10
-            Me.dgvCategorias.Columns(e.ColumnIndex).Width = icoLapiz.Width + 10
-            e.Handled = True
-        ElseIf e.ColumnIndex >= 0 AndAlso Me.dgvCategorias.Columns(e.ColumnIndex).Name = "columnEliminar" AndAlso e.RowIndex >= 0 Then
-            e.Paint(e.CellBounds, DataGridViewPaintParts.All)
-
-            Dim celBoton As DataGridViewButtonCell = TryCast(Me.dgvCategorias.Rows(e.RowIndex).Cells("columnEliminar"), DataGridViewButtonCell)
-            Dim icoTacho As Icon = New Icon(Environment.CurrentDirectory + "\img\trash.ico", 15, 15)
-
-            e.Graphics.DrawIcon(icoTacho, e.CellBounds.Left + 5, e.CellBounds.Top + 5)
-            Me.dgvCategorias.Rows(e.RowIndex).Height = icoTacho.Height + 10
-            Me.dgvCategorias.Columns(e.ColumnIndex).Width = icoTacho.Width + 10
-            e.Handled = True
-        End If
-    End Sub
-
-    'Evento CellClick del DataGridView
-    Private Sub dgvCategorias_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCategorias.CellClick
-        Dim columna As String = Me.dgvCategorias.Columns(e.ColumnIndex).Name
-        Try
-            If columna = "columnEliminar" Then
-                If MessageBox.Show("¿Está seguro de que desea eliminar este registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
-                    Dim idCategoria As Integer = Me.dgvCategorias.CurrentRow.Cells(0).Value
-                    Eliminar(idCategoria)
-                    CargarDGV()
-                End If
-            ElseIf columna = "columnModificar" Then
-                CargarCategoria(Me.dgvCategorias.CurrentRow.Index)
-
-                Dim form As New frmCategorias(_categoria)
-                form.ShowDialog()
-
-                CargarDGV()
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End Try
-    End Sub
-
     'Evento Click del Botón Nuevo
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
         Dim form As New frmCategorias()
@@ -105,9 +21,75 @@ Public Class frmABMCategorias
         CargarDGV()
     End Sub
 
+    'Evento Click del Botón Editar
+    Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
+        Try
+            If dgvCategorias.SelectedCells.Count <> 0 Then
+                CargarCategoria(dgvCategorias.SelectedCells(0).RowIndex)
+
+                Dim form As New frmCategorias(_categoria)
+                form.ShowDialog()
+
+                CargarDGV()
+            Else
+                MessageBox.Show("No hay ninguna fila seleccionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Sub
+
+    'Evento Click del Botón Eliminar
+    Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+        Try
+            If dgvCategorias.SelectedCells.Count <> 0 Then
+                If MessageBox.Show("¿Está seguro de que desea eliminar esta categoría? También se eliminarán las subcategorías correspondientes.", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                    Dim fila As Integer = dgvCategorias.SelectedCells(0).RowIndex
+                    Dim idCategoria As Integer = dgvCategorias.Rows(fila).Cells(0).Value
+                    Dim tipoCategoria As String = dgvCategorias.Rows(fila).Cells(2).Value
+                    Eliminar(idCategoria, tipoCategoria)
+                    CargarDGV()
+                End If
+            Else
+                MessageBox.Show("No hay ninguna fila seleccionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Sub
+
+    'Evento Click del Botón Exportar
+    Private Sub btnExportar_Click(sender As Object, e As EventArgs) Handles btnExportar.Click
+        Dim frm As New frmExcel(Tag)
+        frm.dgvExportar = dgvCategorias
+        frm.ShowDialog()
+    End Sub
+
     'Evento CheckedChanged de los RadioButton
     Private Sub rb_CheckedChanged(sender As Object, e As EventArgs) Handles rbTodas.CheckedChanged, rbGasto.CheckedChanged, rbIngreso.CheckedChanged
         CargarDGV()
+    End Sub
+
+    'Evento KeyDown del Form
+    Private Sub frmABMCategorias_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.Escape Then
+            Close()
+        ElseIf e.Control AndAlso e.KeyCode = Keys.N Then
+            btnNuevo_Click(sender, e)
+        ElseIf e.Control AndAlso e.KeyCode = Keys.D Then
+            btnEditar_Click(sender, e)
+        ElseIf e.KeyCode = Keys.Delete Then
+            btnEliminar_Click(sender, e)
+        ElseIf e.Control AndAlso e.KeyCode = Keys.E Then
+            btnExportar_Click(sender, e)
+        ElseIf e.Control AndAlso e.KeyCode = Keys.T Then
+            rbTodas.Checked = True
+        ElseIf e.Control AndAlso e.KeyCode = Keys.I Then
+            rbIngreso.Checked = True
+        ElseIf e.Control AndAlso e.KeyCode = Keys.G Then
+            rbGasto.Checked = True
+        End If
+
     End Sub
 
     '                               ____FUNCIONES/RUTINAS____
@@ -117,28 +99,33 @@ Public Class frmABMCategorias
         Try
             Dim categorias As List(Of ECategoria) = Nothing
 
-            If Me.rbTodas.Checked Then
+            If rbTodas.Checked Then
                 categorias = _LNCategoria.ObtenerTodos()
-            ElseIf Me.rbIngreso.Checked Then
+            ElseIf rbIngreso.Checked Then
                 categorias = _LNCategoria.ObtenerIngresos()
-            ElseIf Me.rbGasto.Checked Then
+            ElseIf rbGasto.Checked Then
                 categorias = _LNCategoria.ObtenerGastos()
             End If
 
-            Me.dgvCategorias.AutoGenerateColumns = False
-            Me.dgvCategorias.DataSource = categorias
-            Me.dgvCategorias.Columns("idColumn").DataPropertyName = "ID"
-            Me.dgvCategorias.Columns("nombreColumn").DataPropertyName = "Nombre"
-            Me.dgvCategorias.Columns("tipoMovimientoColumn").DataPropertyName = "TipoMovimiento"
+            dgvCategorias.AutoGenerateColumns = False
+            dgvCategorias.DataSource = categorias
+            dgvCategorias.Columns("idColumn").DataPropertyName = "ID"
+            dgvCategorias.Columns("nombreColumn").DataPropertyName = "Nombre"
+            dgvCategorias.Columns("tipoMovimientoColumn").DataPropertyName = "TipoMovimiento"
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
     End Sub
 
     'Eliminar la categoría seleccionada.
-    Private Sub Eliminar(idCategoria As Integer)
+    Private Sub Eliminar(ByVal idCategoria As Integer, ByVal tipoCategoria As String)
+        If idCategoria = Config.CategoriaGastosPorDefecto OrElse idCategoria = Config.CategoriaIngresosPorDefecto Then
+            MessageBox.Show("La categoría ingresada es una categoría por defecto. Para eliminarla, primero debe definir una nueva categoría por defecto en el menú de Configuración.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
         Try
-            _LNCategoria.Eliminar(idCategoria)
+            _LNCategoria.Eliminar(idCategoria, tipoCategoria, Config)
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
@@ -146,10 +133,9 @@ Public Class frmABMCategorias
 
     'Setear el objeto Categoría con los datos de la fila seleccionada.
     Private Sub CargarCategoria(ByVal fila As Integer)
-        _categoria.ID = Me.dgvCategorias.Rows(fila).Cells(0).Value
-        _categoria.Nombre = Me.dgvCategorias.Rows(fila).Cells(1).Value
-        _categoria.TipoMovimiento = Me.dgvCategorias.Rows(fila).Cells(2).Value
+        _categoria.ID = dgvCategorias.Rows(fila).Cells(0).Value
+        _categoria.Nombre = dgvCategorias.Rows(fila).Cells(1).Value
+        _categoria.TipoMovimiento = dgvCategorias.Rows(fila).Cells(2).Value
     End Sub
-
 
 End Class

@@ -11,14 +11,14 @@ Public Class frmCategorias
     'Creación de una nueva instancia del formulario
     Public Sub New()
         InitializeComponent()
-        Me.Text = "Nuevo"
+        Text = "Nuevo"
 
         _categoria = New ECategoria()
     End Sub
 
     Public Sub New(ByVal categoria As ECategoria)
         InitializeComponent()
-        Me.Text = "Modificar"
+        Text = "Modificar"
 
         _categoria = New ECategoria()
         _categoria = categoria
@@ -32,14 +32,14 @@ Public Class frmCategorias
         Dim thr As New Thread(AddressOf CargarComboTiposMovimiento)
         thr.Start()
 
-        Me.txtNombre.Text = _categoria.Nombre
+        txtNombre.Text = _categoria.Nombre
     End Sub
 
     'Evento KeyDown del Form
     Private Sub frmMonedas_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.Escape Then
-            Me.Close()
-        ElseIf e.Control And e.KeyCode = Keys.G Then
+            Close()
+        ElseIf e.Control AndAlso e.KeyCode = Keys.G Then
             btnGuardar_Click(sender, e)
         End If
     End Sub
@@ -52,7 +52,7 @@ Public Class frmCategorias
         If _LNCategoria.sb.Length <> 0 Then
             MessageBox.Show(_LNCategoria.sb.ToString(), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            Me.Close()
+            Close()
         End If
     End Sub
 
@@ -73,8 +73,8 @@ Public Class frmCategorias
 
     'Setear el objeto Categoría segun los datos del formulario.
     Public Sub Actualizar()
-        _categoria.Nombre = Me.txtNombre.Text.ToString.Trim()
-        _categoria.TipoMovimiento = Me.cmbTiposMovimiento.SelectedValue
+        _categoria.Nombre = txtNombre.Text.ToString.Trim()
+        _categoria.TipoMovimiento = cmbTiposMovimiento.SelectedValue
     End Sub
 
     'Cargar el ComboBox con los distintos tipos de movimiento.
@@ -82,12 +82,12 @@ Public Class frmCategorias
         Try
             Dim tiposMovimiento As List(Of ETipoMovimiento) = _LNTipoMovimiento.ObtenerTodos()
 
-            Me.cmbTiposMovimiento.DataSource = tiposMovimiento
-            Me.cmbTiposMovimiento.DisplayMember = "TipoMovimiento"
-            Me.cmbTiposMovimiento.ValueMember = "TipoMovimiento"
+            cmbTiposMovimiento.DataSource = tiposMovimiento
+            cmbTiposMovimiento.DisplayMember = "TipoMovimiento"
+            cmbTiposMovimiento.ValueMember = "TipoMovimiento"
 
             If _categoria.TipoMovimiento <> "" Then
-                Me.cmbTiposMovimiento.SelectedValue = _categoria.TipoMovimiento
+                cmbTiposMovimiento.SelectedValue = _categoria.TipoMovimiento
             End If
         Catch ex As Exception
             MessageBox.Show("Error inesperado: " + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)

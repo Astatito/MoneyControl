@@ -9,14 +9,14 @@ Public Class frmMonedas
     'Creación de una nueva instancia del formulario
     Public Sub New()
         InitializeComponent()
-        Me.Text = "Nuevo"
+        Text = "Nuevo"
 
         _moneda = New EMoneda()
     End Sub
 
     Public Sub New(ByVal moneda As EMoneda)
         InitializeComponent()
-        Me.Text = "Modificar"
+        Text = "Modificar"
 
         _moneda = New EMoneda()
         _moneda = moneda
@@ -26,15 +26,15 @@ Public Class frmMonedas
 
     'Evento Load del Form
     Private Sub frmMonedas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.txtCodigo.Text = _moneda.Codigo
-        Me.txtDescripcion.Text = _moneda.Descripcion
+        txtCodigo.Text = _moneda.Codigo
+        txtDescripcion.Text = _moneda.Descripcion
     End Sub
 
     'Evento KeyDown del Form
     Private Sub frmMonedas_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.Escape Then
-            Me.Close()
-        ElseIf e.Control And e.KeyCode = Keys.G Then
+            Close()
+        ElseIf e.Control AndAlso e.KeyCode = Keys.G Then
             btnGuardar_Click(sender, e)
         End If
     End Sub
@@ -47,7 +47,7 @@ Public Class frmMonedas
         If _LNMoneda.sb.Length <> 0 Then
             MessageBox.Show(_LNMoneda.sb.ToString(), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            Me.Close()
+            Close()
         End If
     End Sub
 
@@ -68,8 +68,8 @@ Public Class frmMonedas
 
     'Actualizar el objeto Moneda con los datos del formulario.
     Public Sub Actualizar()
-        _moneda.Codigo = Me.txtCodigo.Text.ToString.ToUpper.Trim()
-        _moneda.Descripcion = Me.txtDescripcion.Text.ToString.Trim()
+        _moneda.Codigo = txtCodigo.Text.ToString.ToUpper.Trim()
+        _moneda.Descripcion = txtDescripcion.Text.ToString.Trim()
     End Sub
 
 End Class
