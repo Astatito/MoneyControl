@@ -72,6 +72,7 @@ Public Class frmExcel
         hoja = libro.Sheets("Hoja1")
 
         btnAceptar.Enabled = True
+        btnAceptar.Text = "Aceptar"
     End Sub
 
     'Copiar datos desde el DataGridView a una hoja de Excel

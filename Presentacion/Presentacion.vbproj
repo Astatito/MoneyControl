@@ -50,6 +50,9 @@
   <PropertyGroup>
     <ApplicationIcon>img\money.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -76,6 +79,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\frmABMUsuarios.Designer.vb">
+      <DependentUpon>frmABMUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmABMUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCambioPassword.Designer.vb">
+      <DependentUpon>frmCambioPassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCambioPassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmConsultaMovimientos.Designer.vb">
       <DependentUpon>frmConsultaMovimientos.vb</DependentUpon>
     </Compile>
@@ -86,6 +101,18 @@
       <DependentUpon>frmExcel.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmLogin.Designer.vb">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmUsuarios.Designer.vb">
+      <DependentUpon>frmUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmUsuarios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="modules\Configuracion.vb" />
@@ -200,8 +227,14 @@
     <EmbeddedResource Include="forms\frmABMTiposCuenta.resx">
       <DependentUpon>frmABMTiposCuenta.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmABMUsuarios.resx">
+      <DependentUpon>frmABMUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmAMMovimientos.resx">
       <DependentUpon>frmAMMovimientos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCambioPassword.resx">
+      <DependentUpon>frmCambioPassword.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCategorias.resx">
       <DependentUpon>frmCategorias.vb</DependentUpon>
@@ -221,6 +254,9 @@
     <EmbeddedResource Include="forms\frmInicio.resx">
       <DependentUpon>frmInicio.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmLogin.resx">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmMonedas.resx">
       <DependentUpon>frmMonedas.vb</DependentUpon>
     </EmbeddedResource>
@@ -230,6 +266,9 @@
     <EmbeddedResource Include="forms\frmTiposCuenta.resx">
       <DependentUpon>frmTiposCuenta.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmUsuarios.resx">
+      <DependentUpon>frmUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -238,6 +277,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

@@ -5,6 +5,7 @@ Public Class ADConfiguracion
 
     'Modificar la configuración de la BD.
     Public Sub ActualizarTodo(ByVal newConfig As EConfiguracion, ByVal oldConfig As EConfiguracion)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -55,14 +56,14 @@ Public Class ADConfiguracion
             cnx.Dispose()
         End Using
         GC.Collect()
-
     End Sub
 
     'Obtener la configuración de la BD.
     Public Function ObtenerConfiguracion() As EConfiguracion
+        GC.Collect()
         Dim configuracion As EConfiguracion = Nothing
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Configuracion"
@@ -78,6 +79,7 @@ Public Class ADConfiguracion
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return configuracion
     End Function

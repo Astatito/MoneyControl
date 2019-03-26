@@ -78,11 +78,11 @@ Partial Class frmExcel
         '
         Me.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnAceptar.Enabled = False
-        Me.btnAceptar.Location = New System.Drawing.Point(86, 106)
+        Me.btnAceptar.Location = New System.Drawing.Point(67, 106)
         Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(75, 23)
+        Me.btnAceptar.Size = New System.Drawing.Size(94, 23)
         Me.btnAceptar.TabIndex = 5
-        Me.btnAceptar.Text = "Aceptar"
+        Me.btnAceptar.Text = "Preparando..."
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
         'btnCancelar
@@ -114,6 +114,7 @@ Partial Class frmExcel
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmExcel"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Exportar a Excel"
         Me.ResumeLayout(False)
         Me.PerformLayout()

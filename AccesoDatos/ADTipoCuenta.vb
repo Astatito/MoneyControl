@@ -5,6 +5,7 @@ Public Class ADTipoCuenta
 
     'Insertar un tipo de cuenta en la BD.
     Public Sub Insertar(ByVal tipoCuenta As ETipoCuenta)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -20,10 +21,12 @@ Public Class ADTipoCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Modificar un tipo de cuenta en la BD.
     Public Sub Actualizar(ByVal tipoCuenta As ETipoCuenta)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -41,10 +44,12 @@ Public Class ADTipoCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Eliminar un tipo de cuenta de la BD a partir de un ID.
     Public Sub Eliminar(ByVal idTipoCuenta As Integer)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -57,13 +62,15 @@ Public Class ADTipoCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Obtener todos los tipos de cuenta de la BD.
     Public Function ObtenerTodos() As List(Of ETipoCuenta)
+        GC.Collect()
         Dim tiposCuenta As New List(Of ETipoCuenta)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM TiposCuenta ORDER BY descripcion"
@@ -81,15 +88,17 @@ Public Class ADTipoCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return tiposCuenta
     End Function
 
     'Obtener un tipo de cuenta de la BD a partir de una descripción.
     Public Function ObtenerPorDescripcion(ByVal descripcion As String, ByVal idTipoCuenta As Integer) As ETipoCuenta
+        GC.Collect()
         Dim tipoCuenta As ETipoCuenta = Nothing
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM TiposCuenta WHERE descripcion = @nom AND id != @id"
@@ -107,6 +116,7 @@ Public Class ADTipoCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return tipoCuenta
     End Function

@@ -340,6 +340,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
     }
@@ -362,7 +370,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.5"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.6.2"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -837,7 +845,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Money Manager"
         "ProductCode" = "8:{71582318-FB6C-4B1A-8EA7-AB9CE880D6D7}"
-        "PackageCode" = "8:{A5AACF58-6F1A-4E42-B3C6-218B7CEA5211}"
+        "PackageCode" = "8:{AD1673F9-6BA2-4893-9AB5-E6F0D11880A0}"
         "UpgradeCode" = "8:{16BC7475-9674-4BB8-A3ED-1B18BC524E10}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -845,16 +853,16 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Fabián Guidobaldi"
+        "Manufacturer" = "8:AstaTech"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Money Manager Setup"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:AstaTech"
+        "ARPCONTACT" = "8:Fabián Guidobaldi"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_CCAF5D0C897D4187B06B9FF6772BA87E"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"

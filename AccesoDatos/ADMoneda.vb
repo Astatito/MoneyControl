@@ -5,6 +5,7 @@ Public Class ADMoneda
 
     'Insertar una moneda en la BD.
     Public Sub Insertar(ByVal moneda As EMoneda)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -19,10 +20,12 @@ Public Class ADMoneda
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Modificar una moneda en la BD.
     Public Sub Actualizar(ByVal moneda As EMoneda)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -38,10 +41,12 @@ Public Class ADMoneda
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Eliminar una moneda de la BD a partir de un ID.
     Public Sub Eliminar(ByVal idMoneda As Integer)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -53,13 +58,15 @@ Public Class ADMoneda
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Obtener todas las monedas de la BD.
     Public Function ObtenerTodos() As List(Of EMoneda)
+        GC.Collect()
         Dim monedas As New List(Of EMoneda)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Monedas ORDER BY codigo"
@@ -78,15 +85,17 @@ Public Class ADMoneda
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return monedas
     End Function
 
     'Obtener una moneda de la BD a partir de un código.
     Public Function ObtenerPorCodigo(ByVal codigo As String, ByVal idMoneda As Integer) As EMoneda
+        GC.Collect()
         Dim moneda As EMoneda = Nothing
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Monedas WHERE codigo = @cod AND id != @id"
@@ -105,6 +114,7 @@ Public Class ADMoneda
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return moneda
     End Function

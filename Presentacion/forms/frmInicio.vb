@@ -1,4 +1,6 @@
-﻿Public Class frmInicio
+﻿Imports Entidades
+
+Public Class frmInicio
     Private Sub btnABMMonedas_Click(sender As Object, e As EventArgs) Handles btnABMMonedas.Click
         Dim frm As New frmABMMonedas()
         frm.ShowDialog()
@@ -49,6 +51,26 @@
 
     Private Sub btnConsultaMovimientos_Click(sender As Object, e As EventArgs) Handles btnConsultaMovimientos.Click
         Dim frm As New frmConsultaMovimientos()
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub btnUsuarios_Click(sender As Object, e As EventArgs) 
+        Dim frm As New frmUsuarios()
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) 
+        Dim user As New EUsuario()
+        user.ID = 1
+        user.Usuario = "FABIAN"
+        user.Password = "hola"
+
+        Dim frm As New frmUsuarios(user)
+        frm.Show()
+    End Sub
+
+    Private Sub btnABMUsuarios_Click(sender As Object, e As EventArgs) Handles btnABMUsuarios.Click
+        Dim frm As New frmABMUsuarios()
         frm.ShowDialog()
     End Sub
 End Class

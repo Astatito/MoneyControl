@@ -71,7 +71,7 @@ Partial Class frmABMCuentas
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(75, 23)
         Me.btnEliminar.TabIndex = 3
-        Me.btnEliminar.Text = "E&liminar"
+        Me.btnEliminar.Text = "Eliminar"
         Me.toolTip.SetToolTip(Me.btnEliminar, "Eliminar la cuenta seleccionada." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Atajo: Supr)")
         Me.btnEliminar.UseVisualStyleBackColor = True
         '

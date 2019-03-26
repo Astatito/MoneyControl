@@ -6,6 +6,7 @@ Public Class ADMovimiento
     'Insertar un movimiento en la BD.
     Public Sub Insertar(ByVal movimiento As EMovimiento)
         Using cnx As New SQLiteConnection(connString)
+            GC.Collect()
             cnx.Open()
 
             Using tr As SQLiteTransaction = cnx.BeginTransaction()
@@ -59,6 +60,7 @@ Public Class ADMovimiento
 
     'Actualizar un movimiento en la BD.
     Public Sub Actualizar(ByVal old_movimiento As EMovimiento, ByVal movimiento As EMovimiento)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -124,6 +126,7 @@ Public Class ADMovimiento
 
     'Eliminar un movimiento de la BD a partir de un ID.
     Public Sub Eliminar(ByVal movimiento As EMovimiento)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -164,9 +167,10 @@ Public Class ADMovimiento
 
     'Obtener los movimientos de la BD asociados a una cuenta entre dos fechas.
     Public Function ObtenerPorCuentaYFecha(ByVal idCuenta As Integer, ByVal fechaDesde As Date, ByVal fechaHasta As Date) As List(Of EMovimiento)
+        GC.Collect()
         Dim movimientos As New List(Of EMovimiento)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT m.id AS id, m.fecha AS fecha, m.tipoMovimiento AS tipoMovimiento, m.categoria AS categoria, ca.nombre AS nombreCategoria, m.subcategoria AS subcategoria, s.nombre AS nombreSubcategoria, m.monto AS monto, m.cuenta AS cuenta, cu.nombre AS nombreCuenta, m.descripcion AS descripcion FROM (((Movimientos m JOIN Categorias ca ON m.categoria = ca.id) LEFT JOIN Subcategorias s ON m.subcategoria = s.id) JOIN Cuentas cu ON m.cuenta = cu.id) WHERE m.cuenta = @cuen AND m.fecha >= @fecDesde AND m.fecha <= @fecHasta ORDER BY m.fecha"
@@ -198,6 +202,7 @@ Public Class ADMovimiento
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return movimientos
     End Function

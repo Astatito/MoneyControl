@@ -32,6 +32,7 @@ Partial Class frmInicio
         Me.btnGasto = New System.Windows.Forms.Button()
         Me.btnConfiguracion = New System.Windows.Forms.Button()
         Me.btnConsultaMovimientos = New System.Windows.Forms.Button()
+        Me.btnABMUsuarios = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnABMMonedas
@@ -115,11 +116,21 @@ Partial Class frmInicio
         Me.btnConsultaMovimientos.Text = "Consultar Movimientos"
         Me.btnConsultaMovimientos.UseVisualStyleBackColor = True
         '
+        'btnABMUsuarios
+        '
+        Me.btnABMUsuarios.Location = New System.Drawing.Point(12, 340)
+        Me.btnABMUsuarios.Name = "btnABMUsuarios"
+        Me.btnABMUsuarios.Size = New System.Drawing.Size(117, 40)
+        Me.btnABMUsuarios.TabIndex = 12
+        Me.btnABMUsuarios.Text = "ABM Usuarios"
+        Me.btnABMUsuarios.UseVisualStyleBackColor = True
+        '
         'frmInicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(696, 362)
+        Me.ClientSize = New System.Drawing.Size(696, 388)
+        Me.Controls.Add(Me.btnABMUsuarios)
         Me.Controls.Add(Me.btnConsultaMovimientos)
         Me.Controls.Add(Me.btnConfiguracion)
         Me.Controls.Add(Me.btnGasto)
@@ -145,4 +156,5 @@ Partial Class frmInicio
     Friend WithEvents btnGasto As Button
     Friend WithEvents btnConfiguracion As Button
     Friend WithEvents btnConsultaMovimientos As Button
+    Friend WithEvents btnABMUsuarios As Button
 End Class

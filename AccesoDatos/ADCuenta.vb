@@ -5,6 +5,7 @@ Public Class ADCuenta
 
     'Insertar una cuenta en la BD.
     Public Sub Insertar(ByVal cuenta As ECuenta)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -25,10 +26,12 @@ Public Class ADCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Modificar una cuenta en la BD.
     Public Sub Actualizar(ByVal cuenta As ECuenta)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -50,10 +53,12 @@ Public Class ADCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Eliminar una cuenta de la BD a partir de un ID.
     Public Sub Eliminar(ByVal idCuenta As Integer)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -89,14 +94,14 @@ Public Class ADCuenta
             cnx.Dispose()
         End Using
         GC.Collect()
-
     End Sub
 
     'Obtener todas las cuentas de la BD.
     Public Function ObtenerTodos() As List(Of ECuenta)
+        GC.Collect()
         Dim cuentas As New List(Of ECuenta)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Cuentas ORDER BY nombre"
@@ -118,15 +123,17 @@ Public Class ADCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return cuentas
     End Function
 
     'Obtener todas las cuentas (incluídos los datos auxiliares) de la BD.
     Public Function ObtenerTodosFull() As List(Of ECuenta)
+        GC.Collect()
         Dim cuentas As New List(Of ECuenta)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT c.id AS id, c.nombre AS nombre, c.tipoCuenta AS tipoCuenta, tc.descripcion AS descripcionTipoCuenta, c.moneda AS moneda, m.codigo AS codigoMoneda, c.saldo AS saldo, c.descripcion AS descripcion FROM (Cuentas c join TiposCuenta tc ON c.tipoCuenta = tc.id) JOIN Monedas m ON c.moneda = m.id ORDER BY c.nombre"
@@ -150,15 +157,17 @@ Public Class ADCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return cuentas
     End Function
 
     'Obtener una cuenta de la BD a partir de un nombre.
     Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCuenta As Integer) As ECuenta
+        GC.Collect()
         Dim cuenta As ECuenta = Nothing
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Cuentas WHERE nombre = @nom AND id != @id"
@@ -180,15 +189,17 @@ Public Class ADCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return cuenta
     End Function
 
     'Obtener todas las cuentas asociadas a una moneda.
     Public Function ObtenerPorMoneda(ByVal idMoneda As Integer) As List(Of ECuenta)
+        GC.Collect()
         Dim cuentas As New List(Of ECuenta)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Cuentas WHERE moneda = @mon"
@@ -211,15 +222,17 @@ Public Class ADCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return cuentas
     End Function
 
     'Obtener todas las cuentas asociadas a un tipo de cuenta.
     Public Function ObtenerPorTipoDeCuenta(ByVal idTipoCuenta As Integer) As List(Of ECuenta)
+        GC.Collect()
         Dim cuentas As New List(Of ECuenta)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Cuentas WHERE tipoCuenta = @tipo"
@@ -242,6 +255,7 @@ Public Class ADCuenta
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return cuentas
     End Function

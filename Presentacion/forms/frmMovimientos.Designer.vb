@@ -140,6 +140,7 @@ Partial Class frmAMMovimientos
         'txtDescripcion
         '
         Me.txtDescripcion.Location = New System.Drawing.Point(119, 153)
+        Me.txtDescripcion.MaxLength = 100
         Me.txtDescripcion.Multiline = True
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(121, 64)

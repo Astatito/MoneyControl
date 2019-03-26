@@ -135,7 +135,6 @@ Public Class frmABMCuentas
         _cuenta.CodigoMoneda = dgvCuentas.Rows(fila).Cells(5).Value
         _cuenta.Saldo = dgvCuentas.Rows(fila).Cells(6).Value
         _cuenta.Descripcion = dgvCuentas.Rows(fila).Cells(7).Value
-
     End Sub
 
 End Class

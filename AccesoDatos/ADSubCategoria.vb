@@ -5,6 +5,7 @@ Public Class ADSubCategoria
 
     'Insertar una subcategoría en la BD.
     Public Sub Insertar(ByVal subcategoria As ESubCategoria)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -18,10 +19,12 @@ Public Class ADSubCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Modificar una subcategoría en la BD.
     Public Sub Actualizar(ByVal subcategoria As ESubCategoria)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -36,10 +39,12 @@ Public Class ADSubCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Eliminar una subcategoría de la BD a partir de un ID.
     Public Sub Eliminar(ByVal idSubCategoria As Integer)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -51,13 +56,15 @@ Public Class ADSubCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Obtener todas las subcategorías (incluídos los datos auxiliares) de la BD.
     Public Function ObtenerTodosFull() As List(Of ESubCategoria)
+        GC.Collect()
         Dim subcategorias As New List(Of ESubCategoria)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT sc.id AS id, sc.categoria AS categoria, c.nombre as nombreCategoria, sc.nombre as nombre FROM SubCategorias sc JOIN Categorias c ON sc.categoria = c.id ORDER BY sc.nombre"
@@ -77,15 +84,17 @@ Public Class ADSubCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return subcategorias
     End Function
 
     'Obtener todas las subcategorías de una categoría de la BD.
     Public Function ObtenerPorCategoria(ByVal idCategoria As Integer) As List(Of ESubCategoria)
+        GC.Collect()
         Dim subcategorias As New List(Of ESubCategoria)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM SubCategorias WHERE categoria = @cate ORDER BY nombre"
@@ -106,15 +115,17 @@ Public Class ADSubCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return subcategorias
     End Function
 
     'Obtener todas las subcategorías de una categoría (incluídos los datos auxiliares) de la BD.
     Public Function ObtenerPorCategoriaFull(ByVal idCategoria As Integer) As List(Of ESubCategoria)
+        GC.Collect()
         Dim subcategorias As New List(Of ESubCategoria)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT sc.id AS id, sc.categoria AS categoria, c.nombre as nombreCategoria, sc.nombre as nombre FROM SubCategorias sc JOIN Categorias c ON sc.categoria = c.id WHERE sc.categoria = @cate ORDER BY sc.nombre"
@@ -136,15 +147,17 @@ Public Class ADSubCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return subcategorias
     End Function
 
     'Obtener una subcategoría de la BD a partir de un nombre.
     Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idSubCategoria As Integer) As ESubCategoria
+        GC.Collect()
         Dim subcategoria As ESubCategoria = Nothing
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM SubCategorias WHERE nombre = @nom AND id != @id"
@@ -163,6 +176,7 @@ Public Class ADSubCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return subcategoria
     End Function

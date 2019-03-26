@@ -5,6 +5,7 @@ Public Class ADCategoria
 
     'Insertar una categoría en la BD.
     Public Sub Insertar(ByVal categoria As ECategoria)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -18,10 +19,12 @@ Public Class ADCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Modificar una categoría en la BD.
     Public Sub Actualizar(ByVal categoria As ECategoria)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -36,10 +39,12 @@ Public Class ADCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
     End Sub
 
     'Eliminar una categoría de la BD a partir de un ID.
     Public Sub Eliminar(ByVal idCategoria As Integer, ByVal tipoCategoria As String, ByVal config As EConfiguracion)
+        GC.Collect()
         Using cnx As New SQLiteConnection(connString)
             cnx.Open()
 
@@ -89,9 +94,10 @@ Public Class ADCategoria
 
     'Obtener todas las categorías de la BD.
     Public Function ObtenerTodos() As List(Of ECategoria)
+        GC.Collect()
         Dim categorias As New List(Of ECategoria)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Categorias ORDER BY nombre"
@@ -110,15 +116,17 @@ Public Class ADCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return categorias
     End Function
 
     'Obtener todas las categorías de ingresos de la BD.
     Public Function ObtenerIngresos() As List(Of ECategoria)
+        GC.Collect()
         Dim categorias As New List(Of ECategoria)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Categorias WHERE tipoMovimiento = @tip ORDER BY nombre"
@@ -138,15 +146,17 @@ Public Class ADCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return categorias
     End Function
 
     'Obtener todas las categorías de gastos de la BD.
     Public Function ObtenerGastos() As List(Of ECategoria)
+        GC.Collect()
         Dim categorias As New List(Of ECategoria)
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Categorias WHERE tipoMovimiento = @tip ORDER BY nombre "
@@ -166,15 +176,17 @@ Public Class ADCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return categorias
     End Function
 
     'Obtener una categoría de la BD a partir de un nombre.
     Public Function ObtenerPorNombre(ByVal nombre As String, ByVal idCategoria As Integer) As ECategoria
+        GC.Collect()
         Dim categoria As ECategoria = Nothing
 
-        Using cnx As New SQLiteConnection(connString)
+        Using cnx As New SQLiteConnection(connStringReadOnly)
             cnx.Open()
 
             Const sqlQuery As String = "SELECT * FROM Categorias WHERE nombre = @nom AND id != @id"
@@ -193,6 +205,7 @@ Public Class ADCategoria
             End Using
             cnx.Close()
         End Using
+        GC.Collect()
 
         Return categoria
     End Function

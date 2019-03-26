@@ -111,6 +111,7 @@
     <Compile Include="ADTipoMovimiento.vb" />
     <Compile Include="ADTipoCuenta.vb" />
     <Compile Include="ADTransferencia.vb" />
+    <Compile Include="ADUsuario.vb" />
     <Compile Include="DataBase.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
